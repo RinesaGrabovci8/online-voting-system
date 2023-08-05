@@ -1,0 +1,32 @@
+/* voto.css */
+
+/* Styles for the container */
+.zgjedhjet {
+    margin: 250px 600px;
+    max-width: 1900px;
+  
+    transform: translateY(1.5cm);
+  }
+  
+  /* Styles for the headings */
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for the main sections */
+  .zgjedhjetQendrore,
+  .zgjedhjetLokale {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 25px;
+  }
+  
+  /* Styles for the navbar, sidebar, and footer components */
+  /* Add appropriate styles for Navbar, Sidebar, and Footer components here */
+  
