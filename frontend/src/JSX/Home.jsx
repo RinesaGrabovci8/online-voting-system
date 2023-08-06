@@ -49,7 +49,6 @@ function Home(){
                     />
                     <div className="container">
                         <h2>Perparim Rama</h2>
-                        <p className="title">Kryetar i Komunes se Prishtines</p>
                         <p>Kryetar i Komunes nga viti 2021</p>
                         <p>perparim.rama@rks-gov.net</p>
                         <p><button className="card-button">Lexo me shume...</button></p>
@@ -66,7 +65,6 @@ function Home(){
                     />
                     <div className="container">
                         <h2>Ramush Haradinaj</h2>
-                        <p className="title">Politikan</p>
                         <p>Kryetar i partise AAK</p>
                         <p>ramush.haradinaj@rks-gov.net</p>
                         <p><button className="card-button">Lexo me shume...</button></p>
