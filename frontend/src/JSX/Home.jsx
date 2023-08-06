@@ -33,7 +33,6 @@ function Home(){
                     />
                     <div className="container">
                         <h2>Albin Kurti</h2>
-                        <p className="title">Kryeminister</p>
                         <p>Kryeminister i Republikes se Kosoves nga 2021</p>
                         <p>albin.kurti@rks-gov.net</p>
                         <p><button className="card-button">Lexo me shume...</button></p>
