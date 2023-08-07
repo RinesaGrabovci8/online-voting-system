@@ -3,7 +3,6 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import React from "react";
 import '../CSS/votoketu.css';
-import voteimg from '../img/images__1_-removebg-preview.png';
 
 function Voto(){
     return (
@@ -12,7 +11,6 @@ function Voto(){
                 <h1>Voto!</h1>
                 <button className="zgjedhjetQendrore-btn">Zgjedhjet Qendrore</button>
                 <button className="zgjedhjetLokale-btn">Zgjedhjet Lokale</button>
-                
             </div>
         </div>
     );

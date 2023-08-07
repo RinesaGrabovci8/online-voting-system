@@ -1,0 +1,68 @@
+
+.votoketu {
+    margin-top: 80px;
+    max-width: 1200px;
+    padding: 20px;
+    margin-left: 240px;
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-bottom: 100px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .main-images-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .main-image {
+    text-align: center;
+    margin-bottom: 90px;
+  }
+  
+  .main-image img {
+    max-width: 300px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+  }
+  
+  .main-image .form-wrapper {
+    text-align: center;
+  }
+  
+  .form-wrapper form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .form-wrapper button {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .form-wrapper button:hover {
+    background-color: #0056b3;
+  }
+
+  .image-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .form-wrapper p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
