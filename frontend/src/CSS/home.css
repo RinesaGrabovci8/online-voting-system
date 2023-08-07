@@ -7,7 +7,7 @@
   
   .container {
     max-width: 1000px; 
-    margin: 0 50px; 
+    margin-left: 300px;
   }
   
   .main-content {
@@ -39,12 +39,12 @@
   .row {
     margin-top: 100px;
     margin-bottom: 100px;
-    margin-left: 100px;
+    margin-left: 140px;
   }
   
   .column {
     float: left;
-    width: 33.3%;
+    width: 30%;
     margin-top: 25px;
     margin-bottom: 16px;
     padding: 0 8px;
@@ -53,9 +53,20 @@
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
+
+  .card .container{
+    margin-left: 0px;
+  }
   
   .title {
     font-weight: bold;
+  }
+
+  .partite-row{
+      margin-top: 100px;
+      margin-bottom: 100px;
+      margin-left: 140px;
+  
   }
   
   .card-button {
@@ -110,11 +121,25 @@
     font-size: 20px;
     font-weight: 400;
   }
+
+  .previous-elections__part {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
   
   .prev-elections__title {
     text-align: center;
-    padding-top: 25px;
+    padding-top: 20px;
     color: white;
+  }
+
+  .container2{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
   }
   
   .small-container {
@@ -122,11 +147,26 @@
     display: flex;
     justify-content: space-around;
     background-color: #C6D8EE;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+  }
+
+  .small-container__title {
+    text-align: center;
+    margin-bottom: 10px;
+    color: black;
+  }
+
+  .small-container__title p{
+    margin-left: 10px;
+    margin-right: 10px;
   }
   
   .desc-title {
     text-align: center;
     margin-top: 15px;
+    margin-bottom: 20px;
   }
   
   .desc {
@@ -146,8 +186,13 @@
     justify-content: space-around;
     margin-top: 150px;
     margin-bottom: 175px;
+    margin-left: 100px;
   }
-  
+
+  .small-description img{
+    margin-left: 50px;
+  }
+
   .text-part {
     font-style: normal;
     font-weight: 400;
