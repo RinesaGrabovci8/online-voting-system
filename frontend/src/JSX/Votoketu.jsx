@@ -3,21 +3,19 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import React from "react";
 import '../CSS/votoketu.css';
+import voteimg from '../img/images__1_-removebg-preview.png';
 
 function Voto(){
-    return(
-    <div>
-        <div className="zgjedhjet">
-            <h1>Voto!</h1>
-            <div className="zgjedhjetQendrore">
-                <h3>Zgjedhjet Qendrore</h3>
-            </div>
-            <div className="zgjedhjetLokale">
-                <h3>Zgjedhjet Lokale</h3>
+    return (
+        <div className="votoketu">
+            <div className="zgjedhjet">
+                <h1>Voto!</h1>
+                <button className="zgjedhjetQendrore-btn">Zgjedhjet Qendrore</button>
+                <button className="zgjedhjetLokale-btn">Zgjedhjet Lokale</button>
+                
             </div>
         </div>
-    </div>
-    )
+    );
 }
 
 export default Voto;
