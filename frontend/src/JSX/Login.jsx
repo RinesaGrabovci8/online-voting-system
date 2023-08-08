@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
-
-export const Login = (props) => {
+import './loginsigup.css';
+//export const Login = (props) => {
     const [NumriPersonal, setNumriPersonal] = useState('');
     const [pass, setPass] = useState('');
 
@@ -23,4 +23,5 @@ export const Login = (props) => {
             <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Nuk keni llogari? Regjistrohuni këtu.</button>
         </div>
     )
-}
+
+    export default Login;
