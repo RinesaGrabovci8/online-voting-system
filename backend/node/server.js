@@ -1,27 +1,34 @@
-// server.js
+const sql = require('mssql');
+const dbConfig = require('../mssql/dbConfig.js'); // Adjust the path as needed
+
+async function connectToDatabase() {
+  try {
+    await sql.connect(dbConfig);
+    console.log('Connected to database');
+  } catch (err) {
+    console.error('Error connecting to database:', err);
+  }
+}
+
+// Call the connectToDatabase function to establish the connection
+connectToDatabase();
+
+async function getParties() {
+  try {
+    const result = await sql.query`SELECT * FROM Parties`;
+    return result.recordset;
+  } catch (err) {
+    console.error('Error fetching parties:', err);
+    return [];
+  }
+}
+
 const express = require('express');
 const app = express();
-const PORT = 5000; // Choose any port you prefer
 
-// Basic route
-app.get('/', (req, res) => {
-  res.send('Hello from the backend!');
+app.get('/parties', async (req, res) => {
+  const parties = await getParties();
+  res.json(parties);
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
-
-// server.js
-// ...
-
-// User registration route
-app.post('/api/register', (req, res) => {
-    // Process user registration logic here
-    const { username, email, password } = req.body;
-    // Code to register the user and save data to the database (if used)
-  
-    res.json({ success: true, message: 'User registered successfully!' });
-  });
-  
+// Other routes for different operations
