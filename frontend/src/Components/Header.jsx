@@ -1,24 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../img/logo.png';
 import '../CSS/header.css';
 
+
 function Header() {
+  
+
   return (
     <header>
-      <div className="container">
+      <div className='container'>
         <div className="header-wrapper">
-          <div className="logo">
-            <img src={logo} alt="" id="mainLogo" />
-          </div>
-          <div className="toggle-switch">
-            <span className="sq">SQ</span>
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
-            <span className="en">EN</span>
-          </div>
+          <Link to="/home" className='logo-link'>
+            <img src={logo} alt="logo" id="mainLogo" />
+          </Link>
         </div>
       </div>
     </header>

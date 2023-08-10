@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
-import './loginsigup.css';
-//export const Login = (props) => {
+import '../CSS/loginsigup.css';
+const Login = (props) => {
     const [NumriPersonal, setNumriPersonal] = useState('');
     const [pass, setPass] = useState('');
 
@@ -9,7 +8,7 @@ import './loginsigup.css';
         e.preventDefault();
         console.log(NumriPersonal);
     }
-/*test*/
+ /*test*/
     return (
         <div className="auth-form-container">
             <h2>Kyçu!</h2>
@@ -22,6 +21,7 @@ import './loginsigup.css';
             </form>
             <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Nuk keni llogari? Regjistrohuni këtu.</button>
         </div>
-    )
+    );
+};
 
-    export default Login;
+export default Login;

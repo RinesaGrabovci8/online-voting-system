@@ -1,4 +1,4 @@
-.App {
+.Login{
   text-align: center;
   display: flex;
   min-height: 90vh;
@@ -6,11 +6,17 @@
   justify-content: center;
   color: rgb(20, 20, 21);
   background-image: linear-gradient(90deg, #050cd4, #050cd4 48%, #ffffff);
+  z-index: 0;
+}
+
+.auth-form-container{
+  z-index: 2;
 }
 
 .auth-form-container, .login-form, .register-form {
   display: flex;
   flex-direction: column;
+  z-index: 2;
   
 }
 
