@@ -8,13 +8,14 @@ import Footer from './Components/Footer';
 import Votozgjedhjetqendrore from './JSX/zgjedhjetqendrore';
 import Chart from './JSX/Grafiket';
 import PersonalPage from './JSX/PersonalPage';
+import Register from './JSX/Register';
+import Login from './JSX/Login';
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <Sidebar/>
-      <PersonalPage/>
-      <Footer/>
+      
+      <Login/>
+
     </div>
   );
 }
