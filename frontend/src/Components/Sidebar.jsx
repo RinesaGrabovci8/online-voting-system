@@ -1,60 +1,56 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../CSS/sidebar.css';
-import { FaUser } from 'react-icons/fa';
-import { FaHome } from 'react-icons/fa';
-import { FaVoteYea } from 'react-icons/fa';
-import { FaFlag } from 'react-icons/fa';
-import { FaChartLine } from 'react-icons/fa';
-import { FaNewspaper } from 'react-icons/fa';
-import { FaSignOutAlt } from 'react-icons/fa';
+import { FaUser, FaHome, FaVoteYea, FaFlag, FaChartLine, FaSignOutAlt } from 'react-icons/fa';
 import { BsFillBellFill } from 'react-icons/bs';
 import { FiChevronRight } from 'react-icons/fi';
-
+import Home from '../JSX/Home';
+import PersonalPage from '../JSX/PersonalPage';
+import Voto from '../JSX/Votoketu';
 
 function Sidebar() {
   return (
     <div className="sidebar">
       <ul className='sidebar-ul'>
         <li className='li1'>
-          <a href="/personal-information">
-          <FaUser/>
+          <Link to="/personal-information">
+            <FaUser />
             Informatat Personale
-          </a>
+          </Link>
         </li>
         <li className='li2'>
-          <a href="/">
-            <FaHome/>
+          <Link to="/">
+            <FaHome />
             Kryefaqja
-          </a>
+          </Link>
         </li>
         <li className='li3'>
-          <a href="/">
-            <FaVoteYea/>
+          <Link to="/voto-ketu">
+            <FaVoteYea />
             Voto Ketu!
-          </a>
+          </Link>
         </li>
         <li className='li4'>
-          <a href="/elections">
-            <FaFlag/>
+          <Link to="/elections">
+            <FaFlag />
             Zgjedhjet
-          </a>
+          </Link>
           <ul>
-            <li className='li5'><a href="/local-elections">Local Elections</a></li>
-            <li className='li6'><a href="/central-elections">Central Elections</a></li>
+            <li className='li5'><Link to="/local-elections">Local Elections</Link></li>
+            <li className='li6'><Link to="/central-elections">Central Elections</Link></li>
           </ul>
         </li>
         <li className='li7'>
-          <a href="/dashboard">
-            <FaChartLine/>
+          <Link to="/dashboard">
+            <FaChartLine />
             Grafiket
-          </a>
+          </Link>
         </li>
-
         <li className='li9'>
-          <a href="/logout">
-            <FaSignOutAlt/>
+          <Link to="/logout">
+            <FaSignOutAlt />
             Shkyçu
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
