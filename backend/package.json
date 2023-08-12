@@ -9,11 +9,12 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
+    "mongodb": "^5.7.0",
+    "mongoose": "^7.4.3",
     "msnodesqlv8": "^4.1.0",
     "mssql": "^9.1.2",
     "node": "^20.5.0"
   },
   "keywords": [],
-  "devDependencies": {},
   "description": ""
 }
