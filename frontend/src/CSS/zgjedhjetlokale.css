@@ -1,0 +1,14 @@
+.zgjedhjet-lokale{
+    margin-top: 150px;
+    margin-left: 200px;
+    margin-bottom: 150px;
+}
+
+.city-container button:hover {
+    background-color: #0056b3;
+}
+
+.city-buttons{
+    padding: 20px;
+    margin-bottom: 5px;
+}
