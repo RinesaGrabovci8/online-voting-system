@@ -15,6 +15,8 @@ import "../CSS/home.css";
 function Home(){
     return(
         <>
+        <Header/>
+        <Sidebar/>
         <div className="container">
             <div className="main-content">
                 <p className="small-text">
@@ -124,6 +126,7 @@ function Home(){
                 <img src={Rks} alt="rks" id="rks" />
             </div>
         </div>
+        <Footer/>
         </>
         
     )

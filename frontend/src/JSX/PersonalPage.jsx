@@ -1,5 +1,8 @@
 import React from 'react';
 import '../CSS/PersonalPage.css';
+import Header from '../Components/Header';
+import Sidebar from '../Components/Sidebar';
+import Footer from '../Components/Footer';
 
 
 class PersonalPage extends React.Component {
@@ -102,28 +105,33 @@ class PersonalPage extends React.Component {
 
   render() {
     return (
-    <div id="main-registration-container">
-     <div id="register">
-        <h3>Profile Update</h3>
-        <form method="post"  name="userRegistrationForm"  onSubmit= {this.submituserRegistrationForm} >
-        <label>Personal numbers</label>
-        <input type="text" name="perosnalnumber" value={this.state.fields.username} onChange={this.handleChange} />
-        <div className="errorMsg">{this.state.errors.username}</div>
-        <label>Password</label>
-        <input type="password" name="password" value={this.state.fields.password} onChange={this.handleChange} />
-        <div className="errorMsg">{this.state.errors.password}</div>
-        <label>Report an issue:</label>
-        <input type="text" name="report an issue" value={this.state.fields.emailid} onChange={this.handleChange}  />
-        <div className="errorMsg">{this.state.errors.emailid}</div>
-        
-        <input type="submit" className="button"  value="update"/>
-        </form>
-        
-        
-    </div>
-</div>
+      <>
+        <Header/>
+        <Sidebar/>
+          <div id="main-registration-container">
+          <div id="register">
+              <h3>Profile Update</h3>
+              <form method="post"  name="userRegistrationForm"  onSubmit= {this.submituserRegistrationForm} >
+              <label>Personal numbers</label>
+              <input type="text" name="perosnalnumber" value={this.state.fields.username} onChange={this.handleChange} />
+              <div className="errorMsg">{this.state.errors.username}</div>
+              <label>Password</label>
+              <input type="password" name="password" value={this.state.fields.password} onChange={this.handleChange} />
+              <div className="errorMsg">{this.state.errors.password}</div>
+              <label>Report an issue:</label>
+              <input type="text" name="report an issue" value={this.state.fields.emailid} onChange={this.handleChange}  />
+              <div className="errorMsg">{this.state.errors.emailid}</div>
+              
+              <input type="submit" className="button"  value="update"/>
+              </form>
+              
+              
+          </div>
+      </div>
+      <Footer/>
+    </>
 
-      );
+    );
   }
 
 

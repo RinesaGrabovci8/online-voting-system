@@ -9,7 +9,6 @@ const Result = require('../models/results.js');
 
 const uri = "mongodb+srv://rinesa:9ohqksxIkjYNzwGl@cluster0.gedxlpp.mongodb.net/?retryWrites=true&w=majority";
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -23,7 +22,6 @@ async function connectToDatabase() {
       await client.connect();
       console.log("Connected to MongoDB Atlas");
   
-      // Use Mongoose to manage models and data insertion
       await insertData();
     } catch (error) {
       console.error("Error connecting to MongoDB Atlas:", error);
@@ -38,8 +36,7 @@ async function insertData() {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
-  
-      // Create instances of your models and insert data
+
       const newUser = new User({ 
         username: 'user123',
         password: 'pass123',
@@ -76,8 +73,7 @@ async function insertData() {
       console.error("Error inserting data:", error);
     }
   }
-  
-  // Call the connectToDatabase function to start the process
+
 connectToDatabase();
 
 

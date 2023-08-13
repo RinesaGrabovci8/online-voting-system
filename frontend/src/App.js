@@ -13,16 +13,15 @@ import Login from './JSX/Login';
 import './App.css';
 
 
+
+
 function App() {
   return (
     <Router>
         <div className="App">
-        <Header />
-        <Sidebar />
-        <Voto/>
-        <Footer />
+         <Chart/>
       </div>
-      </Router>
+    </Router>
   );
 }
 

@@ -6,6 +6,9 @@ import '../CSS/votoketu.css';
 
 function Voto(){
     return (
+        <>
+        <Header/>
+        <Sidebar/>
         <div className="votoketu">
             <div className="zgjedhjet">
                 <h1>Voto!</h1>
@@ -13,6 +16,8 @@ function Voto(){
                 <button className="zgjedhjetLokale-btn">Zgjedhjet Lokale</button>
             </div>
         </div>
+        <Footer/>
+        </>
     );
 }
 

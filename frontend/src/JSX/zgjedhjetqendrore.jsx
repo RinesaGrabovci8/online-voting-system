@@ -3,6 +3,9 @@ import '../CSS/zgjedhjetqendrore.css';
 import voteimg1 from '../img/ak.jpg';
 import voteimg2 from '../img/hth.jpg';
 import voteimg3 from '../img/rh.jpg';
+import Header from "../Components/Header";
+import Sidebar from "../Components/Sidebar";
+import Footer from "../Components/Footer";
 
 function VotoPage() {
   const handleSubmit = (e) => {
@@ -12,6 +15,9 @@ function VotoPage() {
 
   
   return (
+    <>
+    <Header/>
+    <Sidebar/>
     <div className="votoketu">
       <h1>Voto Zgjedhjet Qendrore!</h1>
       <div className="main-images-container">
@@ -47,6 +53,8 @@ function VotoPage() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 
