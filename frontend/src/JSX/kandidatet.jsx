@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import ak from '../../images/ak.jpg';
-import pr from '../../images/pr.jpg';
-import rh from '../../images/ramush.png';
-import ui from '../../images/urani.jpg';
-import bp from '../../images/bexhii.jpg';
-import fl from '../../images/fatmir.jpeg';
-import Header from '../Header.jsx';
+import ak from '../img/ak.jpg';
+import pr from '../img/pr.jpg';
+import rh from '../img/ramush.png';
+import ui from '../img/urani.jpg';
+import bp from '../img/bexhii.jpg';
+import fl from '../img/fatmir.jpeg';
+import Header from '../Components/Header';
 import '../CSS/kandidatetLokal.css';
 
 export class kandidatetLokal extends Component {
