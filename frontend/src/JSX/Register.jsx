@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../CSS/loginsigup.css';
+
 
 const Register = (props) => {
     const [NumriPersonal, setNumriPersonal] = useState('');

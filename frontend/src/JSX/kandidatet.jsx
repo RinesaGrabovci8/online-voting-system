@@ -8,15 +8,15 @@ import bp from '../img/bexhii.jpg';
 import fl from '../img/fatmir.jpeg';
 import Header from '../Components/Header';
 import '../CSS/kandidatetLokal.css';
+import Sidebar from '../Components/Sidebar';
 
-export class kandidatetLokal extends Component {
+export class KandidatetLokal extends Component {
 
 
     render() {
         return (
             <>
                  <Header />
-                 
                 <div className="div1">
                     <h1 className="headers1">Zgjedhjet Lokale jane HAPUR!</h1>
 
@@ -71,9 +71,7 @@ export class kandidatetLokal extends Component {
                             </div>
                         </div>
                     </div>
-                    
                 </div>
-
                     <div className="column1">
                         <div className="cards">
                             <img
@@ -121,8 +119,6 @@ export class kandidatetLokal extends Component {
                             </div>
                         </div>
                     </div>
-                    
-
                         <Link to="/voto">
                             <button className="my-button1">Voto tani!</button>
                         </Link>
@@ -136,4 +132,4 @@ export class kandidatetLokal extends Component {
         );
     }
 }
-export default kandidatetLokal;
+export default KandidatetLokal;

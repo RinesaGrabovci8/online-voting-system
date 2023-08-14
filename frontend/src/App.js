@@ -10,9 +10,8 @@ import Chart from './JSX/Grafiket';
 import PersonalPage from './JSX/PersonalPage';
 import Register from './JSX/Register';
 import Login from './JSX/Login';
-import './App.css';
 import Zgjedhjetlokale from './JSX/zgjedhjetlokale';
-import kandidatet from './JSX/kandidatet';
+import KandidatetLokal from './JSX/kandidatet';
 
 
 
@@ -20,7 +19,7 @@ function App() {
   return (
     <Router>
         <div className="App">
-         <Zgjedhjetlokale/>
+         <Chart/>
       </div>
     </Router>
   );
