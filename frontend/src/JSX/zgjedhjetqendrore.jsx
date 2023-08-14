@@ -7,7 +7,7 @@ import Header from "../Components/Header";
 import Sidebar from "../Components/Sidebar";
 import Footer from "../Components/Footer";
 
-function VotoPage() {
+function ZgjedhjetQendrore() {
   const handleSubmit = (e) => {
     e.preventDefault();
     //submisiion logic
@@ -58,4 +58,4 @@ function VotoPage() {
   );
 }
 
-export default VotoPage;
+export default ZgjedhjetQendrore;
