@@ -12,7 +12,7 @@ import Register from './JSX/Register';
 import Login from './JSX/Login';
 import './App.css';
 import Zgjedhjetlokale from './JSX/zgjedhjetlokale';
-
+import kandidatet from './JSX/kandidatet';
 
 
 
