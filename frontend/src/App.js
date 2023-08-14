@@ -11,7 +11,6 @@ import PersonalPage from './JSX/PersonalPage';
 import Register from './JSX/Register';
 import Login from './JSX/Login';
 import Zgjedhjetlokale from './JSX/zgjedhjetlokale';
-import KandidatetLokal from './JSX/kandidatet';
 import Zgjedhjet from './JSX/Zgjedhjetpage'
 
 
@@ -20,7 +19,7 @@ function App() {
   return (
     <Router>
         <div className="App">
-         <Zgjedhjet/>
+         <PersonalPage/>
       </div>
     </Router>
   );
