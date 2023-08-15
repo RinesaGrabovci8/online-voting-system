@@ -19,7 +19,7 @@ function App() {
   return (
     <Router>
         <div className="App">
-         <PersonalPage/>
+         <Zgjedhjet/>
       </div>
     </Router>
   );

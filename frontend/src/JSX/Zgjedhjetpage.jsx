@@ -8,24 +8,24 @@ import ak from "../img/ak.jpg"
 const candidates = [
   {
     id: 1,
-    name: "John",
-    surname: "Doe",
+    name: "Albin",
+    surname: "Kurti",
     imageSrc: "../img/ak.jpg",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Kandidat i Vetvendosjes per Kryeminister te Republikes se Kosoves.",
   },
   {
     id: 2,
-    name: "Jane",
-    surname: "Smith",
+    name: "Hashim",
+    surname: "Thaci",
     imageSrc: "../img/ak.jpg",
-    description: "Pellentesque euismod mi nec fermentum.",
+    description: "Kandidat i PDK per Kryeminister te Republikes se Kosoves.",
   },
   {
     id: 3,
-    name: "Alex",
-    surname: "Johnson",
+    name: "Ramush",
+    surname: "Haradinaj",
     imageSrc: "../img/ak.jpg",
-    description: "Vivamus sit amet ante eget leo euismod facilisis.",
+    description: "Kandidat i AAK per Kryeminister te Republikes se Kosoves.",
   },
 ];
 
