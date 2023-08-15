@@ -1,11 +1,13 @@
-.App {
+.form {
   text-align: center;
   display: flex;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
   color: rgb(20, 20, 21);
-  background-color: blue;
+  background-color: #024ea2;
+  max-width: 1200px;
+  max-height: 700px;
   /*background-image: linear-gradient(90deg, #050cd4, #050cd4 48%, #ffffff);*/
 }
 
@@ -15,14 +17,20 @@
   
 }
 
+.logo img{
+  margin-left: 300px;
+  margin-right: 250px;
+}
+
 @media screen and (min-width: 400px) {
   .auth-form-container {
     padding: 8.5rem;
     border: 2px solid rgb(249, 255, 253);
     background-color: rgb(255, 255, 255);
-    border-radius: 50px;
-    margin-left: 45rem;
+    border-radius: 50px 0 0 50px;
+    margin-left: -100px;
     width: 500%;
+    max-height: 450px;
   }
 }
 

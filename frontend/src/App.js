@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header';
 import Sidebar from './Components/Sidebar';
 import Footer from './Components/Footer';
-import Home from './JSX/Home';
-import Voto from './JSX/Votoketu';
-import Votozgjedhjetqendrore from './JSX/zgjedhjetqendrore';
-import Chart from './JSX/Grafiket';
-import PersonalPage from './JSX/PersonalPage';
-import Register from './JSX/Register';
-import Login from './JSX/Login';
-import Zgjedhjetlokale from './JSX/zgjedhjetlokale';
-import Zgjedhjet from './JSX/Zgjedhjetpage'
+import Home from './Pages/Home';
+import Voto from './Pages/Votoketu';
+import Votozgjedhjetqendrore from './Pages/zgjedhjetqendrore';
+import Chart from './Pages/Grafiket';
+import PersonalPage from './Pages/PersonalPage';
+import Register from './Pages/Register';
+import Login from './Pages/Login';
+import Zgjedhjetlokale from './Pages/zgjedhjetlokale';
+import Zgjedhjet from './Pages/Zgjedhjetpage'
 
 
 
@@ -19,8 +19,8 @@ function App() {
   return (
     <Router>
         <div className="App">
-         <Zgjedhjet/>
-      </div>
+         <Home/>
+        </div>
     </Router>
   );
 }

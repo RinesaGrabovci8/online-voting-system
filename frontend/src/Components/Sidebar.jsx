@@ -4,9 +4,9 @@ import '../CSS/sidebar.css';
 import { FaUser, FaHome, FaVoteYea, FaFlag, FaChartLine, FaSignOutAlt } from 'react-icons/fa';
 import { BsFillBellFill } from 'react-icons/bs';
 import { FiChevronRight } from 'react-icons/fi';
-import Home from '../JSX/Home';
-import PersonalPage from '../JSX/PersonalPage';
-import Voto from '../JSX/Votoketu';
+import Home from '../Pages/Home';
+import PersonalPage from '../Pages/PersonalPage';
+import Voto from '../Pages/Votoketu';
 
 function Sidebar() {
   return (
@@ -35,10 +35,6 @@ function Sidebar() {
             <FaFlag />
             Zgjedhjet
           </Link>
-          <ul>
-            <li className='li5'><Link to="/local-elections">Local Elections</Link></li>
-            <li className='li6'><Link to="/central-elections">Central Elections</Link></li>
-          </ul>
         </li>
         <li className='li7'>
           <Link to="/dashboard">
