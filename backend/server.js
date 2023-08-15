@@ -1,15 +1,28 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const authRoutes = require('./Routes/authRoutes');
+const userRoutes = require('./Routes/userRoutes');
+
 const app = express();
-const port = 3000; // You can change this to any port you prefer
 
-app.use(express.json()); // Enable JSON body parsing
-
-// Sample route to fetch candidates
-app.get('/candidates', (req, res) => {
-  // Fetch candidates from the database and send them as a response
-  res.send('List of candidates'); // Replace with actual data or response
+const DB_URI = 'mongodb://localhost:27017/Users';
+mongoose.connect(DB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  console.log('Connected to the database');
+})
+.catch((error) => {
+  console.error('Database connection error:', error);
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.use(express.json());
+
+app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

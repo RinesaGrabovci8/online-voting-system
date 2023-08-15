@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Party = require('./partie.js');
+const Election = require('./election.js');
 
 const results = new mongoose.Schema({
   id: Number, 
@@ -8,3 +10,4 @@ const results = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Result', results);
+module.exports = results;
