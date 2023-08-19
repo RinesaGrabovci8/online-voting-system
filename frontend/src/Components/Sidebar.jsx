@@ -13,7 +13,7 @@ function Sidebar() {
     <div className="sidebar">
       <ul className='sidebar-ul'>
         <li className='li1'>
-          <Link to="/personal-information">
+          <Link to="/personalpage">
             <FaUser />
             Informatat Personale
           </Link>

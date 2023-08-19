@@ -18,9 +18,11 @@ import Zgjedhjet from './Pages/Zgjedhjetpage'
 function App() {
   return (
     <Router>
-        <div className="App">
-         <Home/>
-        </div>
+      <Routes>
+        <Route path='/log-in' element={<Login/>}/>
+        <Route path='/sign-up' element={<Register/>}/>
+        <Route path='/personalpage' element={<PersonalPage/>}/>
+      </Routes>
     </Router>
   );
 }
