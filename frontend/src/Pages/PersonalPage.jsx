@@ -1,5 +1,7 @@
 import React, { Component, useState } from 'react';
 import '../CSS/personalpage.css';
+import React, { useState } from 'react';
+import '../CSS/PersonalPage.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 import Header from '../Components/Header';
