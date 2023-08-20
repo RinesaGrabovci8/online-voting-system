@@ -12,18 +12,30 @@ import Register from './Pages/Register';
 import Login from './Pages/Login';
 import Zgjedhjetlokale from './Pages/zgjedhjetlokale';
 import Zgjedhjet from './Pages/Zgjedhjetpage'
+import Changepass from './Pages/Changepass';
+import Changeid from './Pages/Changeid';
 
 
 
 function App() {
+  const isLoggedIn = window.localStorage.getItem("loggedin");
+  
   return (
     <Router>
+      <Header/>
+      <Sidebar/>
+
       <Routes>
-        <Route path='/log-in' element={<Login/>}/>
-        <Route path='/sign-up' element={<Register/>}/>
-        <Route path='/personalpage' element={<PersonalPage/>}/>
+        <Route exact path='/' element={isLoggedIn == true?<PersonalPage/>:<Login/>}/>
+        <Route path="/log-in" element={<Login />} />
+        <Route path="/sign-up" exact element={<Register />} />
+        <Route path="/personalpage" element={<PersonalPage />} />
+        <Route path="/change-password" element={<Changepass/>}/>
+        <Route path="/change-id" element={<Changeid/>}/>
       </Routes>
-    </Router>
+    <Footer/>
+ 
+  </Router>
   );
 }
 

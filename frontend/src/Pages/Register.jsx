@@ -45,7 +45,6 @@ class Register extends Component {
                 <div className="auth-form-container">
                     <h2>Regjistrohuni!</h2>
                         <form className="register-form" >
-                    
                             <label htmlFor="NumriPersonal">NumriPersonal</label>
                             <input type="text"  placeholder="NumriPersonal" id="NumriPersonal"
                             onChange={e => this.setState({personalnumber: e.target.value})}  />

@@ -49,7 +49,9 @@ app.post("/login", async (req, res) => {
     return res.json({error:"User not found"});
   }
   if(await bcrypt.compare(password, user.password)){
-    const token = jwt.sign({personalnumber: user.personalnumber}, JWT_SECRET);
+    const token = jwt.sign({personalnumber: user.personalnumber}, JWT_SECRET, {
+      expiresIn: 30,
+    });
     if(res.status(201)){
       return res.json({status:"ok", data:token});
     }else{
@@ -62,8 +64,16 @@ app.post("/login", async (req, res) => {
 app.post("/userData", async (req, res) =>{
   const {token} = req.body;
   try{
-    const user = jwt.verify(token, JWT_SECRET);
+    const user = jwt.verify(token, JWT_SECRET, (err, res) => {
+      if(err){
+        return "token expired"
+      }
+      return res;
+    });
     console.log(user);
+    if(user == "token expired"){
+      return res.send({status:"error", data: "token expired"});
+    }
     const userpersonalnumber = user.personalnumber;
     User.findOne({personalnumber: userpersonalnumber})
       .then((data) => {
@@ -72,9 +82,7 @@ app.post("/userData", async (req, res) =>{
       .catch((error)=>{
         res.send({status:"error", data: error});
       });
-  }catch(error){
-
-  }
+  }catch(error){}
 });
 
 app.listen(5000, () => {
