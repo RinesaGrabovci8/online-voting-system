@@ -5,9 +5,9 @@ app.use(express.json());
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const cors = require("cors");
 const corsOptions = {
-    origin: 'http://localhost:3000', // Replace with your React app's URL
+    origin: 'http://localhost:3000', 
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // If you need to send cookies
+    credentials: true, 
 };
 app.use(cors(corsOptions));
 const bcrypt = require("bcrypt");
