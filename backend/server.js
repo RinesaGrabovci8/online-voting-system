@@ -4,12 +4,7 @@ const mongoose = require('mongoose');
 app.use(express.json());
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const cors = require("cors");
-const corsOptions = {
-    origin: 'http://localhost:3000', 
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, 
-};
-app.use(cors(corsOptions));
+app.use(cors());
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { error } = require('console');
