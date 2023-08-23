@@ -1,68 +1,109 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import '../CSS/signup.css';
 import logo from '../img/logo.png';
 import { Link } from "react-router-dom";
 
-class Register extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            personalnumber:"",
-            password:"",
-        };
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+function Register() {
+    const [personalnumber, setPersonalNumber] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmpassword, setConfirmPassword] = useState("");
+    const [role, setRole] = useState("");
+    const [secretKey, setSecretKey] = useState("");
 
-    handleSubmit(e){
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const {personalnumber, password, confirmpassword} = this.state;
-        console.log(personalnumber, password);
+
+        if (role === "Admin" && secretKey !== "OVS2023") {
+            e.preventDefault();
+            alert("Invalid Admin");
+        } 
+        
+        if (password !== confirmpassword) {
+            alert("Passwords do not match");
+            return;
+        }
+    
         fetch("http://localhost:5000/register", {
-            method:"POST",
-            crossDomain:true,
-            headers:{
-                "Content-Type":"application/json",
-                Accept:"application/json",
-                "Access-Control-Allow-Origin":"*",
+            method: "POST",
+            crossDomain: true,
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
             },
-            body:JSON.stringify({
+            body: JSON.stringify({
                 personalnumber,
                 password,
-                confirmpassword
+                confirmpassword,
+                role,
             })
         })
-        .then((res) =>res.json())
-        .then((data) => {
-            console.log(data, "userRagistration");
-        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data, "userRegistration");
+                if (data.status === "ok") {
+                    alert("Successful Registration");
+                } else {
+                    alert("All fields are required");
+                }
+            });
     }
-    render(){
-        return (
-            <div className="form" onSubmit={this.handleSubmit}>
-                <div className="logo">
-                    <img src={logo} alt="logo"/>
-                </div>
-                <div className="auth-form-container">
-                    <h2>Regjistrohuni!</h2>
-                        <form className="register-form" >
-                            <label htmlFor="NumriPersonal">NumriPersonal</label>
-                            <input type="text"  placeholder="NumriPersonal" id="NumriPersonal"
-                            onChange={e => this.setState({personalnumber: e.target.value})}  />
-                            <label htmlFor="Fjalkalimi">Fjalkalimi</label>
-                            <input type="text" placeholder="********" id="Fjalkalimi"
-                            onChange={e => this.setState({password: e.target.value})} />
-                            <label htmlFor="name">Konfirmo Passwordin</label>
-                            <input type="text" id="konfirmofjalkalimin" placeholder="********" 
-                           />
-                            <button type="submit">Regjistohu</button>
-                        </form>
-                        <button className="link-btn" ><a href='/log-in'>Nëse keni një llogari vazhdoni këtu.</a></button>
-                </div>
+
+    return (
+        <div className="form">
+            <div className="logo">
+                <img src={logo} alt="logo"/>
             </div>
-        )
-    }
+            <div className="auth-form-container">
+                <div className="register">
+                <h2>Regjistrohuni!</h2>
+                </div>
+                <form className="register-form" onSubmit={handleSubmit}>
+                    <label htmlFor="NumriPersonal">NumriPersonal</label>
+                    <input type="text" placeholder="NumriPersonal" id="NumriPersonal"
+                        onChange={e => setPersonalNumber(e.target.value)} />
+                    <label htmlFor="Fjalkalimi">Fjalkalimi</label>
+                    <input type="password" placeholder="********" id="Fjalkalimi"
+                        onChange={e => setPassword(e.target.value)} />
+                    <label htmlFor="name">Konfirmo Passwordin</label>
+                    <input type="password" id="konfirmofjalkalimin" placeholder="********"
+                        onChange={e => setConfirmPassword(e.target.value)} />
+                    {role === "Admin" ? (
+                        <div className="secretkey">
+                            <label htmlFor="SecretKey">Secret Key</label>
+                            <input type="text" id="secretkey" placeholder="Secret Key"
+                                onChange={e => setSecretKey(e.target.value)} />
+                        </div>
+                    ) : null}
+                    <label>Choose Role:</label>
+                    <div>
+                        <label>
+                            <input 
+                                className="role"
+                                type="radio" 
+                                value="User" 
+                                checked={role === "User"}
+                                onChange={() => setRole("User")}
+                            />
+                            User
+                        </label>
+                        <label>
+                            <input 
+                                className="role"
+                                type="radio" 
+                                value="Admin" 
+                                checked={role === "Admin"}
+                                onChange={() => setRole("Admin")}
+                            />
+                            Admin
+                        </label>
+                    </div>
+                    <button type="submit">Regjistohu</button>
+                </form>
+                <button className="link-btn" ><a href='/log-in'>Nëse keni një llogari vazhdoni këtu.</a></button>
+            </div>
+        </div>
+    );
 }
 
 export default Register;
-  
-

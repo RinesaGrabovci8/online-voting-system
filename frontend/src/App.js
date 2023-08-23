@@ -21,20 +21,16 @@ function App() {
   const isLoggedIn = window.localStorage.getItem("loggedin");
   
   return (
+    
     <Router>
-      <Header/>
-      <Sidebar/>
-
       <Routes>
-        <Route exact path='/' element={isLoggedIn == true?<PersonalPage/>:<Login/>}/>
+        <Route exact path='/' element={isLoggedIn == false?<PersonalPage/>:<Zgjedhjet/>}/>
         <Route path="/log-in" element={<Login />} />
         <Route path="/sign-up" exact element={<Register />} />
         <Route path="/personalpage" element={<PersonalPage />} />
         <Route path="/change-password" element={<Changepass/>}/>
         <Route path="/change-id" element={<Changeid/>}/>
       </Routes>
-    <Footer/>
- 
   </Router>
   );
 }

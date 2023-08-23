@@ -7,14 +7,6 @@
   border-radius: 20px;
 }
 
-.ChangeForm {
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin: 30px auto;
-  width: 300px;
-  text-align: center;
-}
-
 .AccountCard a {
   display: block;
   margin-top: 10px;

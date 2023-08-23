@@ -6,6 +6,13 @@ import Footer from "../Components/Footer";
 import ak from "../img/ak.jpg"
 
 const candidates = [
+    {
+        id: 1,
+        name: "Albin",
+        surname: "Kurti",
+        imageSrc: "../img/ak.jpg",
+        description: "Kandidat i Vetvendosjes per Kryeminister te Republikes se Kosoves.",
+      },
   {
     id: 1,
     name: "Albin",
@@ -38,8 +45,9 @@ function ZgjedhjetQendrore() {
             <h1>Kandidatët për Zgjedhjet Qendrore</h1>
             <div className="candidate-cards">
                 {candidates.map((candidate) => (
-                <div className="candidate-card" key={candidate.id}>
+                <div className="candidate-card test" key={candidate.id}>
                     <img src={candidate.imageSrc} alt={`${candidate.name} ${candidate.surname}`} />
+
                     <div className="candidate-info">
                     <h2>{candidate.name} {candidate.surname}</h2>
                     <p>{candidate.description}</p>
@@ -54,7 +62,7 @@ function ZgjedhjetQendrore() {
                 <h3>Kandidatet per Komunen e Prishtines!</h3>
                 <div className="candidate-cards">
                     {candidates.map((candidate) => (
-                    <div className="candidate-card" key={candidate.id}>
+                        <div className="candidate-card" key={candidate.id}>
                         <img src={candidate.imageSrc} alt={`${candidate.name} ${candidate.surname}`} />
                         <div className="candidate-info">
                         <h2>{candidate.name} {candidate.surname}</h2>

@@ -11,10 +11,15 @@
   /*background-image: linear-gradient(90deg, #050cd4, #050cd4 48%, #ffffff);*/
 }
 
-.auth-form-container, .login-form, .register-form {
+.register{
+  margin-top: -100px;
+  margin-bottom: 70px;
+}
+
+.register-form {
   display: flex;
   flex-direction: column;
-  
+  margin-top:-50px;
 }
 
 .logo img{
@@ -37,6 +42,20 @@
 label {
   text-align: left;
   padding: 0.25rem 0;
+  
+}
+
+.secretkey label{
+  text-align: left;
+  padding: 0 20px;
+}
+
+.secretkey input{
+  margin: 0.5rem 0;
+  padding: 1.5rem;
+  border: rgb(255, 255, 255);
+  border-radius: 12px;
+  background-color: aliceblue;
   
 }
 
@@ -63,5 +82,9 @@ button {
   background: none;
   color: rgb(97, 95, 95);
   text-decoration: underline;
+}
+
+.role{
+  margin: 20px;
 }
 
