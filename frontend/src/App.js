@@ -23,8 +23,9 @@ function App() {
   return (
     
     <Router>
+      <Sidebar/>
       <Routes>
-        <Route exact path='/' element={isLoggedIn == false?<PersonalPage/>:<Zgjedhjet/>}/>
+        <Route exact path='/' element={isLoggedIn == false?<PersonalPage/>:<Login/>}/>
         <Route path="/log-in" element={<Login />} />
         <Route path="/sign-up" exact element={<Register />} />
         <Route path="/personalpage" element={<PersonalPage />} />

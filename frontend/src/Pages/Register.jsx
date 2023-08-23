@@ -23,7 +23,7 @@ function Register() {
             return;
         }
     
-        fetch("http://localhost:5000/register", {
+        fetch("http://localhost:5000/auth/register", {
             method: "POST",
             crossDomain: true,
             headers: {

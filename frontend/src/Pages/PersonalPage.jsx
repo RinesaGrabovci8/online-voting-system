@@ -12,7 +12,7 @@ function PersonalPage() {
   const[userData, setuserdata] = useState("");
   const [admin, setadmin] = useState(false);
   useEffect(() => {
-    fetch("http://localhost:5000/userData", {
+    fetch("http://localhost:5000/auth/userData", {
       method: "POST",
       crossDomain: true,
       headers: {
