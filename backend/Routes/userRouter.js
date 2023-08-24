@@ -9,8 +9,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { error } = require('console');
 const router = express.Router();
-const authController = require('../Controllers/userController');
+const userController = require('../Controllers/userController');
 
-router.post("/userData", authController.userData);
+router.post("/userData", userController.userData);
 
 module.exports = router;

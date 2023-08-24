@@ -2,12 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 app.use(express.json());
-const { MongoClient, ServerApiVersion } = require('mongodb');
 const cors = require("cors");
 app.use(cors());
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const { error } = require('console');
 
 const mongoUrl = "mongodb+srv://rinesa:rinesa@cluster0.kq0f0ry.mongodb.net/?retryWrites=true&w=majority";
 
@@ -20,9 +16,14 @@ mongoose.connect(mongoUrl, {
 const authRoutes = require('./Routes/authRouter');
 const userRoutes = require('./Routes/userRouter');
 const electionRoutes = require('./Routes/electionRouter');
+const partyRoutes = require("./Routes/partyRouter");
+const candidateRoutes = require("./Routes/candidaterouter");
+
 app.use('/auth', authRoutes);
 app.use('/auth', userRoutes);
 app.use('/crud', electionRoutes);
+app.use('/crud', partyRoutes);
+app.use('/crud', candidateRoutes);
 
 
 app.listen(5000, () => {
