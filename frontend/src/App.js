@@ -14,6 +14,13 @@ import Zgjedhjetlokale from './Pages/zgjedhjetlokale';
 import Zgjedhjet from './Pages/Zgjedhjetpage'
 import Changepass from './Pages/Changepass';
 import Changeid from './Pages/Changeid';
+import CandidateCard from './Components/CandidateCard';
+import ShtoKandidat from './Crud/shtoKandidat';
+import ShtoParti from './Crud/shtoParti';
+import UpdateKandidat from './Crud/updateKandidat';
+import UpdateParti from './Crud/updateParti';
+import Zgjedhjetqendrorecand from './Components/Zgjedhjetqendrorecand';
+
 
 
 
@@ -23,7 +30,13 @@ function App() {
   return (
     
     <Router>
+      <Header/>
       <Sidebar/>
+      <Zgjedhjet/>
+      <Footer/>
+      <UpdateKandidat />
+      {/* <ResponsiveGrid/> */}
+      {/* <Sidebar/>
       <Routes>
         <Route exact path='/' element={isLoggedIn == false?<PersonalPage/>:<Login/>}/>
         <Route path="/log-in" element={<Login />} />
@@ -31,7 +44,7 @@ function App() {
         <Route path="/personalpage" element={<PersonalPage />} />
         <Route path="/change-password" element={<Changepass/>}/>
         <Route path="/change-id" element={<Changeid/>}/>
-      </Routes>
+      </Routes> */}
   </Router>
   );
 }

@@ -5,8 +5,8 @@ const election = require('./election.js');
 const candidate = new mongoose.Schema({ 
   name: { type: String, required: true },
   surname: { type: String, required: true },
-  party_id: { type: mongoose.Types.ObjectId, required:true, ref: 'Party' },
-  election_id: { type: mongoose.Types.ObjectId, required:true, ref: 'Elections' },
+  party: { type: String, required:true },
+  election: { type: String, required:true},
 },
 {
   collection:"CandidateInfo"
@@ -14,4 +14,5 @@ const candidate = new mongoose.Schema({
 );
 
 mongoose.model('CandidateInfo', candidate);
+
 
