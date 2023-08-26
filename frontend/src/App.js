@@ -20,6 +20,8 @@ import ShtoParti from './Crud/shtoParti';
 import UpdateKandidat from './Crud/updateKandidat';
 import UpdateParti from './Crud/updateParti';
 import Zgjedhjetqendrorecand from './Components/Zgjedhjetqendrorecand';
+import ZgjedhjetQendrore from './Pages/zgjedhjetqendrore';
+import Zgjedhjetqendrorepr from './Components/Zgjedhjetqendrorecand';
 
 
 
@@ -33,11 +35,7 @@ function App() {
       <Header/>
       <Sidebar/>
       <Zgjedhjet/>
-      <Footer/>
-      <UpdateKandidat />
-      {/* <ResponsiveGrid/> */}
-      {/* <Sidebar/>
-      <Routes>
+      {/* <Routes>
         <Route exact path='/' element={isLoggedIn == false?<PersonalPage/>:<Login/>}/>
         <Route path="/log-in" element={<Login />} />
         <Route path="/sign-up" exact element={<Register />} />
@@ -45,6 +43,7 @@ function App() {
         <Route path="/change-password" element={<Changepass/>}/>
         <Route path="/change-id" element={<Changeid/>}/>
       </Routes> */}
+      <Footer/>
   </Router>
   );
 }

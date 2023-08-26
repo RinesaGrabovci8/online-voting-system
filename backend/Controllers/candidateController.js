@@ -9,6 +9,16 @@ app.use(cors());
 require("../models/candidate.js");
 const Candidate = mongoose.model("CandidateInfo");
 
+// exports.uploadImage = async (req, res) =>{
+//   const {base64} = req.body;
+//   try{
+//     Image.create({image: base64});
+//     res.send({status:"ok"})
+//   }catch(error){
+//     res.send({status:"error", data: error})
+//   }
+// };
+
 exports.createCandidate = async (req, res) => {
   try {
     const { name, surname, party, election } = req.body;
@@ -18,7 +28,7 @@ exports.createCandidate = async (req, res) => {
       return res.status(400).send({ error: "All fields are required." });
     }
 
-    const newCandidate = await Candidate.create({ name, surname, party, election });
+    const newCandidate = await Candidate.create({ name, surname, party, election});
     res.status(201).json(newCandidate);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -86,3 +96,4 @@ exports.deleteCandidateById = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+

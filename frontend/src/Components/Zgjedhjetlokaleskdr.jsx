@@ -39,14 +39,8 @@ const candidates = [
   
 function CandidateCard() {
     return (
-          <Card sx={{ maxWidth: 300 }}>
+          <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
               <CardActionArea>
-                  <CardMedia
-                  component="img"
-                  height="140"
-                  image={ak}
-                  alt="ak"
-                  />
                   <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                       Albin Kurti

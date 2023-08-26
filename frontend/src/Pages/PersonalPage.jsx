@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 import '../CSS/personalpage.css';
 import '../CSS/personalpage.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, useNavigate } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
@@ -9,6 +9,7 @@ import Footer from '../Components/Footer';
 import { experimentalStyled } from '@mui/material';
 
 function PersonalPage() {
+  const navigate = useNavigate();
   const[userData, setuserdata] = useState("");
   const [admin, setadmin] = useState(false);
   useEffect(() => {
@@ -47,9 +48,9 @@ function PersonalPage() {
                 </div>
                 <h1>{userData.personalnumber}</h1>
                 <h3>{userData.role}</h3>
-                <Link to="/change-password">Change Password?</Link>
+                <Link onClick={() => navigate("/change-password" , {state: userData})}>Change Password?</Link>
                 <br />
-                <Link to="/change-id">Change ID?</Link>
+                <Link onClick={() => navigate("/change-id" , {state: userData})}>Change ID?</Link>
               </div>) :  (<div className="AccountCard">
                           <div className="ProfileIcon">
                             <FaUser size={50} />

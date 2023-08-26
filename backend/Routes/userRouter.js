@@ -12,5 +12,5 @@ const router = express.Router();
 const userController = require('../Controllers/userController');
 
 router.post("/userData", userController.userData);
-
+router.post("/updateUserPass", userController.updateUserPass)
 module.exports = router;

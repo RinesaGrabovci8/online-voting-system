@@ -16,28 +16,25 @@ const candidates = [
       id: 1,
       name: 'Albin',
       surname: 'Kurti',
-      imageSrc: ak,
       description: 'Kandidati i Vetvendosjes per Kryeminister te Republikes se Kosoves',
     },
     {
         id:2,
         name: "Albin",
         surname: "Kurti",
-        imageSrc: ak,
         description: "Kandidat i Vetvendosjes per Kryeminister te Republikes se Kosoves.",
     },
     {
         id: 3,
         name: "Albin",
         surname: "Kurti",
-        imageSrc: ak,
         description: "Kandidat i Vetvendosjes per Kryeminister te Republikes se Kosoves.",
     },
     // Add more candidate data here...
 ];
 
   
-function CandidateCard() {
+function CandidateCard({candidate}) {
   const [data, setData] = useState()
 
 
@@ -50,18 +47,12 @@ function CandidateCard() {
     return (
           <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
               <CardActionArea>
-                  <CardMedia
-                  component="img"
-                  height="140"
-                  image={ak}
-                  alt="ak"
-                  />
                   <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                      Albin Kurti
+                  {`${candidate.name} ${candidate.surname}`}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {`${candidates.description}`}
+                    {`${candidate.description}`}
                   </Typography>
                   </CardContent>
               </CardActionArea>
@@ -85,7 +76,7 @@ function CandidateCard() {
 //   )
 // }
 
-function Zgjedhjetqendrorepr() {
+function Zgjedhjetqendrorecand() {
   return (
       <Grid container spacing={1} style={{marginLeft:150, marginTop:100, marginBottom:100}}>
         {candidates.map((candidate) => (
@@ -96,4 +87,4 @@ function Zgjedhjetqendrorepr() {
   )
 }
 
-export default Zgjedhjetqendrorepr
+export default Zgjedhjetqendrorecand

@@ -10,14 +10,17 @@ export default function ShtoKandidat() {
     name: "",
     surname: "",
     party:"",
-    election:""
+    election:"",
   });
-
+  
   const handleButtonClick = () => {
     console.log('Button Clicked');
     axios.post("http://localhost:5000/crud/candidate", dataForm).then((res) => {
       console.log('res', res);
     })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   };
 
   console.log('dataForm', dataForm);
