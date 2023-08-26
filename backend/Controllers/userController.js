@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const { json } = require('body-parser');
 require("../models/user")
 const User = mongoose.model("UserInfo");
 
@@ -29,5 +30,20 @@ exports.userData = async (req, res) => {
           res.send({status:"error", data: error});
         });
     }catch(error){}
+};
+
+exports.updateUserPass = async (req, res) =>{
+  const {id, password} = req.body;
+
+  try{
+    await User.updateOne({_id:id}, {
+      $set:{
+        password:password
+      }
+    })
+    return res.json({status:"ok", data:"updated"});
+  }catch(error){
+    return res.json({status: "error", data: error})
+  }
 };
 

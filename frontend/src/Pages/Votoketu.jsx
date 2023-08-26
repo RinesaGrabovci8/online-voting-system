@@ -10,7 +10,6 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 function Voto(){
     return (
         <>
-
             <Header/>
             <Sidebar/>
             <div className="votoketu">

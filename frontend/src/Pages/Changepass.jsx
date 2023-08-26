@@ -1,30 +1,30 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useLocation } from 'react-router';
 import { FaUser } from 'react-icons/fa';
 import '../CSS/changepass.css';
-export default class Changepass extends Component {
-  render() {
+function Changepass(){     
     return (
       <div className='changepass'>
+       
         <div className="ProfileIcon">
           <FaUser size={50} />
         </div>
         <h2>Change Password</h2>
-        <form onSubmit={this.handleSubmit}>
+        <form >
         <input
             className='current-password'
             type="text"
-            placeholder="Current password"
-            onChange={e => this.setState({password: e.target.value})}  
+            placeholder="Current password"  
         />
         <input
             className='new-password'
             type="password"
-            placeholder="New Password"
-            onChange={e => this.setState({newPassword: e.target.value})}  
+            placeholder="New Password"  
         />
-        <button  type='submit'>Save</button>
+        <button  type='submit'>Save</button> 
         </form>
       </div>
     )
-  }
 }
+
+export default Changepass;
