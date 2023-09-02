@@ -51,8 +51,8 @@ exports.login =  async (req, res) => {
       return res.json({error:"User not found"});
     }
     if(await bcrypt.compare(password, user.password)){
-      const token = jwt.sign({personalnumber: user.personalnumber}, JWT_SECRET, {
-        expiresIn: "30m",
+      const token = jwt.sign({ personalnumber: user.personalnumber }, JWT_SECRET, {
+        expiresIn: '30m', 
       });
       if(res.status(201)){
         return res.json({status:"ok", data:token});
