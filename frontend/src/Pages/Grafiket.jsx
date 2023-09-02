@@ -8,8 +8,6 @@ import Footer from '../Components/Footer.jsx';
 function Chart() {
   return (
     <>
-      <Header/>
-      <Sidebar/>
       <div className="pie-charts-wrapper">
         <div className='central-container'>
           <div className='central-elections-chart'>
@@ -185,7 +183,7 @@ function Chart() {
           </div>
         </div>
       </div>
-      <Footer/>
+
     </>
   );
 }

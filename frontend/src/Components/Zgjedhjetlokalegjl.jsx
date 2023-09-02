@@ -9,62 +9,53 @@ import Typography from '@mui/material/Typography';
 import ak from '../img/ak.jpg';
 import { Button, CardActionArea, CardActions, Grid } from '@mui/material'; 
 import CardMedia from '@mui/material/CardMedia';
-
-const candidates = [
-    {
-      id: 1,
-      name: 'Albin',
-      surname: 'Kurti',
-      imageSrc: ak,
-      description: 'Kandidat i Vetvendosjes per Kryeminister te Republikes se Kosoves.',
-    },
-    {
-        id: 1,
-        name: "Albin",
-        surname: "Kurti",
-        imageSrc: "../img/ak.jpg",
-        description: "Kandidat i Vetvendosjes per Kryeminister te Republikes se Kosoves.",
-    },
-    {
-        id: 1,
-        name: "Albin",
-        surname: "Kurti",
-        imageSrc: "../img/ak.jpg",
-        description: "Kandidat i Vetvendosjes per Kryeminister te Republikes se Kosoves.",
-      },
-      
-    // Add more candidate data here...
-];
-
+import { useState, useEffect } from 'react';
   
-function CandidateCard() {
+function CandidateCard({candidate}) {
     return (
           <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
               <CardActionArea>
                   <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
-                      Albin Kurti
+                  {`${candidate.name} ${candidate.surname}`}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                      Kandidat i Vetvendosjes per Kryeminister te Republikes se Kosoves
+                  {`${candidate.party}`}
                   </Typography>
                   </CardContent>
               </CardActionArea>
               <CardActions>
-                  <Button size="small" color="primary">
-                  Voto
-                  </Button>
+              <div className='card-actions'>
+                  <Typography size="small" color="primary">
+                  Voto 1
+                  </Typography>
+                  </div>
               </CardActions>
           </Card>
     );
 }
 
 function Zgjedhjetlokalegjl() {
+  const [candidate, setCandidates] = useState([]);
+
+  const fetchKandidatData = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/crud/getAllCandidatesbyCitygjl");
+      const kandidatdata = await response.json();
+      setCandidates(kandidatdata.data);
+    } catch (error) {
+      console.error('Error fetching candidates data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchKandidatData();
+  }, []);
   return (
     <div className="candidate-prishtine">
       <h3>Kandidatet per Komunen e Gjilanit!</h3>
       <Grid container spacing={1} style={{marginLeft:100, marginTop:100, marginBottom:100}}>
-        {candidates.map((candidate) => (
+        {candidate.map((candidate) => (
           <CandidateCard key={candidate.id} candidate={candidate} />
         ))}
       </Grid>

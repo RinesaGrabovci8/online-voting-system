@@ -13,7 +13,8 @@ router.post('/party',partyRouter.createParty);
 router.get('/party', partyRouter.getParties);
 router.get("/party/:id", partyRouter.getPartyById);
 router.put("/party/:id", partyRouter.updatePartyById);
-router.delete(".party/:id", partyRouter.deletePartyById);
+router.delete("/deleteParty/:id", partyRouter.deletePartyById);
+router.get('/getAllParties', partyRouter.getAllParties);
 
 module.exports = router;
 

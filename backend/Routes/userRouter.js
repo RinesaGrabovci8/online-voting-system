@@ -12,5 +12,7 @@ const router = express.Router();
 const userController = require('../Controllers/userController');
 
 router.post("/userData", userController.userData);
-router.post("/updateUserPass", userController.updateUserPass)
+router.post("/updateUserPass", userController.updateUserPass);
+router.get("/getAllUsers", userController.getAllUsers);
+router.delete("/deleteUser/:id", userController.deleteUserbyid);
 module.exports = router;

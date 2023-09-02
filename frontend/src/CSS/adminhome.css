@@ -1,0 +1,68 @@
+/* adminhome.css */
+
+/* Style for the button container */
+.button-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line if needed */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 100px;
+    margin-left: 150px;
+  }
+  
+  .button {
+    padding: 12px 12px;
+    margin: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100px;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  .table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Add space between buttons and tables */
+    margin-bottom: 100px;
+    margin-left: 150px;
+  }
+  
+  /* Add borders to table headers */
+  .table-container table th {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Add borders to table cells */
+  .data{
+    border: 1px solid black;
+    padding: 8px;
+  }
+  .delete button{
+    border:none;
+    background: none;
+  }
+  
+  /* Add background color to table headers */
+  .table-container table th {
+    background-color: #f2f2f2;
+  }
+
+  .delete-button {
+    background-color: none;
+    margin: 0px;
+    padding: 0px;
+    max-width: 10%;
+  }
+ 
+  

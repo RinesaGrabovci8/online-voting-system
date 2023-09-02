@@ -70,13 +70,25 @@ exports.updatePartyById = async (req, res) => {
 };
 
 exports.deletePartyById = async (req, res) => {
-  try {
-    const deletedParty = await Party.findByIdAndDelete(req.params.id);
-    if (!deletedParty) {
-      return res.status(404).json({ message: "Party not found" });
+    try {
+      const partyId = req.params.id;
+  
+      await Party.findByIdAndRemove(partyId);
+  
+      res.status(200).json({ status: 'ok', message: 'Candidate deleted successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ status: 'error', message: 'Internal server error' });
     }
-    res.status(204).end();
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
 };
+
+exports.getAllParties = async (req, res) => {
+  try{ 
+    
+    const allParty = await Party.find({});
+    res.send({status:"ok", data:allParty});
+
+  }catch(error){
+    console.log(error);
+  }
+}

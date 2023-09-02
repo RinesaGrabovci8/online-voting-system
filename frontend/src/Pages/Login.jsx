@@ -32,13 +32,12 @@ class Login extends Component{
         .then((res) =>res.json())
         .then((data) => {
             console.log(data, "userLogin");
-            if(data.status == "ok"){
+            if (data.status === "ok") {
                 alert("Successful Login");
                 window.localStorage.setItem("token", data.data);
                 window.localStorage.setItem("loggedIn", true);
-
                 window.location.href = "./PersonalPage";
-            }
+            }              
         })
     }
     render(){

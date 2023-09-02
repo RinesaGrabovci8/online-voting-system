@@ -11,8 +11,18 @@ const candidateController = require("../Controllers/candidateController");
 
 router.post('/candidate', candidateController.createCandidate);
 router.get('/candidate', candidateController.getCandidates);
-router.get('/candidate/:id', candidateController.getCandidateById);
 router.put('/candidate/:id', candidateController.updateCandidateById);
-router.delete('/candidate/:id', candidateController.deleteCandidateById);
+router.delete('/deleteCandidate/:id', candidateController.deleteCandidateById);
+router.get('/getAllCandidates', candidateController.getAllCandidates);
+router.get('/getAllCandidatesbyElection', candidateController.getAllCandidatesbyElection);
+router.get('/getAllCandidatesbyCitypr', candidateController.getAllCandidatesbyCitypr);
+router.get('/getAllCandidatesbyCityskdr', candidateController.getAllCandidatesbyCityskdr);
+router.get('/getAllCandidatesbyCityprz', candidateController.getAllCandidatesbyCityprz);
+router.get('/getAllCandidatesbyCitypej', candidateController.getAllCandidatesbyCitypej);
+router.get('/getAllCandidatesbyCitypd', candidateController.getAllCandidatesbyCitypd);
+router.get('/getAllCandidatesbyCitymtrv', candidateController.getAllCandidatesbyCitymtrv);
+router.get('/getAllCandidatesbyCitygjl', candidateController.getAllCandidatesbyCitygjl);
+router.get('/getAllCandidatesbyCitygjk', candidateController.getAllCandidatesbyCitygjk);
+router.get('/getAllCandidatesbyCityfr', candidateController.getAllCandidatesbyCityfr);
 
 module.exports = router;

@@ -14,3 +14,11 @@ code {
 .candidatewrapper{
   margin: 10px;
 }
+
+.card-actions {
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: flex-end; /* Bottom alignment */
+  padding: 8px 115px; /* Optional padding for spacing */
+  height: 100%; /* Ensure the div takes up the full height */
+}

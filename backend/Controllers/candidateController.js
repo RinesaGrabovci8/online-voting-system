@@ -21,14 +21,19 @@ const Candidate = mongoose.model("CandidateInfo");
 
 exports.createCandidate = async (req, res) => {
   try {
-    const { name, surname, party, election } = req.body;
+    const { name, surname, party, election, city } = req.body;
     
 
     if (!name || !surname || !party || !election ) {
       return res.status(400).send({ error: "All fields are required." });
     }
+    if(election === "Lokale"){
+      if((!city)){
+        return res.status(400).send({ error: "All fields are required." });
+      }
+    }
 
-    const newCandidate = await Candidate.create({ name, surname, party, election});
+    const newCandidate = await Candidate.create({ name, surname, party, election, city});
     res.status(201).json(newCandidate);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -85,15 +90,126 @@ exports.updateCandidateById = async (req, res) => {
   }
 };
 
-exports.deleteCandidateById = async (req, res) => {
+exports.getAllCandidates = async (req, res) => {
+  try{ 
+    
+    const allCandidates = await Candidate.find({});
+    res.send({status:"ok", data:allCandidates});
+
+  }catch(error){
+    console.log(error);
+  }
+}
+
+exports.getAllCandidatesbyElection = async (req, res) => {
+  try{ 
+    const allCandidates = await Candidate.find({election:"Qendrore"});
+    res.send({status:"ok", data:allCandidates});
+
+  }catch(error){
+    console.log(error);
+  }
+}
+
+exports.getAllCandidatesbyCitypr = async (req, res) => {
+  try{ 
+    const allCandidates = await Candidate.find({city:"Prishtina"});
+    res.send({status:"ok", data:allCandidates});
+
+  }catch(error){
+    console.log(error);
+  }
+}
+
+exports.getAllCandidatesbyCityskdr = async (req, res) => {
+  try{ 
+    const allCandidates = await Candidate.find({city:"Skenderaj"});
+    res.send({status:"ok", data:allCandidates});
+
+  }catch(error){
+    console.log(error);
+  }
+}
+
+exports.getAllCandidatesbyCityfr = async (req, res) => {
+  try{ 
+    const allCandidates = await Candidate.find({city:"Ferizaj"});
+    res.send({status:"ok", data:allCandidates});
+
+  }catch(error){
+    console.log(error);
+  }
+}
+
+exports.getAllCandidatesbyCitymtrv = async (req, res) => {
+  try{ 
+    const allCandidates = await Candidate.find({city:"Mitrovic"});
+    res.send({status:"ok", data:allCandidates});
+
+  }catch(error){
+    console.log(error);
+  }
+}
+
+exports.getAllCandidatesbyCitygjk = async (req, res) => {
+  try{ 
+    const allCandidates = await Candidate.find({city:"Gjakove"});
+    res.send({status:"ok", data:allCandidates});
+
+  }catch(error){
+    console.log(error);
+  }
+}
+
+exports.getAllCandidatesbyCitygjl = async (req, res) => {
+  try{ 
+    const allCandidates = await Candidate.find({city:"Gjilan"});
+    res.send({status:"ok", data:allCandidates});
+
+  }catch(error){
+    console.log(error);
+  }
+}
+
+exports.getAllCandidatesbyCitypd = async (req, res) => {
+  try{ 
+    const allCandidates = await Candidate.find({city:"Podujev"});
+    res.send({status:"ok", data:allCandidates});
+
+  }catch(error){
+    console.log(error);
+  }
+}
+
+exports.getAllCandidatesbyCitypej = async (req, res) => {
+  try{ 
+    const allCandidates = await Candidate.find({city:"Peje"});
+    res.send({status:"ok", data:allCandidates});
+
+  }catch(error){
+    console.log(error);
+  }
+}
+
+exports.getAllCandidatesbyCityprz = async (req, res) => {
+  try{ 
+    const allCandidates = await Candidate.find({city:"Prizren"});
+    res.send({status:"ok", data:allCandidates});
+
+  }catch(error){
+    console.log(error);
+  }
+}
+
+exports.deleteCandidateById = async (req, res) =>{
   try {
-    const deletedCandidate = await Candidate.findByIdAndDelete(req.params.id);
-    if (!deletedCandidate) {
-      return res.status(404).json({ message: "Candidate not found" });
-    }
-    res.status(204).end();
+    const candidateId = req.params.id;
+
+    await Candidate.findByIdAndRemove(candidateId);
+
+    res.status(200).json({ status: 'ok', message: 'Candidate deleted successfully' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error(error);
+    res.status(500).json({ status: 'error', message: 'Internal server error' });
   }
 };
-

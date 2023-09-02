@@ -22,28 +22,37 @@ import UpdateParti from './Crud/updateParti';
 import Zgjedhjetqendrorecand from './Components/Zgjedhjetqendrorecand';
 import ZgjedhjetQendrore from './Pages/zgjedhjetqendrore';
 import Zgjedhjetqendrorepr from './Components/Zgjedhjetqendrorecand';
+import MenagmentPage from './Pages/MenagmentPage';
+
 
 
 
 
 function App() {
-  const isLoggedIn = window.localStorage.getItem("loggedin");
-  
+  const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     
     <Router>
-      <Header/>
-      <Sidebar/>
-      <Zgjedhjet/>
-      {/* <Routes>
-        <Route exact path='/' element={isLoggedIn == false?<PersonalPage/>:<Login/>}/>
+      {isLoggedIn && <Header />}
+      {isLoggedIn && <Sidebar />}
+      
+      <Routes>
+        <Route exact path='/' element={isLoggedIn == true?<PersonalPage/>:<Login/>}/>
         <Route path="/log-in" element={<Login />} />
         <Route path="/sign-up" exact element={<Register />} />
         <Route path="/personalpage" element={<PersonalPage />} />
         <Route path="/change-password" element={<Changepass/>}/>
         <Route path="/change-id" element={<Changeid/>}/>
-      </Routes> */}
-      <Footer/>
+        <Route path="/home" element = {<Home/>}/>
+        <Route path='/voto-ketu' element={<Voto/>}/>
+        <Route path='/elections' element={<Zgjedhjet/>}/>
+        <Route path='/charts' element={<Chart/>}/>
+        <Route path='/admin-page' element={<MenagmentPage/>}/>
+        <Route path='/shtokandidat' element={<ShtoKandidat/>}/>
+        <Route path='/upadatecandidate' element={<UpdateKandidat/>}/>
+      </Routes>
+       
+      {isLoggedIn && <Footer />}
   </Router>
   );
 }

@@ -7,6 +7,7 @@ const candidate = new mongoose.Schema({
   surname: { type: String, required: true },
   party: { type: String, required:true },
   election: { type: String, required:true},
+  city: { type: String },
 },
 {
   collection:"CandidateInfo"

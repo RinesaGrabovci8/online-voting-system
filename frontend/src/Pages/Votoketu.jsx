@@ -10,20 +10,19 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 function Voto(){
     return (
         <>
-            <Header/>
-            <Sidebar/>
             <div className="votoketu">
                 <div className="zgjedhjet">
                     <h1>Voto!</h1>
-                    <Link to="/zgjedhjetqendrore">
-                        <button className="zgjedhjetQendrore-btn">Zgjedhjet Qendrore</button>
-                    </Link>
-                    <Link  to="/zgjedhjetlokale">
-                        <button className="zgjedhjetLokale-btn">Zgjedhjet Lokale</button>
-                    </Link>
+                    <div className="buttons">
+                        <Link to="/zgjedhjetqendrore">
+                            <button className="zgjedhjetQendrore-btn">Zgjedhjet Qendrore</button>
+                        </Link>
+                        <Link  to="/zgjedhjetlokale">
+                            <button className="zgjedhjetLokale-btn">Zgjedhjet Lokale</button>
+                        </Link>
+                    </div>
                 </div>
             </div>
-            <Footer/>
         </>
     );
 }
