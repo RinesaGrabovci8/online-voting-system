@@ -106,8 +106,6 @@ function MenagmentPage() {
       console.error(`Error deleting party with ID ${partyId}:`, error);
     }
   };
-  
-  
 
   useEffect(() =>{
     fetchUserData();
@@ -188,7 +186,6 @@ function MenagmentPage() {
             </div>
             </div>
         )}
-
         {showKandidatetTable && (
             <div className='auth-wrapper'>
             <div className='auth-inner'>
@@ -222,9 +219,9 @@ function MenagmentPage() {
                                 <DeleteIcon style={{ color: 'red',  fontSize: '16px', margin:8 }} onClick={() => deleteCandidate(i._id)}/>
                             </Link>
                 
-                            {/* <Link to={`/upadatecandidate/${kandidatdata._id}`}>
+                            <Link to={`/upadatecandidate/${i._id}`}>
                                 <EditIcon style={{ fontSize: '16px', margin:8}}/>
-                            </Link> */}
+                            </Link>
                           </td>
                       </tr>
                     );
@@ -263,15 +260,18 @@ function MenagmentPage() {
                                 <DeleteIcon style={{ color: 'red',  fontSize: '16px', margin:8 }} onClick = {() => deleteParty(i._id)}/>
                             </Link>
                 
-                            {/* <Link to={`/update/${partitdata._id}`}>
+                            <Link to={`/updateparty/${i._id}`}>
                                 <EditIcon style={{ fontSize: '16px', margin:8}}/>
-                            </Link> */}
+                            </Link> 
                         </td>
                       </tr>
                     );
                   })}
                 </thead>
                 </table>
+                <div className='add-button'>
+                  <button><Link to="/shtoparti">Shto Parti</Link></button>
+               </div>
             </div>
             </div>
         )}
