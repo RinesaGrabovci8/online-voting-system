@@ -9,16 +9,6 @@ app.use(cors());
 require("../models/candidate.js");
 const Candidate = mongoose.model("CandidateInfo");
 
-// exports.uploadImage = async (req, res) =>{
-//   const {base64} = req.body;
-//   try{
-//     Image.create({image: base64});
-//     res.send({status:"ok"})
-//   }catch(error){
-//     res.send({status:"error", data: error})
-//   }
-// };
-
 exports.createCandidate = async (req, res) => {
   try {
     const { name, surname, party, election, city } = req.body;
@@ -66,22 +56,26 @@ exports.getCandidateById = async (req, res) => {
 
 exports.updateCandidateById = async (req, res) => {
   try {
-    const { name, surname, party_id, election_id } = req.body;
+    const candidateId = req.params.id;
+    const { name, surname, party, election, city } = req.body;
 
-    if (!name || !surname || !party_id || !election_id) {
-      return res.status(400).send({ error: "All fields are required." });
+    if (!name || !surname || !party || !election) {
+      return res.status(400).json({ error: 'All fields are required.' });
     }
 
-    const image = req.file ? req.file.buffer : null;
+    if (election === 'Lokale' && !city) {
+      return res.status(400).json({ error: 'City field is required for Lokale elections.' });
+    }
 
+    // Find the candidate by ID and update their information
     const updatedCandidate = await Candidate.findByIdAndUpdate(
-      req.params.id,
-      { name, surname, party_id, election_id, image },
+      candidateId,
+      { name, surname, party, election, city },
       { new: true }
     );
 
     if (!updatedCandidate) {
-      return res.status(404).json({ message: "Candidate not found" });
+      return res.status(404).json({ error: 'Candidate not found.' });
     }
 
     res.status(200).json(updatedCandidate);

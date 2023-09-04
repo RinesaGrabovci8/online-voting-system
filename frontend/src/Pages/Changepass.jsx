@@ -2,43 +2,34 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FaUser } from 'react-icons/fa';
 import '../CSS/changepass.css';
+import { useNavigate, useParams } from 'react-router';
 
 function Changepass() {
-  const [data, setData] = useState({
-    newPassword: '', // Remove currentPassword
+  const { id } = useParams();
+  console.log('ID:', id);
+  const [dataForm, setDataForm] = useState({
+    newPassword: ""
   });
 
-  const handlePasswordChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-  };
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const token = window.localStorage.getItem('token');
-    const { newPassword } = data; // Remove currentPassword
-
-    // Set the 'Authorization' header with the token
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`, // Include 'token' in the headers
-    };
-
-    axios
-      .post(
-        'http://localhost:5000/auth/updateUserPass',
-        { newPassword }, // Remove currentPassword
-        {
-          headers,
-        }
-      )
-      .then((response) => {
-        console.log(response);
+  const handleButtonClick = () => {
+    console.log('Button Clicked');
+    axios.put(`http://localhost:5000/auth/updateUserPass/${id}`, dataForm) // Use the id from useParams
+      .then((res) => {
+        console.log('res', res);
+        navigate('/personalpage'); 
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.error('Error:', error);
       });
   };
+
+  console.log('dataForm', dataForm);
+
+  const changes = (e) => {
+    setDataForm({ ...dataForm, newPassword: e.target.value });
+  }
 
   return (
     <div className="changepass">
@@ -46,14 +37,14 @@ function Changepass() {
         <FaUser size={50} />
       </div>
       <h2>Change Password</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleButtonClick}>
         <input
           className="new-password"
           type="password"
           placeholder="New Password"
-          value={data.newPassword}
+          value={dataForm.newPassword}
           name="newPassword"
-          onChange={handlePasswordChange}
+          onChange={(e) => changes(e)}
         />
         <button type="submit">Save</button>
       </form>

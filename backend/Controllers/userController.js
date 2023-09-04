@@ -15,15 +15,12 @@ exports.userData = async (req, res) => {
   try {
     const user = jwt.verify(token, JWT_SECRET);
 
-    // Check if the token is expired
     if (Date.now() >= user.exp * 1000) {
-      // Token is expired; return an error
       return res.status(401).json({ status: "error", data: "token expired" });
     }
 
     const userpersonalnumber = user.personalnumber;
 
-    // Your logic to retrieve user data (e.g., User.findOne)
     User.findOne({ personalnumber: userpersonalnumber })
       .then((data) => {
         res.status(200).json({ status: "ok", data: data });
@@ -32,33 +29,34 @@ exports.userData = async (req, res) => {
         res.status(500).json({ status: "error", data: error });
       });
   } catch (error) {
-    // Handle token verification errors
     res.status(401).json({ status: "error", data: "invalid token" });
   }
 };
 
-exports.updateUserPass = async (req, res) => {
-  const { newPassword, personalnumber } = req.body;
-
+exports.updatePasswordById = async (req, res) => {
   try {
-    // Find the user by personal number in your database
-    const user = await User.findOne({ personalnumber });
+    const userId = req.params.id;
+    const { newPassword } = req.body;
 
-    if (!user) {
-      return res.status(404).json({ status: 'error', message: 'User not found' });
+    if (!newPassword) {
+      return res.status(400).json({ error: 'Password field is required.' });
     }
 
-    // Update the user's password
-    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
-    user.password = hashedNewPassword;
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    // Save the updated user object
-    await user.save();
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { password : hashedPassword},
+      { new: true }
+    );
 
-    res.status(200).json({ status: 'ok', message: 'Password updated successfully' });
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found.' });
+    }
+
+    res.status(200).json(updatedUser);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ status: 'error', message: 'Internal server error' });
+    res.status(500).json({ error: error.message });
   }
 };
 

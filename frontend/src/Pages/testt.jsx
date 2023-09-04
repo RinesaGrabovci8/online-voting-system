@@ -1,98 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import axios from "axios";
-import { FaUser } from 'react-icons/fa';
-import '../CSS/changepass.css';
+// client/src/App.js
+import React, { useState } from 'react';
+import axios from 'axios';
 
-function Changepass() {
-
-  const [data, setData] = useState({
-    currentPassword: "",
-    newPassword: "",
+function Test() {
+  const [candidateId, setCandidateId] = useState('');
+  const [updatedCandidateData, setUpdatedCandidateData] = useState({
+    name: '',
+    surname: '',
+    party: '',
+    election: '',
+    city: '',
   });
 
-  const handleNewPasswordChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+  const handleCandidateIdChange = (e) => {
+    setCandidateId(e.target.value);
   };
 
-  console.log("data", data)
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    const token = window.localStorage.getItem("token");
-  
-    // Fetch user data to get the user's ID
-    axios.post("http://localhost:5000/auth/userData", {
-      token: token,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: {
-        token: token,
-      },
-    })
-      .then((response) => {
-        if (response.data.status === "ok") {
-          const id = response.data.data._id; // Assuming the user ID is stored in "_id"
-  
-          const newPasswordData = {
-            newPassword: data.newPassword,
-          };
-  
-          // Reset the password using the retrieved user ID
-          axios.post(`http://localhost:5000/auth/reset-password/${id}`, newPasswordData, {
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          })
-            .then((response) => {
-              console.log(response);
-              // Handle success or error response as needed
-            })
-            .catch((err) => {
-              console.log(err);
-              // Handle error
-            });
-        } else {
-          // Handle error response from fetching user data
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        // Handle error
-      });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUpdatedCandidateData({ ...updatedCandidateData, [name]: value });
   };
-  
 
+  const handleUpdateCandidate = async () => {
+    try {
+      const response = await axios.put(`http://localhost:5000/test/api/candidate/${candidateId}`, updatedCandidateData);
+      console.log('Updated candidate:', response.data);
+    } catch (error) {
+      console.error('Error updating candidate:', error);
+    }
+  };
 
   return (
-    <div className='changepass'>
-      <div className="ProfileIcon">
-        <FaUser size={50} />
+    <div className="App">
+      <h1>Candidate Update</h1>
+      <div>
+        <input type="text" placeholder="Candidate ID" value={candidateId} onChange={handleCandidateIdChange} />
+        <input type="text" name="name" placeholder="Name" value={updatedCandidateData.name} onChange={handleInputChange} />
+        <input type="text" name="surname" placeholder="Surname" value={updatedCandidateData.surname} onChange={handleInputChange} />
+        <input type="text" name="party" placeholder="Party" value={updatedCandidateData.party} onChange={handleInputChange} />
+        <input type="text" name="election" placeholder="Election" value={updatedCandidateData.election} onChange={handleInputChange} />
+        <input type="text" name="city" placeholder="City" value={updatedCandidateData.city} onChange={handleInputChange} />
+        <button onClick={handleUpdateCandidate}>Update Candidate</button>
       </div>
-      <h2>Change Password</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          className='current-password'
-          type="password"
-          placeholder="Current password"
-          value={data.currentPassword}
-          name="currentPassword"
-          onChange={handleNewPasswordChange}
-        />
-        <input
-          className='new-password'
-          type="password"
-          placeholder="New Password"
-          value={data.newPassword}
-          name="newPassword"
-          onChange={handleNewPasswordChange}
-        />
-        <button type='submit'>Save</button>
-      </form>
     </div>
   );
 }
 
-export default Changepass;
+export default Test;

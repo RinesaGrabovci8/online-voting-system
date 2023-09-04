@@ -47,13 +47,13 @@ function PersonalPage() {
                 </div>
                 <h1>{userData.personalnumber}</h1>
                 <h3>{userData.role}</h3>
-                <Link to="/change-password">Change Password?</Link>
+                <Link to={`/updateUserPass/${userData._id}`}>Change Password?</Link>
               </div>) :  (<div className="AccountCard">
                           <div className="ProfileIcon">
                             <FaUser size={50} />
                           </div>
                           <h1>{userData.personalnumber}</h1>
-                          <Link to="/change-password">Change Password?</Link>
+                          <Link to={`/updateUserPass/${userData._id}`} >Change Password?</Link>
                         </div>)}
       
       </>

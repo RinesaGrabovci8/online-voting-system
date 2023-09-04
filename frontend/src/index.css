@@ -15,10 +15,22 @@ code {
   margin: 10px;
 }
 
-.card-actions {
+.card-actions{
   display: flex;
   justify-content: center; /* Horizontal centering */
   align-items: flex-end; /* Bottom alignment */
   padding: 8px 115px; /* Optional padding for spacing */
   height: 100%; /* Ensure the div takes up the full height */
 }
+
+.card-actions button{
+  justify-content: center;
+  margin-left: -170px;
+  max-width: 100%;
+}
+
+.central-vote{
+  margin-left: 200px;
+}
+
+

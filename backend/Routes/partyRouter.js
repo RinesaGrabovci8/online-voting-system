@@ -11,8 +11,8 @@ const partyRouter = require("../Controllers/partyController");
 
 router.post('/party',partyRouter.createParty);
 router.get('/party', partyRouter.getParties);
-router.get("/party/:id", partyRouter.getPartyById);
-router.put("/party/:id", partyRouter.updatePartyById);
+router.get("/getParty/:id", partyRouter.getPartyById);
+router.put("/updateParty/:id", partyRouter.updatePartyById);
 router.delete("/deleteParty/:id", partyRouter.deletePartyById);
 router.get('/getAllParties', partyRouter.getAllParties);
 

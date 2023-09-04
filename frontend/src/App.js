@@ -20,9 +20,19 @@ import ShtoParti from './Crud/shtoParti';
 import UpdateKandidat from './Crud/updateKandidat';
 import UpdateParti from './Crud/updateParti';
 import Zgjedhjetqendrorecand from './Components/Zgjedhjetqendrorecand';
-import ZgjedhjetQendrore from './Pages/zgjedhjetqendrore';
+import Zgjedhjetqendrore from './Pages/zgjedhjetqendrore';
 import Zgjedhjetqendrorepr from './Components/Zgjedhjetqendrorecand';
 import MenagmentPage from './Pages/MenagmentPage';
+import Zgjedhjetprishtine from './Pages/Zgjedhjetprishtine';
+import Zgjedhjetskenderaj from './Pages/Zgjedhjetskenderaj';
+import Zgjedhjetferizaj from './Pages/Zgjedhjetferizaj';
+import Zgjedhjetgjakove from './Pages/Zgjedhjetgjakove';
+import Zgjedhjetgjilan from './Pages/Zgjedhjetgjilan';
+import Zgjedhjetprizren from './Pages/Zgjedhjetprizren';
+import Zgjedhjetpodujeve from './Pages/Zgjedhjetpodujeve';
+import Zgjedhjetpeje from './Pages/Zgjedhjetpeje';
+import Zgjedhjetmitrovice from './Pages/Zgjedhjetmitrovice';
+import Test from './Pages/testt';
 
 
 
@@ -41,15 +51,29 @@ function App() {
         <Route path="/log-in" element={<Login />} />
         <Route path="/sign-up" exact element={<Register />} />
         <Route path="/personalpage" element={<PersonalPage />} />
-        <Route path="/change-password" element={<Changepass/>}/>
+        <Route path="/updateUserPass/:id" element={<Changepass/>}/>
         <Route path="/change-id" element={<Changeid/>}/>
         <Route path="/home" element = {<Home/>}/>
         <Route path='/voto-ketu' element={<Voto/>}/>
+        <Route path='/zgjedhjetqendrore' element={<Zgjedhjetqendrore/>}/>
+        <Route path='/zgjedhjetlokale' element={<Zgjedhjetlokale/>}/>
+        <Route path='/zgjedhjetprishtine' element={<Zgjedhjetprishtine/>}/>
+        <Route path='/zgjedhjetgjakove' element={<Zgjedhjetgjakove/>}/>
+        <Route path='/zgjedhjetferizaj' element={<Zgjedhjetferizaj/>}/>
+        <Route path='/zgjedhjetgjilan' element={<Zgjedhjetgjilan/>}/>
+        <Route path='/zgjedhjetprizren' element={<Zgjedhjetprizren/>}/>
+        <Route path='/zgjedhjetpodujeve' element={<Zgjedhjetpodujeve/>}/>
+        <Route path='/zgjedhjetpeje' element={<Zgjedhjetpeje/>}/>
+        <Route path='/zgjedhjetmitrovice' element={<Zgjedhjetmitrovice/>}/>
+        <Route path='/zgjedhjetskenderaj' element={<Zgjedhjetskenderaj/>}/>
         <Route path='/elections' element={<Zgjedhjet/>}/>
         <Route path='/charts' element={<Chart/>}/>
         <Route path='/admin-page' element={<MenagmentPage/>}/>
         <Route path='/shtokandidat' element={<ShtoKandidat/>}/>
-        <Route path='/upadatecandidate' element={<UpdateKandidat/>}/>
+        <Route path='/shtoparti' element={<ShtoParti/>}/>
+        <Route path='/updateparty/:id' element={<UpdateParti/>}/>
+        <Route path='/upadatecandidate/:id' element={<UpdateKandidat/>}/>
+        <Route path='/updateparty/:id' element={<UpdateParti/>}/>
       </Routes>
        
       {isLoggedIn && <Footer />}

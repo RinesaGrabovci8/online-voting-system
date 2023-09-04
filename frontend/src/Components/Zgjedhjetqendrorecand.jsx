@@ -8,9 +8,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Grid } from '@mui/material'; 
-import CardMedia from '@mui/material/CardMedia';
-import { BsTypeH6 } from 'react-icons/bs';
-import { yellow } from '@mui/material/colors';
+
 
 function CandidateCard({candidate}) {
   
@@ -42,7 +40,7 @@ function Zgjedhjetqendrorecand() {
 
   const fetchKandidatData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/crud/getAllCandidatesbyElection?city=Skenderaj");
+      const response = await fetch("http://localhost:5000/crud/getAllCandidatesbyElection");
       const kandidatdata = await response.json();
       setCandidates(kandidatdata.data);
     } catch (error) {

@@ -9,10 +9,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { error } = require('console');
 const router = express.Router();
-const userController = require('../Controllers/userController');
+const candidateController = require('../Controllers/testController');
 
-router.post("/userData", userController.userData);
-router.put("/updateUserPass/:id", userController.updatePasswordById);
-router.get("/getAllUsers", userController.getAllUsers);
-router.delete("/deleteUser/:id", userController.deleteUserbyid);
+router.put('api/candidate/:id', candidateController.updateCandidate);
 module.exports = router;
