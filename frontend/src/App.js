@@ -42,12 +42,15 @@ function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     
+    
     <Router>
+      < Home/>
+      {/*
       {isLoggedIn && <Header />}
       {isLoggedIn && <Sidebar />}
       
       <Routes>
-        <Route exact path='/' element={isLoggedIn == true?<PersonalPage/>:<Login/>}/>
+       <Route exact path='/' element={isLoggedIn == true?<PersonalPage/>:<Login/>}/>
         <Route path="/log-in" element={<Login />} />
         <Route path="/sign-up" exact element={<Register />} />
         <Route path="/personalpage" element={<PersonalPage />} />
@@ -76,7 +79,8 @@ function App() {
         <Route path='/updateparty/:id' element={<UpdateParti/>}/>
       </Routes>
        
-      {isLoggedIn && <Footer />}
+      {isLoggedIn && <Footer /> */} 
+  
   </Router>
   );
 }
