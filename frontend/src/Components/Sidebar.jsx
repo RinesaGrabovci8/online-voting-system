@@ -8,12 +8,14 @@ import { FiChevronRight } from 'react-icons/fi';
 import Home from '../Pages/Home';
 import PersonalPage from '../Pages/PersonalPage';
 import Voto from '../Pages/Votoketu';
+import '../CSS/sidebar.css';
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userData: null,
+      isResponsive: false, // Add a state to track responsiveness
     };
   }
 
@@ -30,17 +32,30 @@ class Sidebar extends Component {
     });
   }
 
-  logOut = () => {
-    window.localStorage.clear();
+    // ... (Your existing code for fetching user data)
+  
+
+  logOut = () => {window.localStorage.clear();
     window.location.href = "/log-in";
+    // ... (Your existing logout code)
   };
 
+  handleToggleSidebar = () => {
+    this.setState((prevState) => ({ isResponsive: !prevState.isResponsive }));
+  };
   render() {
-    const { userData } = this.state;
+    const { userData, isResponsive } = this.state;
     const isAdmin = userData && userData.role === 'Admin';
 
     return (
-      <div className="sidebar">
+      <div className={`sidebar ${isResponsive ? 'responsive' : ''}`}>
+        {/* Toggle button, show only when responsive */}
+        {isResponsive && (
+          <button id="toggleSidebar" onClick={this.handleToggleSidebar}>
+            {isResponsive ? <FiChevronRight /> : <BsFillBellFill />}
+          </button>
+        )}
+
         <ul className='sidebar-ul'>
           <li className='li1'>
             <Link to="/personalpage">
@@ -88,9 +103,10 @@ class Sidebar extends Component {
           </li>
         </ul>
       </div>
-    )
+    );
   }
-  
 }
+
+
 
 export default Sidebar;

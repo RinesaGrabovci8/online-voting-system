@@ -44,7 +44,7 @@ function App() {
     
     
     <Router>
-      < Home/>
+      < Header/>
       {/*
       {isLoggedIn && <Header />}
       {isLoggedIn && <Sidebar />}
