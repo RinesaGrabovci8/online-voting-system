@@ -12,6 +12,8 @@ const electionController = require("../Controllers/electionsController.js");
 router.post("/election",electionController.createElection);
 router.get("/election", electionController.getElections);
 router.get("/election/:id", electionController.getElectionsById);
+router.get('/centralelection', electionController.getCentralElection);
+router.get('/localelection', electionController.getLocalElection);
 router.put("/election/:id", electionController.updateElectionById);
 router.delete("/election/:id", electionController.deleteElectionById);
 

@@ -7,7 +7,9 @@ app.use(express.json());
 app.use(cors());
 
 require("../models/candidate.js");
+require("../models/party.js");
 const Candidate = mongoose.model("CandidateInfo");
+const Party = mongoose.model("Parties");
 
 exports.createCandidate = async (req, res) => {
   try {
@@ -98,7 +100,8 @@ exports.getAllCandidates = async (req, res) => {
 exports.getAllCandidatesbyElection = async (req, res) => {
   try{ 
     const allCandidates = await Candidate.find({election:"Qendrore"});
-    res.send({status:"ok", data:allCandidates});
+    const party = await Party.find();
+    res.send({status:"ok 1", data: allCandidates, party: party});
 
   }catch(error){
     console.log(error);
@@ -107,7 +110,7 @@ exports.getAllCandidatesbyElection = async (req, res) => {
 
 exports.getAllCandidatesbyCitypr = async (req, res) => {
   try{ 
-    const allCandidates = await Candidate.find({city:"Prishtina"});
+    const allCandidates = await Candidate.find({city:"Prishtine"});
     res.send({status:"ok", data:allCandidates});
 
   }catch(error){
@@ -137,7 +140,7 @@ exports.getAllCandidatesbyCityfr = async (req, res) => {
 
 exports.getAllCandidatesbyCitymtrv = async (req, res) => {
   try{ 
-    const allCandidates = await Candidate.find({city:"Mitrovic"});
+    const allCandidates = await Candidate.find({city:"Mitrovice"});
     res.send({status:"ok", data:allCandidates});
 
   }catch(error){
@@ -167,7 +170,7 @@ exports.getAllCandidatesbyCitygjl = async (req, res) => {
 
 exports.getAllCandidatesbyCitypd = async (req, res) => {
   try{ 
-    const allCandidates = await Candidate.find({city:"Podujev"});
+    const allCandidates = await Candidate.find({city:"Podujeve"});
     res.send({status:"ok", data:allCandidates});
 
   }catch(error){

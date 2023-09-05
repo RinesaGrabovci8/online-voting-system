@@ -32,7 +32,7 @@ import Zgjedhjetprizren from './Pages/Zgjedhjetprizren';
 import Zgjedhjetpodujeve from './Pages/Zgjedhjetpodujeve';
 import Zgjedhjetpeje from './Pages/Zgjedhjetpeje';
 import Zgjedhjetmitrovice from './Pages/Zgjedhjetmitrovice';
-import Test from './Pages/testt';
+
 
 
 
@@ -43,7 +43,8 @@ function App() {
   return (
     
     <Router>
-      {isLoggedIn && <Header />}
+      <Header/>
+      {/* {isLoggedIn && <Header />}
       {isLoggedIn && <Sidebar />}
       
       <Routes>
@@ -54,9 +55,9 @@ function App() {
         <Route path="/updateUserPass/:id" element={<Changepass/>}/>
         <Route path="/change-id" element={<Changeid/>}/>
         <Route path="/home" element = {<Home/>}/>
-        <Route path='/voto-ketu' element={<Voto/>}/>
-        <Route path='/zgjedhjetqendrore' element={<Zgjedhjetqendrore/>}/>
-        <Route path='/zgjedhjetlokale' element={<Zgjedhjetlokale/>}/>
+        <Route path='/voto-ketu/:id' element={<Voto/>}/>
+        <Route path='/zgjedhjetqendrore/:id/:qendroreId' element={<Zgjedhjetqendrore/>}/>
+        <Route path='/zgjedhjetlokale/:id/:lokaleId' element={<Zgjedhjetlokale/>}/>
         <Route path='/zgjedhjetprishtine' element={<Zgjedhjetprishtine/>}/>
         <Route path='/zgjedhjetgjakove' element={<Zgjedhjetgjakove/>}/>
         <Route path='/zgjedhjetferizaj' element={<Zgjedhjetferizaj/>}/>
@@ -76,7 +77,7 @@ function App() {
         <Route path='/updateparty/:id' element={<UpdateParti/>}/>
       </Routes>
        
-      {isLoggedIn && <Footer />}
+      {isLoggedIn && <Footer />} */}
   </Router>
   );
 }

@@ -3,12 +3,12 @@ const Party = require('./party.js');
 const Election = require('./election.js');
 
 const results = new mongoose.Schema({ 
-  election_id: { type: mongoose.Types.ObjectId, ref: 'Election' },
-  party_id: { type: mongoose.Types.ObjectId, ref: 'Party' },
-  votes: Number,
+  party: { type: mongoose.Schema.Types.ObjectId, ref: 'Parties', required: true },
+  election: { type: mongoose.Schema.Types.ObjectId, ref: 'Elections', required: true },
+  votes: { type: Number, default: 0 },
 },
 {
-  collection:"Result"
+  collection:"Results"
 });
 
-mongoose.model('Result', results);
+mongoose.model('Results', results);

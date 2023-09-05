@@ -1,9 +1,6 @@
 import React from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 import '../CSS/grafiket.css';
-import Header from '../Components/Header.jsx';
-import Sidebar from '../Components/Sidebar.jsx';
-import Footer from '../Components/Footer.jsx';
 
 function Chart() {
   return (

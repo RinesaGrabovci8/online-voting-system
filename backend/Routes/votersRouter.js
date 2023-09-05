@@ -10,7 +10,7 @@ const router = express.Router();
 const centralvoters = require("../Controllers/centralVoteController");
 const localvoters = require("../Controllers/localVoteController");
 
-router.post('/centralVotes' , centralvoters.voter);
+router.post('/centralVotes/:id' , centralvoters.voter);
 
 module.exports = router;
 

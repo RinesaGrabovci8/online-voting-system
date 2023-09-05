@@ -35,7 +35,8 @@ exports.getElections =  async (req, res) => {
 
 exports.getElectionsById = async (req, res) => {
   try {
-    const election = await Election.findById(req.params.id);
+    const election = req.params.id;
+    
     if (!election) {
       return res.status(404).json({ message: "Election not found" });
     }
@@ -79,4 +80,14 @@ exports.deleteElectionById = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+};
+
+exports.getCentralElection = async (req, res) => {
+  const qendroreId = '64f6ff89cbd0b906d3de88b8'; 
+  res.json({ id: qendroreId });
+};
+
+exports.getLocalElection = async (req, res) => {
+  const qendroreId = '64f6ff99cbd0b906d3de88ba'; 
+  res.json({ id: qendroreId });
 };

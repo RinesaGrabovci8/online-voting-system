@@ -55,7 +55,7 @@ class Sidebar extends Component {
             </Link>
           </li>
           <li className='li3'>
-            <Link to="/voto-ketu">
+            <Link to={`/voto-ketu/${userData && userData._id}`}>
               <FaVoteYea />
               Voto Ketu!
             </Link>

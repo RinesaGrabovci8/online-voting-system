@@ -9,26 +9,40 @@ app.use(cors());
 require("../models/Vote");
 const Votes = mongoose.model("Votes");
 
+require("../models/party");
+const Party = mongoose.model("Parties");
+
+require("../models/user");
+const User = mongoose.model("UserInfo");
+
+require("../models/election");
+const Election = mongoose.model("Elections");
+
 exports.voter = async (req, res) =>{
   try {
-    // Extract the required data from the request body
-    const { user_id, election_id, party_id, candidate_id } = req.body;
+    const userId = req.params.id;
+    const {election_id, party_id, candidate_id } = req.body;
 
-    // Create a new vote using the Votes model
+    console.log("Received Request Body:", req.body);
+    console.log("userId", userId);
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    
     const newVote = new Votes({
-      user_id,
-      election_id,
-      party_id,
-      candidate_id,
+      userId: userId,
+      election: election_id,
+      party: party_id,
+      candidate: candidate_id,
     });
 
-    // Save the vote to the database
     await newVote.save();
 
-    // Respond with a success message
     res.status(201).json({ message: "Vote submitted successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
-}
+};
