@@ -2,25 +2,11 @@ import React from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 import '../CSS/grafiket.css';
 import Zgjedhjetqendrore from './zgjedhjetqendrore';
+import PieChartPage from '../Components/PieChart';
 
-function Chart({voteCount}){
+function Chart({candidate, voteCount}){
 
-  console.log(voteCount);
-
-  const pieChartData = Object.keys(voteCount).map((partyName, index) => ({
-    id: index,
-    value: voteCount[partyName],
-    label: partyName,
-  }));
-
-  const chartDataForPieChart = pieChartData.map((item) => ({
-    id: item.id,
-    value: item.value,
-    label: item.label,
-  }));
-
-  console.log(chartDataForPieChart);
-
+  const count = voteCount?.count || 0;
   return (
     <>
       <div className="pie-charts-wrapper">
@@ -29,15 +15,10 @@ function Chart({voteCount}){
             <h1>Zgjedhjet Qendrore</h1>
           </div>
           <div className='central-election-chart-container'>
-          <PieChart
-              series={[
-                {
-                  data: chartDataForPieChart, // Use the chartDataForPieChart here
-                },
-              ]}
-              width={400}
-              height={200}
-            />
+          <PieChartPage
+            voteCount={candidate.voteCount} // Pass the voteCount from the CandidateCard
+            Party={candidate.party} // Pass the party from the CandidateCard
+          />
           </div>
         </div>
         <div className='local-elections'>

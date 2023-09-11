@@ -33,18 +33,18 @@ import Zgjedhjetprizren from './Pages/Zgjedhjetprizren';
 import Zgjedhjetpodujeve from './Pages/Zgjedhjetpodujeve';
 import Zgjedhjetpeje from './Pages/Zgjedhjetpeje';
 import Zgjedhjetmitrovice from './Pages/Zgjedhjetmitrovice';
+import PieChartPage from './Components/PieChart';
 
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
-  const [voteCount, setVoteCount] = useState(0);
-
   return (
     
     <Router>
+
       {isLoggedIn && <Header />}
-      {isLoggedIn && <Sidebar />}
+      {isLoggedIn && <Sidebar />} 
       
-      <Routes>
+     <Routes>
         <Route exact path='/' element={isLoggedIn == true?<PersonalPage/>:<Login/>}/>
         <Route path="/log-in" element={<Login />} />
         <Route path="/sign-up" exact element={<Register />} />
@@ -61,20 +61,21 @@ function App() {
         <Route path='/zgjedhjetgjilan' element={<Zgjedhjetgjilan/>}/>
         <Route path='/zgjedhjetprizren' element={<Zgjedhjetprizren/>}/>
         <Route path='/zgjedhjetpodujeve' element={<Zgjedhjetpodujeve/>}/>
-        <Route path='/zgjedhjetpeje' element={<Zgjedhjetpeje/>}/>
+        <Route path='/zgjedhjetpeje' element={<Zgjedhjetpeje/>}/> 
         <Route path='/zgjedhjetmitrovice' element={<Zgjedhjetmitrovice/>}/>
         <Route path='/zgjedhjetskenderaj' element={<Zgjedhjetskenderaj/>}/>
         <Route path='/elections' element={<Zgjedhjet/>}/>
-        <Route path='/charts' element={ <Chart voteCount={voteCount}/>}/>
+        <Route path='/charts' element={ <Chart/>}/>
         <Route path='/admin-page' element={<MenagmentPage/>}/>
         <Route path='/shtokandidat' element={<ShtoKandidat/>}/>
         <Route path='/shtoparti' element={<ShtoParti/>}/>
         <Route path='/updateparty/:id' element={<UpdateParti/>}/>
         <Route path='/upadatecandidate/:id' element={<UpdateKandidat/>}/>
         <Route path='/updateparty/:id' element={<UpdateParti/>}/>
+        <Route path='/pie-chart' element={<PieChartPage/>} />
       </Routes>
        
-      {isLoggedIn && <Footer />}
+    {isLoggedIn && <Footer />}
   </Router>
   );
 }

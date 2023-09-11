@@ -6,55 +6,60 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import axios from "axios";
 import { useParams, useNavigate } from "react-router";
-import Chart from "./Grafiket";
+import PieChartPage from "../Components/PieChart";
 
-function CandidateCard({candidate}) { 
-  console.log("----", candidate)
-  const { id } = useParams();
-  console.log('ID:', id);
-  const{qendroreId} = useParams();
-  const [voted, setVoted] = useState(false);
-  const [voteCount, setVoteCount] = useState(() => {
-    const storedVoteCount = localStorage.getItem(`voteCount_${candidate._id}`);
-    return storedVoteCount ? parseInt(storedVoteCount, 10) : 0;
-  });
-  const [hasVoted, setHasVoted] = useState(false);
+function CandidateCard({ candidate, party, voteData, setVoteData }) { 
+  const { id, qendroreId } = useParams();
   const navigate = useNavigate();
+  const [voted, setVoted] = useState(false);
+  const voteCount = voteData[party] || 0;
 
-
-
-  const handleVote = async (candidateId,electionId, party_id, userId) => {
+  const handleVote = async (candidateId, electionId, party_id) => {
     if (voted) {
       return;
     }
     try {
       const userId = id;
-      // Send a POST request to the /voter API endpoint
+
       await axios.post(`http://localhost:5000/vote/centralVotes/${id}`, {
         election_id: qendroreId,
         party_id: party_id,
         candidate_id: candidate._id,
       });
 
-      setVoted(true);
+      const updatedVoteCount = voteCount + 1;
+      // Update the local state first
+      setVoteData(prevData => ({
+        ...prevData,
+        [party]: updatedVoteCount,
+      }));
 
-    // Update the vote count based on the previous value
-      setVoteCount(prevVoteCount => prevVoteCount + 1);
-
-    // Mark the user as having voted in local storage
+      // Then update the localStorage
       localStorage.setItem(`voted_${candidate._id}`, "true");
+      localStorage.setItem(`voteCount_${candidate._id}`, updatedVoteCount.toString());
 
-    // Store the updated vote count in local storage
-     localStorage.setItem(`voteCount_${candidate._id}`, (voteCount + 1).toString());
+      // Navigate to the pie-chart page with the updated vote data
+      navigate("/pie-chart", {
+        state: {
+          voteData: { ...voteData, [party]: updatedVoteCount },
+        },
+      });
 
-    // Log the updated vote count
-      console.log(`Vote count for ${candidate.name} ${candidate.surname}: ${voteCount + 1}`);
-
-      navigate("/charts");
+      console.log(`Vote count for ${candidate.name} ${candidate.surname}: ${updatedVoteCount}`);
+      setVoted(true); // Move this line after updating the vote data
     } catch (error) {
       console.error('Error submitting vote:', error);
     }
-  };
+  }
+
+  useEffect(() => {
+    // Check if the user has already voted for this candidate
+    const hasVotedStorage = localStorage.getItem(`voted_${candidate._id}`);
+    if (hasVotedStorage) {
+      setVoted(true);
+    }
+  }, [candidate._id]);
+
   return (
     <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
       <CardActionArea>
@@ -63,10 +68,10 @@ function CandidateCard({candidate}) {
             {`${candidate.name} ${candidate.surname}`}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {`${candidate.party}`}
+            {`${party}`}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Vote: {voteCount}
+            Vote: {voteCount} 
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -77,7 +82,8 @@ function CandidateCard({candidate}) {
             color="primary"
             variant="contained"
             onClick={() => {
-              handleVote(candidate.user_id,candidate.election_id, candidate.party_id, candidate._id)}}
+              handleVote(candidate.user_id, candidate.election_id, candidate.party_id);
+            }}
           >
             {voted ? 'Keni Votuar' : 'Voto'}
           </Button>
@@ -89,24 +95,25 @@ function CandidateCard({candidate}) {
 
 function Zgjedhjetqendrore() {
   const { id } = useParams();
-  console.log('ID:', id);
-  const [candidate, setCandidates] = useState([]);
-  const [voteCounts, setVoteCounts] = useState({});
+  const [candidates, setCandidates] = useState([]);
+  const [voteData, setVoteData] = useState({}); // Initialize with an empty object
 
   const fetchKandidatData = async () => {
     try {
       const response = await fetch("http://localhost:5000/crud/getAllCandidatesbyElection");
       const kandidatdata = await response.json();
       const resData = kandidatdata.data.map((el) => {
-        const id = kandidatdata.party.find((e) => (e.name === el.party))
-        return { ...el, party_id: id?._id }
-      })
+        const id = kandidatdata.party.find((e) => (e.name === el.party));
+        return { ...el, party_id: id?._id };
+      });
       setCandidates(resData);
+
+      // Initialize the voteData state with counts fetched from the server
       const counts = {};
       resData.forEach((el) => {
-        counts[el.party] = counts[el.party] ? counts[el.party] + 1 : 1;
+        counts[el.party] = el.voteCount || 0; // Use the voteCount property from your data if available
       });
-      setVoteCounts(counts);
+      setVoteData(counts);
     } catch (error) {
       console.error('Error fetching candidates data:', error);
     }
@@ -115,15 +122,15 @@ function Zgjedhjetqendrore() {
   useEffect(() => {
     fetchKandidatData();
   }, []);
+
   return (
     <>
-    <Grid container spacing={1} style={{ marginLeft: 100, marginTop: 100, marginBottom: 100, backgroundColor:'#fff176' }}>
-      {candidate.map((el) => (
-        <CandidateCard key={el._id} candidate={el} />
-      ))}
-    </Grid>
+      <Grid container spacing={1} style={{ marginLeft: 100, marginTop: 100, marginBottom: 100, backgroundColor:'#fff176' }}>
+        {candidates.map((el) => (
+          <CandidateCard key={el._id} candidate={el} party={el.party} voteData={voteData} setVoteData={setVoteData} />
+        ))}
+      </Grid>
     </>
   );
-};
-
+}
 export default Zgjedhjetqendrore;
