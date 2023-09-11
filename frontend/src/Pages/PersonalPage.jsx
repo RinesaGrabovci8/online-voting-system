@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
-import '../CSS/personalpage.css';
-import '../CSS/personalpage.css';
+import '../CSS/PersonalPage.css';
+import '../CSS/PersonalPage.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 import Header from '../Components/Header';

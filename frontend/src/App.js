@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 import Header from './Components/Header';
 import Sidebar from './Components/Sidebar';
 import Footer from './Components/Footer';
@@ -40,11 +41,12 @@ import Zgjedhjetmitrovice from './Pages/Zgjedhjetmitrovice';
 
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
+  const [voteCount, setVoteCount] = useState(0);
+
   return (
     
     <Router>
-      <Header/>
-      {/* {isLoggedIn && <Header />}
+      {isLoggedIn && <Header />}
       {isLoggedIn && <Sidebar />}
       
       <Routes>
@@ -68,7 +70,7 @@ function App() {
         <Route path='/zgjedhjetmitrovice' element={<Zgjedhjetmitrovice/>}/>
         <Route path='/zgjedhjetskenderaj' element={<Zgjedhjetskenderaj/>}/>
         <Route path='/elections' element={<Zgjedhjet/>}/>
-        <Route path='/charts' element={<Chart/>}/>
+        <Route path='/charts' element={ <Chart voteCount={voteCount}/>}/>
         <Route path='/admin-page' element={<MenagmentPage/>}/>
         <Route path='/shtokandidat' element={<ShtoKandidat/>}/>
         <Route path='/shtoparti' element={<ShtoParti/>}/>
@@ -77,7 +79,7 @@ function App() {
         <Route path='/updateparty/:id' element={<UpdateParti/>}/>
       </Routes>
        
-      {isLoggedIn && <Footer />} */}
+      {isLoggedIn && <Footer />}
   </Router>
   );
 }

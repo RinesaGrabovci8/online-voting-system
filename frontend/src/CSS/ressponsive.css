@@ -1,0 +1,70 @@
+/* Header CSS */
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #024ea2;
+  }
+  
+  .logo-link img {
+    height: auto;
+    max-height: 70px; /* Limit the logo height */
+    margin-top: 5px; /* Adjust the margin for smaller screens */
+  }
+  
+  header {
+    background-color: #024ea2;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  /* Media query for smaller screens */
+  @media screen and (max-width: 768px) {
+    .header-wrapper {
+      flex-direction: column; /* Stack items vertically on smaller screens */
+      align-items: flex-start; /* Adjust alignment for smaller screens */
+      padding: 10px; /* Reduce padding for smaller screens */
+    }
+  
+    .logo-link img {
+      margin-left: 0; /* Remove negative margin for smaller screens */
+    }
+  }
+  
+  /* Sidebar CSS */
+  .sidebar {
+    background-color: #024ea2;
+    position: fixed;
+    top: 0;
+    left: -250px; /* Initially hide the sidebar off the screen */
+    width: 250px;
+    height: 100%;
+    overflow-x: hidden;
+    padding-top: 20px;
+    transition: left 0.3s; /* Add a transition for smooth animation */
+  }
+  
+  /* Media query for smaller screens */
+  @media screen and (max-width: 768px) {
+    .sidebar {
+      left: 0; /* Show the sidebar on smaller screens */
+      z-index: 1; /* Ensure it's above the content */
+    }
+  }
+  
+  /* Rest of your existing CSS for the sidebar */
+  
+  /* Example: Adjusting margin-top for li1 and li9 */
+  .li1 {
+    margin-top: 100px; /* Adjusted margin for smaller screens */
+  }
+  
+  .li9 {
+    margin-top: 140px; /* Adjusted margin for smaller screens */
+  }
+  
+  /* Other CSS rules remain the same */
+  
