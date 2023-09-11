@@ -1,8 +1,26 @@
 import React from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 import '../CSS/grafiket.css';
+import Zgjedhjetqendrore from './zgjedhjetqendrore';
 
-function Chart() {
+function Chart({voteCount}){
+
+  console.log(voteCount);
+
+  const pieChartData = Object.keys(voteCount).map((partyName, index) => ({
+    id: index,
+    value: voteCount[partyName],
+    label: partyName,
+  }));
+
+  const chartDataForPieChart = pieChartData.map((item) => ({
+    id: item.id,
+    value: item.value,
+    label: item.label,
+  }));
+
+  console.log(chartDataForPieChart);
+
   return (
     <>
       <div className="pie-charts-wrapper">
@@ -11,14 +29,10 @@ function Chart() {
             <h1>Zgjedhjet Qendrore</h1>
           </div>
           <div className='central-election-chart-container'>
-            <PieChart
+          <PieChart
               series={[
                 {
-                  data: [
-                    { id: 0, value: 30, label: 'VV' },
-                    { id: 1, value: 15, label: 'LDK' },
-                    { id: 2, value: 20, label: 'PDK' },
-                  ],
+                  data: chartDataForPieChart, // Use the chartDataForPieChart here
                 },
               ]}
               width={400}

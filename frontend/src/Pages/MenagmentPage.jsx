@@ -174,7 +174,7 @@ function MenagmentPage() {
                       <tr key={userdata._id}>
                         <td className='data'>{i.personalnumber}</td>
                         <td className='delete'> 
-                        <Link to={`/delete/${i.id}`}>
+                        <Link to="/admin-page">
                           <DeleteIcon style={{ color: 'red',  fontSize: '16px', margin:8 }} onClick={() => deleteUser(i._id)} />
                         </Link>
                         </td>

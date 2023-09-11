@@ -34,11 +34,6 @@ import Zgjedhjetpodujeve from './Pages/Zgjedhjetpodujeve';
 import Zgjedhjetpeje from './Pages/Zgjedhjetpeje';
 import Zgjedhjetmitrovice from './Pages/Zgjedhjetmitrovice';
 
-
-
-
-
-
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   const [voteCount, setVoteCount] = useState(0);

@@ -17,9 +17,8 @@ function Voto(){
     const [qendroreId, setQendroreId] = useState(null);
   const [lokaleId, setLokaleId] = useState(null);
 
-  // Make axios requests to get the IDs
   useEffect(() => {
-    // Axios request to get the ID for Zgjedhjet Qendrore
+    
     axios.get(`http://localhost:5000/crud/centralelection`)
       .then((response) => {
         setQendroreId(response.data.id);
@@ -28,8 +27,7 @@ function Voto(){
         console.error("Error fetching Zgjedhjet Qendrore ID: ", error);
       });
 
-    // Axios request to get the ID for Zgjedhjet Lokale
-    axios.get(`http://localhost:5000/crud/centralelection`)
+    axios.get(`http://localhost:5000/crud/localelection`)
       .then((response) => {
         setLokaleId(response.data.id);
       })

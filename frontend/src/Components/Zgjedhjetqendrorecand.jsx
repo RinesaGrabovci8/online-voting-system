@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import '../CSS/zgjedhjet.css';
-import Header from '../Components/Header';
-import Sidebar from '../Components/Sidebar';
-import Footer from '../Components/Footer';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -54,7 +51,7 @@ function Zgjedhjetqendrorecand() {
   return (
     <Grid container spacing={1} style={{ marginLeft: 100, marginTop: 100, marginBottom: 100, backgroundColor:'#fff176' }}>
       {candidate.map((candidate) => (
-        <CandidateCard key={candidate._id} candidate={candidate} />
+        <CandidateCard key={candidate._id} candidate={candidate}/>
       ))}
     </Grid>
   );

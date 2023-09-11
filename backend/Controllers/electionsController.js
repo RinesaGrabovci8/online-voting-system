@@ -9,6 +9,9 @@ app.use(cors());
 require("../models/election.js");
 const Election = mongoose.model("Elections");
 
+require("../models/candidate.js");
+const Candidate = mongoose.model("CandidateInfo");
+
 exports.createElection = async (req, res) => {
   try {
     const { type } = req.body;
@@ -88,6 +91,19 @@ exports.getCentralElection = async (req, res) => {
 };
 
 exports.getLocalElection = async (req, res) => {
-  const qendroreId = '64f6ff99cbd0b906d3de88ba'; 
-  res.json({ id: qendroreId });
+  const lokaleId = '64f6ff99cbd0b906d3de88ba'; 
+  res.json({ id: lokaleId });
 };
+
+exports.getLocalElectionPr = async (req, res) =>{
+  try {
+    const city = req.params.city;
+  
+    const cityCandidates = await Candidate.find({ city });
+
+    res.json({ candidates: cityCandidates });
+  } catch (error) {
+    console.error('Error fetching candidates:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}

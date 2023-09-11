@@ -6,15 +6,24 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import axios from "axios";
 import { useParams, useNavigate } from "react-router";
+import Chart from "./Grafiket";
 
-function CandidateCard({ candidate, onVote }) {
+function CandidateCard({candidate}) { 
   console.log("----", candidate)
   const { id } = useParams();
   console.log('ID:', id);
   const{qendroreId} = useParams();
   const [voted, setVoted] = useState(false);
+  const [voteCount, setVoteCount] = useState(() => {
+    const storedVoteCount = localStorage.getItem(`voteCount_${candidate._id}`);
+    return storedVoteCount ? parseInt(storedVoteCount, 10) : 0;
+  });
+  const [hasVoted, setHasVoted] = useState(false);
+  const navigate = useNavigate();
 
-  const handleVote = async (candidateId, electionId, party_id, userId) => {
+
+
+  const handleVote = async (candidateId,electionId, party_id, userId) => {
     if (voted) {
       return;
     }
@@ -27,16 +36,40 @@ function CandidateCard({ candidate, onVote }) {
         candidate_id: candidate._id,
       });
 
-      // Update the UI to show that the user has voted
       setVoted(true);
+
+    // Update the vote count based on the previous value
+      setVoteCount(prevVoteCount => prevVoteCount + 1);
+
+    // Mark the user as having voted in local storage
+      localStorage.setItem(`voted_${candidate._id}`, "true");
+
+    // Store the updated vote count in local storage
+     localStorage.setItem(`voteCount_${candidate._id}`, (voteCount + 1).toString());
+
+    // Log the updated vote count
+      console.log(`Vote count for ${candidate.name} ${candidate.surname}: ${voteCount + 1}`);
+
+      navigate("/charts");
     } catch (error) {
       console.error('Error submitting vote:', error);
     }
   };
-
   return (
     <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
-      {/* ... (other code) */}
+      <CardActionArea>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {`${candidate.name} ${candidate.surname}`}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {`${candidate.party}`}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Vote: {voteCount}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
       <CardActions>
         <div className='card-actions'>
           <Button
@@ -44,9 +77,7 @@ function CandidateCard({ candidate, onVote }) {
             color="primary"
             variant="contained"
             onClick={() => {
-              handleVote(candidate.user_id, candidate.election_id, candidate.party_id, candidate._id);
-              onVote(candidate._id, candidate.party_id);
-            }}
+              handleVote(candidate.user_id,candidate.election_id, candidate.party_id, candidate._id)}}
           >
             {voted ? 'Keni Votuar' : 'Voto'}
           </Button>
@@ -59,8 +90,8 @@ function CandidateCard({ candidate, onVote }) {
 function Zgjedhjetqendrore() {
   const { id } = useParams();
   console.log('ID:', id);
-  const [candidates, setCandidates] = useState([]);
-  const [voted, setVoted] = useState(false); // Define voted here
+  const [candidate, setCandidates] = useState([]);
+  const [voteCounts, setVoteCounts] = useState({});
 
   const fetchKandidatData = async () => {
     try {
@@ -71,6 +102,11 @@ function Zgjedhjetqendrore() {
         return { ...el, party_id: id?._id }
       })
       setCandidates(resData);
+      const counts = {};
+      resData.forEach((el) => {
+        counts[el.party] = counts[el.party] ? counts[el.party] + 1 : 1;
+      });
+      setVoteCounts(counts);
     } catch (error) {
       console.error('Error fetching candidates data:', error);
     }
@@ -79,43 +115,15 @@ function Zgjedhjetqendrore() {
   useEffect(() => {
     fetchKandidatData();
   }, []);
-
-  const handleVote = async (candidateId, partyId) => {
-    if (voted) {
-      return;
-    }
-    
-    try {
-      const userId = id;
-      // Send a POST request to your API to record the vote
-      await axios.post("YOUR_API_ENDPOINT_HERE", {
-        userId,
-        candidateId,
-        partyId,
-        electionId: qendroreId, // Define qendroreId here
-      });
-  
-      // Update the UI to show that the user has voted
-      setVoted(true);
-  
-      // Log the updated vote count for the candidate
-      const updatedCandidate = candidates.find((candidate) => candidate._id === candidateId);
-      if (updatedCandidate) {
-        console.log(`Vote submitted successfully for ${updatedCandidate.name} ${updatedCandidate.surname}. New vote count: ${updatedCandidate.votes + 1}`);
-      }
-    } catch (error) {
-      console.error('Error submitting vote:', error);
-    }
-  };
-  
   return (
+    <>
     <Grid container spacing={1} style={{ marginLeft: 100, marginTop: 100, marginBottom: 100, backgroundColor:'#fff176' }}>
-      {candidates.map((el) => (
-        <CandidateCard key={el._id} candidate={el} onVote={handleVote} />
+      {candidate.map((el) => (
+        <CandidateCard key={el._id} candidate={el} />
       ))}
     </Grid>
+    </>
   );
 };
 
 export default Zgjedhjetqendrore;
-

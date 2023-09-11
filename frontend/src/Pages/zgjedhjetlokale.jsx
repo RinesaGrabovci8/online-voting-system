@@ -1,14 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import Header from '../Components/Header';
-import Sidebar from '../Components/Sidebar';
-import Footer from '../Components/Footer';
+import React  from 'react'
+import { Link, useParams } from 'react-router-dom';
 import '../CSS/zgjedhjetlokale.css'
+import axios from 'axios';
 function Zgjedhjetlokale() {
+  
   return (
     <>
-    <Header/>
-    <Sidebar/>
     <div className='zgjedhjet-lokale'>
         <div className='title'>
         <h1>Voto për Zgjedhjet Lokale</h1>
@@ -27,7 +24,6 @@ function Zgjedhjetlokale() {
             </div>
         </div>
     </div>
-    <Footer/>
     </>
   )
 }
