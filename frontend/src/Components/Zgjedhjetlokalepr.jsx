@@ -12,25 +12,22 @@ import { useState, useEffect } from 'react';
   
 function CandidateCard({candidate}) {
     return (
-          <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
-              <CardActionArea>
-                  <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                  {`${candidate.name} ${candidate.surname}`}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                  {`${candidate.party}`}
-                  </Typography>
-                  </CardContent>
-              </CardActionArea>
-              <CardActions>
-              <div className='card-actions'>
-                  <Typography size="small" color="primary">
-                  Voto 1
-                  </Typography>
-                  </div>
-              </CardActions>
-          </Card>
+      <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
+        <CardActionArea>
+            <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+            {`${candidate.name} ${candidate.surname}`}
+            </Typography>
+            </CardContent>
+        </CardActionArea>
+        <CardActions>
+        <div className='card-actions'>
+          <Typography variant="body2" color="text.secondary">
+              {`${candidate.party}`}
+              </Typography>
+              </div>
+          </CardActions>
+      </Card>
     );
 }
 

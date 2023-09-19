@@ -19,18 +19,15 @@ function CandidateCard({candidate}) {
                   <Typography gutterBottom variant="h5" component="div">
                   {`${candidate.name} ${candidate.surname}`}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                  {`${candidate.party}`}
-                  </Typography>
                   </CardContent>
               </CardActionArea>
               <CardActions>
               <div className='card-actions'>
-                  <Typography size="small" color="primary">
-                  Voto 1
-                  </Typography>
-                  </div>
-              </CardActions>
+                <Typography variant="body2" color="text.secondary">
+                    {`${candidate.party}`}
+                    </Typography>
+                    </div>
+                </CardActions>
           </Card>
     );
 }

@@ -1,47 +1,25 @@
-.pie-charts-wrapper {
+.pie-charts-wrapper{
   margin-top: 200px;
-  margin-bottom: 200px;
-  margin-left: 360px;
+  margin-left: 70px;
 }
 
-.prishtine-prizren-pej {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  border: 1px solid #ccc;
-  background-color: #f5f5f5;
-  max-width: 1000px;
+.central-elections-chart{
+  margin-left: 90px;
+}
+
+.local-elections h1{
+  margin-left: 90px;
+  margin-bottom: 170px;
+}
+
+.chart-container h3{
+  margin-left: 70px;
 }
 
 .chart-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-  width: calc(33.33% - 40px); /* Distribute charts evenly with margin between */
-  padding: 20px; /* Padding within the chart container */
+  text-align: center;
 }
 
-.chart-container h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  margin-left: -100px;
+.chart-container {
+  margin-bottom: 20px; 
 }
-
-.central-container{
-  margin-top: 100px;
-  margin-bottom: 100px;
-}
-.central-election-chart-container{
-  margin-left: 320px;
-}
-
-.central-elections-chart h1{
-  margin-left: -150px;
-}
-
-.local-elections{
-  margin-left: -150px;
-}
-

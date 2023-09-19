@@ -1,38 +1,30 @@
 import React from 'react'
 import '../CSS/zgjedhjet.css';
-import Header from './Header';
-import Sidebar from './Sidebar';
-import Footer from './Footer';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import ak from '../img/ak.jpg';
 import { Button, CardActionArea, CardActions, Grid } from '@mui/material'; 
-import CardMedia from '@mui/material/CardMedia';
 import { useState, useEffect } from 'react';
 
   
 function CandidateCard({candidate}) {
     return (
-          <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
-              <CardActionArea>
-                  <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                  {`${candidate.name} ${candidate.surname}`}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                  {`${candidate.party}`}
-                  </Typography>
-                  </CardContent>
-              </CardActionArea>
-              <CardActions>
-              <div className='card-actions'>
-                  <Typography size="small" color="primary">
-                  Voto 1
-                  </Typography>
-                  </div>
-              </CardActions>
-          </Card>
+      <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
+      <CardActionArea>
+          <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+          {`${candidate.name} ${candidate.surname}`}
+          </Typography>
+          </CardContent>
+      </CardActionArea>
+      <CardActions>
+      <div className='card-actions'>
+        <Typography variant="body2" color="text.secondary">
+            {`${candidate.party}`}
+            </Typography>
+            </div>
+        </CardActions>
+  </Card>
     );
 }
 

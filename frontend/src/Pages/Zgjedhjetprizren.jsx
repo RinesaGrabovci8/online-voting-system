@@ -5,8 +5,40 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Grid } from '@mui/material'; 
 import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router';
+import axios from "axios";
   
-function CandidateCard({candidate}) { 
+function CandidateCard({candidate, party}) { 
+  const { id, lokaleId } = useParams();
+  const navigate = useNavigate();
+  const [voted, setVoted] = useState(false);
+  console.log(id);
+
+  const handleVote = async (candidateId, electionId, party_id, userId) => {
+    if (voted) {
+      return;
+    }
+    try {
+      axios.post(`http://localhost:5000/vote/localVotes/${id}`, {
+        election_id: lokaleId,
+        party_id: party_id,
+        candidate_id: candidate._id,
+      });
+
+      setVoted(true);
+  
+      navigate('/charts');
+    } catch (error) {
+      console.error('Error submitting vote:', error);
+    }
+  };
+
+  useEffect(() => {
+    const hasVotedStorage = localStorage.getItem(`voted_${candidate._id}`);
+    if (hasVotedStorage) {
+      setVoted(true);
+    }
+  }, [candidate._id]);
     return (
       <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
         <CardActionArea>
@@ -25,9 +57,11 @@ function CandidateCard({candidate}) {
               size="small"
               color="primary"
               variant="contained"
-              // onClick={() => onVote(candidate._id)}
+              onClick={() => {
+                handleVote(candidate.user_id, candidate.election_id, candidate.party_id);
+              }}
             >
-              Voto
+              {voted ? 'Keni Votuar' : 'Voto'}
             </Button>
           </div>
         </CardActions>

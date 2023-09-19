@@ -1,8 +1,9 @@
 import React  from 'react'
 import { Link, useParams } from 'react-router-dom';
 import '../CSS/zgjedhjetlokale.css'
-import axios from 'axios';
+
 function Zgjedhjetlokale() {
+  const { id, lokaleId } = useParams();
   
   return (
     <>
@@ -11,16 +12,16 @@ function Zgjedhjetlokale() {
         <h1>Voto për Zgjedhjet Lokale</h1>
         </div>
         <div className='city-container'>
-            <div class="city-buttons">
-                <button><Link to='/zgjedhjetprishtine'>Prishtine</Link></button>
-                <button><Link to='/zgjedhjetprizren'>Prizren</Link></button>
-                <button><Link to='/zgjedhjetpeje'>Peje</Link></button>
-                <button><Link to='/zgjedhjetmitrovice'>Mitrovice</Link></button>
-                <button><Link to='/zgjedhjetgjakove'>Gjakove</Link></button>
-                <button><Link to='/zgjedhjetskenderaj'>Skenderaj</Link></button>
-                <button><Link to='/zgjedhjetferizaj'>Ferizaj</Link></button>
-                <button><Link to='/zgjedhjetgjilan'>Gjilan</Link></button>
-                <button><Link to='/zgjedhjetpodujeve'>Podujeve</Link></button>
+            <div className="city-buttons">
+                <button><Link to={`/zgjedhjetprishtine/${id}/${lokaleId}`}>Prishtine</Link></button>
+                <button><Link to={`/zgjedhjetprizren/${id}/${lokaleId}`}>Prizren</Link></button>
+                <button><Link to={`/zgjedhjetpeje/${id}/${lokaleId}`}>Peje</Link></button>
+                <button><Link to={`/zgjedhjetmitrovice/${id}/${lokaleId}`}>Mitrovice</Link></button>
+                <button><Link to={`/zgjedhjetgjakove/${id}/${lokaleId}`}>Gjakove</Link></button>
+                <button><Link to={`/zgjedhjetskenderaj/${id}/${lokaleId}`}>Skenderaj</Link></button>
+                <button><Link to={`/zgjedhjetferizaj/${id}/${lokaleId}`}>Ferizaj</Link></button>
+                <button><Link to={`/zgjedhjetgjilan/${id}/${lokaleId}`}>Gjilan</Link></button>
+                <button><Link to={`/zgjedhjetpodujeve/${id}/${lokaleId}`}>Podujeve</Link></button>
             </div>
         </div>
     </div>

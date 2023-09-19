@@ -6,51 +6,31 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import axios from "axios";
 import { useParams, useNavigate } from "react-router";
-import PieChartPage from "../Components/PieChart";
 
-function CandidateCard({ candidate, party, voteData, setVoteData }) { 
+function CandidateCard({candidate, party}) { 
   const { id, qendroreId } = useParams();
   const navigate = useNavigate();
   const [voted, setVoted] = useState(false);
-  const voteCount = voteData[party] || 0;
 
-  const handleVote = async (candidateId, electionId, party_id) => {
+  const handleVote = async (candidateId, electionId, party_id, userId) => {
     if (voted) {
       return;
     }
     try {
-      const userId = id;
-
       await axios.post(`http://localhost:5000/vote/centralVotes/${id}`, {
         election_id: qendroreId,
         party_id: party_id,
         candidate_id: candidate._id,
       });
 
-      const updatedVoteCount = voteCount + 1;
-      // Update the local state first
-      setVoteData(prevData => ({
-        ...prevData,
-        [party]: updatedVoteCount,
-      }));
-
-      // Then update the localStorage
-      localStorage.setItem(`voted_${candidate._id}`, "true");
-      localStorage.setItem(`voteCount_${candidate._id}`, updatedVoteCount.toString());
-
-      // Navigate to the pie-chart page with the updated vote data
-      navigate("/pie-chart", {
-        state: {
-          voteData: { ...voteData, [party]: updatedVoteCount },
-        },
-      });
-
-      console.log(`Vote count for ${candidate.name} ${candidate.surname}: ${updatedVoteCount}`);
-      setVoted(true); // Move this line after updating the vote data
+      setVoted(true);
+  
+      navigate('/charts');
     } catch (error) {
       console.error('Error submitting vote:', error);
     }
-  }
+  };
+  
 
   useEffect(() => {
     // Check if the user has already voted for this candidate
@@ -69,9 +49,6 @@ function CandidateCard({ candidate, party, voteData, setVoteData }) {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {`${party}`}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Vote: {voteCount} 
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -94,7 +71,6 @@ function CandidateCard({ candidate, party, voteData, setVoteData }) {
 }
 
 function Zgjedhjetqendrore() {
-  const { id } = useParams();
   const [candidates, setCandidates] = useState([]);
   const [voteData, setVoteData] = useState({}); // Initialize with an empty object
 

@@ -6,22 +6,19 @@ const app = express()
 app.use(express.json());
 app.use(cors());
 
-require("../models/Vote");
+require("../models/vote");
 const Votes = mongoose.model("Votes");
 
-require("../models/party");
-const Party = mongoose.model("Parties");
+require("../models/candidate");
+const Candidate = mongoose.model("CandidateInfo");
 
 require("../models/user");
 const User = mongoose.model("UserInfo");
 
-require("../models/election");
-const Election = mongoose.model("Elections");
-
-exports.voter = async (req, res) =>{
+exports.voter = async (req, res) => {
   try {
     const userId = req.params.id;
-    const {election_id, party_id, candidate_id } = req.body;
+    const { election_id, party_id, candidate_id } = req.body;
 
     console.log("Received Request Body:", req.body);
     console.log("userId", userId);
@@ -30,7 +27,17 @@ exports.voter = async (req, res) =>{
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
-    
+
+    const updatedCandidate = await Candidate.findByIdAndUpdate(
+      candidate_id,
+      { $inc: { votes: 1 } },
+      { new: true }
+    );
+
+    if (!updatedCandidate) {
+      return res.status(500).json({ error: 'Error updating candidate votes: Candidate not found or update failed' });
+    }
+
     const newVote = new Votes({
       userId: userId,
       election: election_id,
@@ -40,9 +47,145 @@ exports.voter = async (req, res) =>{
 
     await newVote.save();
 
-    res.status(201).json({ message: "Vote submitted successfully" });
+    res.status(201).json({ updatedCandidate, message: 'Vote successfully recorded' });
+
+  } catch (error) {
+    console.error('Error updating candidate votes:', error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.getLokaleCandidatesPr = async (req, res) => {
+  try {
+    const candidates = await Candidate.find({ election: 'Lokale', city: 'Prishtine' }, 'party votes');
+
+    if (!candidates || candidates.length === 0) {
+      return res.status(404).json({ message: 'No candidates found for "Lokale" elections' });
+    }
+
+    res.status(200).json(candidates);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+exports.getLokaleCandidatesPrz = async (req, res) => {
+  try {
+    const candidates = await Candidate.find({ election: 'Lokale', city: 'Prizren' }, 'party votes');
+
+    if (!candidates || candidates.length === 0) {
+      return res.status(404).json({ message: 'No candidates found for "Lokale" elections' });
+    }
+
+    res.status(200).json(candidates);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+exports.getLokaleCandidatesPej = async (req, res) => {
+  try {
+    const candidates = await Candidate.find({ election: 'Lokale', city: 'Peje' }, 'party votes');
+
+    if (!candidates || candidates.length === 0) {
+      return res.status(404).json({ message: 'No candidates found for "Lokale" elections' });
+    }
+
+    res.status(200).json(candidates);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+exports.getLokaleCandidatesMtrv = async (req, res) => {
+  try {
+    const candidates = await Candidate.find({ election: 'Lokale', city: 'Mitrovice' }, 'party votes');
+
+    if (!candidates || candidates.length === 0) {
+      return res.status(404).json({ message: 'No candidates found for "Lokale" elections' });
+    }
+
+    res.status(200).json(candidates);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+exports.getLokaleCandidatesGjk = async (req, res) => {
+  try {
+    const candidates = await Candidate.find({ election: 'Lokale', city: 'Gjakove' }, 'party votes');
+
+    if (!candidates || candidates.length === 0) {
+      return res.status(404).json({ message: 'No candidates found for "Lokale" elections' });
+    }
+
+    res.status(200).json(candidates);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+exports.getLokaleCandidatesSkdr = async (req, res) => {
+  try {
+    const candidates = await Candidate.find({ election: 'Lokale', city: 'Skenderaj' }, 'party votes');
+
+    if (!candidates || candidates.length === 0) {
+      return res.status(404).json({ message: 'No candidates found for "Lokale" elections' });
+    }
+
+    res.status(200).json(candidates);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+exports.getLokaleCandidatesFr = async (req, res) => {
+  try {
+    const candidates = await Candidate.find({ election: 'Lokale', city: 'Ferizaj' }, 'party votes');
+
+    if (!candidates || candidates.length === 0) {
+      return res.status(404).json({ message: 'No candidates found for "Lokale" elections' });
+    }
+
+    res.status(200).json(candidates);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+exports.getLokaleCandidatesGjl = async (req, res) => {
+  try {
+    const candidates = await Candidate.find({ election: 'Lokale', city: 'Gjilan' }, 'party votes');
+
+    if (!candidates || candidates.length === 0) {
+      return res.status(404).json({ message: 'No candidates found for "Lokale" elections' });
+    }
+
+    res.status(200).json(candidates);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+exports.getLokaleCandidatesPd = async (req, res) => {
+  try {
+    const candidates = await Candidate.find({ election: 'Lokale', city: 'Podujeve' }, 'party votes');
+
+    if (!candidates || candidates.length === 0) {
+      return res.status(404).json({ message: 'No candidates found for "Lokale" elections' });
+    }
+
+    res.status(200).json(candidates);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 };

@@ -6,22 +6,20 @@ const app = express()
 app.use(express.json());
 app.use(cors());
 
-require("../models/Vote");
+require("../models/vote");
 const Votes = mongoose.model("Votes");
 
-require("../models/party");
-const Party = mongoose.model("Parties");
+require("../models/candidate"); // Import the Candidate model
+const Candidate = mongoose.model("CandidateInfo"); // Adjust the model name if needed
 
 require("../models/user");
 const User = mongoose.model("UserInfo");
 
-require("../models/election");
-const Election = mongoose.model("Elections");
 
-exports.voter = async (req, res) =>{
+exports.voter = async (req, res) => {
   try {
     const userId = req.params.id;
-    const {election_id, party_id, candidate_id } = req.body;
+    const { election_id, party_id, candidate_id } = req.body;
 
     console.log("Received Request Body:", req.body);
     console.log("userId", userId);
@@ -30,7 +28,13 @@ exports.voter = async (req, res) =>{
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
-    
+
+    const updatedCandidate = await Candidate.findByIdAndUpdate(candidate_id, { $inc: { votes: 1 } }, { new: true });
+
+    if (!updatedCandidate) {
+      return res.status(500).json({ error: 'Error updating candidate votes' });
+    }
+
     const newVote = new Votes({
       userId: userId,
       election: election_id,
@@ -40,9 +44,29 @@ exports.voter = async (req, res) =>{
 
     await newVote.save();
 
-    res.status(201).json({ message: "Vote submitted successfully" });
+    // Send the updated candidate object in the response with the updated vote count
+    res.status(201).json({ updatedCandidate });
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+exports.getQendroreCandidatesVotes = async (req, res) => {
+  try {
+    const candidates = await Candidate.find({ election: 'Qendrore' }, 'party votes');
+
+    if (!candidates || candidates.length === 0) {
+      return res.status(404).json({ message: 'No candidates found for "Qendrore" elections' });
+    }
+
+    res.status(200).json(candidates);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+
+

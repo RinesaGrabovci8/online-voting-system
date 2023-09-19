@@ -135,7 +135,7 @@ export default function UpdateKandidat() {
         onClick={handleButtonClick}
         style={{ marginTop: '16px' }}
         >
-           
+           Perditeso
         </Button>
     </Box>
   );

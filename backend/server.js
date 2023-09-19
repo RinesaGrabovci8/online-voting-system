@@ -19,7 +19,6 @@ const electionRoutes = require('./Routes/electionRouter');
 const partyRoutes = require("./Routes/partyRouter");
 const candidateRoutes = require("./Routes/candidaterouter");
 const votersRouter = require("./Routes/votersRouter");
-const test = require('./Routes/testRouter');
 
 app.use('/auth', authRoutes);
 app.use('/auth', userRoutes);
@@ -27,7 +26,6 @@ app.use('/crud', electionRoutes);
 app.use('/crud', partyRoutes);
 app.use('/crud', candidateRoutes);
 app.use('/vote', votersRouter);
-app.use('/test', test);
 
 
 app.listen(5000, () => {
