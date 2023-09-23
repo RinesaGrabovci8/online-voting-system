@@ -57,7 +57,7 @@ class Login extends Component{
                         onChange={(e)=> this.setState({password: e.target.value})}/>
                         <button type="submit">Log In</button>
                     </form>
-                    <button className="link-btn"><a href='/sign-up'>Nuk keni llogari? Regjistrohuni këtu.</a></button>
+                    <button className="link-btn"><Link to='/sign-up'>Nuk keni llogari? Regjistrohuni këtu.</Link></button>
                 </div>
             </div>
         );

@@ -11,7 +11,6 @@ import PieChartGjl from '../Components/PieChartGjl';
 import PieChartPd from '../Components/PieChartPd';
 import PieChartPrz from '../Components/PieChartPrz';
 
-
 function Chart() {
   return (
     <>

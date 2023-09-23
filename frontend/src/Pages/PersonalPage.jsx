@@ -1,15 +1,12 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../CSS/personalpage.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
-import Header from '../Components/Header';
-import Sidebar from '../Components/Sidebar';
-import Footer from '../Components/Footer';
-import { experimentalStyled } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function PersonalPage() {
-  const[userData, setuserdata] = useState("");
-  const [admin, setadmin] = useState(false);
+  const [userData, setUserData] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false);
+
   useEffect(() => {
     fetch("http://localhost:5000/auth/userData", {
       method: "POST",
@@ -27,40 +24,33 @@ function PersonalPage() {
       .then((data) => {
         console.log(data, "userData");
         if (data.data.role === "Admin") {
-          setadmin(true);
+          setIsAdmin(true);
         }
-        setuserdata(data.data);
+        setUserData(data.data);
         if (data.data === "token expired") {
-          alert("Token expired log in again");
+          alert("Token expired. Please log in again.");
           window.localStorage.clear();
           window.location.href = "/log-in";
         }
       });
   }, []);
-  
-    return (
-      <>
-      {admin? (<div className="AccountCard">
-                <div className="ProfileIcon">
-                  <FaUser size={50} />
-                </div>
-                <h1>{userData.personalnumber}</h1>
-                <h3>{userData.role}</h3>
-                <Link to={`/updateUserPass/${userData._id}`}>Change Password?</Link>
-              </div>) :  (<div className="AccountCard">
-                          <div className="ProfileIcon">
-                            <FaUser size={50} />
-                          </div>
-                          <h1>{userData.personalnumber}</h1>
-                          <Link to={`/updateUserPass/${userData._id}`} >Change Password?</Link>
-                        </div>)}
-      
-      </>
-    );
-  
+
+  return (
+    <div className="AccountCard">
+      <div className="ProfileIcon">
+        <FaUser size={50} />
+      </div>
+      <h1>{userData.personalnumber}</h1>
+      {isAdmin ? (
+        <>
+          <h3>{userData.role}</h3>
+          <Link to={`/updateUserPass/${userData._id}`}>Change Password?</Link>
+        </>
+      ) : (
+        <Link to={`/updateUserPass/${userData._id}`}>Change Password?</Link>
+      )}
+    </div>
+  );
 }
 
 export default PersonalPage;
-
-
-

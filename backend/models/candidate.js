@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const party = require('./party.js');
-const election = require('./election.js');
 
 const candidate = new mongoose.Schema({ 
   name: { type: String, required: true },

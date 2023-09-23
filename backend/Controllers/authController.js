@@ -2,12 +2,10 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 app.use(express.json());
-const { MongoClient, ServerApiVersion } = require('mongodb');
 const cors = require("cors");
 app.use(cors());
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { error } = require('console');
 const JWT_SECRET = "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
 
 require('../models/user');

@@ -100,7 +100,7 @@ function Register() {
                     </div>
                     <button type="submit">Regjistohu</button>
                 </form>
-                <button className="link-btn" ><a href='/log-in'>Nëse keni një llogari vazhdoni këtu.</a></button>
+                <button className="link-btn" ><Link to='/log-in'>Nëse keni një llogari vazhdoni këtu.</Link></button>
             </div>
         </div>
     );
