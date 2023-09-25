@@ -3,7 +3,7 @@ import '../CSS/zgjedhjet.css';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions, Grid } from '@mui/material'; 
+import { CardActionArea, CardActions, Grid } from '@mui/material'; 
 import { useState, useEffect } from 'react';
 
   

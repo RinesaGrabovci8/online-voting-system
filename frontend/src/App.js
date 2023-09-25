@@ -1,12 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 import Header from './Components/Header';
 import Sidebar from './Components/Sidebar';
 import Footer from './Components/Footer';
 import Home from './Pages/Home';
 import Voto from './Pages/Votoketu';
-import Votozgjedhjetqendrore from './Pages/zgjedhjetqendrore';
 import Chart from './Pages/Grafiket';
 import PersonalPage from './Pages/PersonalPage';
 import Register from './Pages/Register';
@@ -14,15 +12,11 @@ import Login from './Pages/Login';
 import Zgjedhjetlokale from './Pages/zgjedhjetlokale';
 import Zgjedhjet from './Pages/Zgjedhjetpage'
 import Changepass from './Pages/Changepass';
-import Changeid from './Pages/Changeid';
-import CandidateCard from './Components/CandidateCard';
 import ShtoKandidat from './Crud/shtoKandidat';
 import ShtoParti from './Crud/shtoParti';
 import UpdateKandidat from './Crud/updateKandidat';
 import UpdateParti from './Crud/updateParti';
-import Zgjedhjetqendrorecand from './Components/Zgjedhjetqendrorecand';
 import Zgjedhjetqendrore from './Pages/zgjedhjetqendrore';
-import Zgjedhjetqendrorepr from './Components/Zgjedhjetqendrorecand';
 import MenagmentPage from './Pages/MenagmentPage';
 import Zgjedhjetprishtine from './Pages/Zgjedhjetprishtine';
 import Zgjedhjetskenderaj from './Pages/Zgjedhjetskenderaj';
@@ -33,11 +27,7 @@ import Zgjedhjetprizren from './Pages/Zgjedhjetprizren';
 import Zgjedhjetpodujeve from './Pages/Zgjedhjetpodujeve';
 import Zgjedhjetpeje from './Pages/Zgjedhjetpeje';
 import Zgjedhjetmitrovice from './Pages/Zgjedhjetmitrovice';
-import PieChartQendrorePage from './Components/PieChartQendrore';
-import PieChartPr from './Components/PieChartPr';
-import PieChartPrz from './Components/PieChartPrz';
-import PieChartPeje from './Components/PieChartPeje';
-import PieChartPd from './Components/PieChartPd';
+
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
@@ -53,7 +43,6 @@ function App() {
         <Route path="/sign-up" exact element={<Register />} />
         <Route path="/personalpage" element={<PersonalPage />} />
         <Route path="/updateUserPass/:id" element={<Changepass/>}/>
-        <Route path="/change-id" element={<Changeid/>}/>
         <Route path="/home" element = {<Home/>}/>
         <Route path='/voto-ketu/:id' element={<Voto/>}/>
         <Route path='/zgjedhjetqendrore/:id/:qendroreId' element={<Zgjedhjetqendrore/>}/>
@@ -75,11 +64,6 @@ function App() {
         <Route path='/updateparty/:id' element={<UpdateParti/>}/>
         <Route path='/upadatecandidate/:id' element={<UpdateKandidat/>}/>
         <Route path='/updateparty/:id' element={<UpdateParti/>}/>
-        {/* <Route path='/pie-chart' element={<PieChartQendrorePage/>} />
-        <Route path='/pie-chart-pr' element={<PieChartPr/>}/>
-        <Route path='/pie-chart-prz' element={<PieChartPrz/>}/>
-        <Route path='/pie-chart-peje' element={<PieChartPeje/>}/>
-        <Route path='/pie-chart-pd' element={<PieChartPd/>}/> */}
       </Routes>
        
     {isLoggedIn && <Footer />}

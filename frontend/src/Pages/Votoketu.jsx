@@ -1,9 +1,6 @@
-import Sidebar from "../Components/Sidebar";
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
 import React from "react";
 import '../CSS/votoketu.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import  axios from "axios";
 import { useParams } from "react-router-dom";

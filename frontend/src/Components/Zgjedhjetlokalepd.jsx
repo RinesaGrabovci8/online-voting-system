@@ -1,17 +1,11 @@
 import React from 'react'
 import '../CSS/zgjedhjet.css';
-import Header from './Header';
-import Sidebar from './Sidebar';
-import Footer from './Footer';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import ak from '../img/ak.jpg';
-import { Button, CardActionArea, CardActions, Grid } from '@mui/material'; 
-import CardMedia from '@mui/material/CardMedia';
+import {CardActionArea, CardActions, Grid } from '@mui/material'; 
 import { useState, useEffect } from 'react';
 
-  
 function CandidateCard({candidate}) {
     return (
       <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
@@ -31,7 +25,7 @@ function CandidateCard({candidate}) {
         </CardActions>
   </Card>
     );
-}
+};
 
 function Zgjedhjetlokalepd() {
   const [candidate, setCandidates] = useState([]);
@@ -58,7 +52,7 @@ function Zgjedhjetlokalepd() {
         ))}
       </Grid>
     </div>
-  )
-}
+  );
+};
 
-export default Zgjedhjetlokalepd
+export default Zgjedhjetlokalepd;

@@ -1,15 +1,6 @@
-import Sidebar from "../Components/Sidebar";
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
-import Ak from "../img/ak.jpg";
 import Hth from "../img/hth.jpg";
-import Ldk from "../img/LDK.png";
-import Pdk from "../img/PDK.png";
-import Pr from "../img/pr.jpg";
-import Rh from "../img/rh.jpg";
 import Rks from "../img/rks.png";
 import Vota from "../img/vota.png";
-import Vv from "../img/VV.png";
 import "../CSS/home.css";
 
 function Home(){
@@ -23,92 +14,21 @@ function Home(){
                 </p>
                 <img src={Vota} id="vota" alt="foto" />
             </div>
-            <div className="row">
-                <div className="column">
-                    <div className="card">
-                        <img
-                            id="card-photos"
-                            src={Ak}
-                            alt="Albin Kurti"
-                        />
-                        <div className="container">
-                            <h2>Albin Kurti</h2>
-                            <p>Kryeminister i Republikes se Kosoves nga 2021 - VV</p>
-                            <p>albin.kurti@rks-gov.net</p>
-                            <p><button className="card-button">Lexo me shume...</button></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="column">
-                    <div className="card">
-                        <img
-                            id="card-photos"
-                            src={Pr}
-                            alt="Perparim Rama"
-                        />
-                        <div className="container">
-                            <h2>Perparim Rama</h2>
-                            <p>Kryetar i Komunes se Prishtines nga viti 2021 - LDK</p>
-                            <p>perparim.rama@rks-gov.net</p>
-                            <p><button className="card-button">Lexo me shume...</button></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="column">
-                    <div className="card">
-                        <img
-                            id="card-photos"
-                            src={Rh}
-                            alt="Ramush Haradinaj"
-                        />
-                        <div className="container">
-                            <h2>Ramush Haradinaj</h2>
-                            <p>Kryetar i partise ne Aleanca per Ardhmerine e Kosoves - AAK</p>
-                            <p>ramush.haradinaj@rks-gov.net</p>
-                            <p><button className="card-button">Lexo me shume...</button></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="partite-row">
-                <h2 className="partite-title">Partite Politike</h2>
-                <div className="column">
-                    <div className="p-card">
-                        <img src={Vv} alt="VV" id="vv-photo" />
-                        <p className="votat">51%</p>
-                    </div>
-                </div>
-                <div className="column">
-                    <div className="p-card">
-                        <img src={Ldk} alt="LDK" id="ldk-photo" />
-                        <p className="votat">39%</p>
-                    </div>
-                </div>
-                <div className="column">
-                    <div className="p-card">
-                        <img src={Pdk} alt="PDK" id="pdk-photo" />
-                        <p className="votat">10%</p>
-                    </div>
-                </div>
-            </div>
             <div className="previous-elections__part">
                 <h2 className="prev-elections__title">Zgjedhjet e Kaluara</h2>
                 <div className="container2">
                     <div className="small-container">
                         <h3 className="small-container__title"><h3 className="desc-title">Zgjedhjet e vitit 2022
                             <br></br>Zgjedhjet Qendrore</h3>
-                            <p className="desc">Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit,<br></br>
-                                sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua.<br></br>
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi <br></br>
-                                ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in <br></br>
-                                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br></br>
-                                Excepteur sint occaecat cupidatat non proident,
-                                sunt in culpa qui officia <br></br> deserunt mollit anim id est laborum.</p>
+                            <p className="desc">Hashim Thaçi ka fituar zgjedhjet në Kosovë me një fushatë të fortë dhe mbështetje të gjerë nga populli.
+                             Ai ishte një kandidat i njohur dhe i besuar nga shumë qytetarë,
+                             pasi kishte shërbyer si presidenti i Kosovës dhe kishte luajtur një rol kyç në pavarësinë e vendit.<br></br>
+                             Në periudhën para zgjedhjeve, Hashim Thaçi prezantoi një platformë politike që fokusohet në rritjen ekonomike, 
+                             luftën kundër korrupsionit dhe përmirësimin e infrastrukturës. Ai premtoi gjithashtu
+                              të ndihmonte në përmirësimin e marrëdhënieve me vende të tjera dhe të ndërmerrej hapa të rëndësishëm në procesin e integrimit në BE..<br></br>
+                             Me këtë fitore, Hashim Thaçi u bë përsëri figura kryesore në politikën e Kosovës dhe u angazhua të punonte për të përmbushur
+                              premtimet e tij dhe për të ndihmuar në zhvillimin e vendit. Kosova hyri në një periudhë të re, me shpresa të mëdha për të ardhmen.<br></br>
+                            </p>
                         </h3>
                         <img src={Hth} alt="Hashim Thaci" id="hth" />
                     </div>

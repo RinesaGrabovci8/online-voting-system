@@ -30,7 +30,7 @@ exports.voter = async (req, res) => {
 
     const updatedCandidate = await Candidate.findByIdAndUpdate(
       candidate_id,
-      { $inc: { votes: 1 } },
+      { $inc: { votes: 1 }, party: party_id },
       { new: true }
     );
 

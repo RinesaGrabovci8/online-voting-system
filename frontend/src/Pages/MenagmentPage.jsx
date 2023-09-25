@@ -68,11 +68,7 @@ function MenagmentPage() {
   const deleteUser = async (userId) => {
     try {
       await axios.delete(`http://localhost:5000/auth/deleteUser/${userId}`);
-
-      // After successful deletion, you can update the state or perform other actions as needed
       console.log(`User with ID ${userId} deleted successfully.`);
-      
-      // You might want to refetch the user data to update the table after deletion
       fetchUserData();
     } catch (error) {
       console.error(`Error deleting user with ID ${userId}:`, error);
@@ -82,11 +78,7 @@ function MenagmentPage() {
   const deleteCandidate = async (candidateId) => {
     try {
       await axios.delete(`http://localhost:5000/crud/deleteCandidate/${candidateId}`);
-
-      // After successful deletion, you can update the state or perform other actions as needed
       console.log(`Candidate with ID ${candidateId} deleted successfully.`);
-      
-      // You might want to refetch the user data to update the table after deletion
       fetchUserData();
     } catch (error) {
       console.error(`Error deleting candidate with ID ${candidateId}:`, error);
@@ -96,11 +88,7 @@ function MenagmentPage() {
   const deleteParty = async (partyId) => {
     try {
       await axios.delete(`http://localhost:5000/crud/deleteParty/${partyId}`);
-
-      // After successful deletion, you can update the state or perform other actions as needed
       console.log(`Party with ID ${partyId} deleted successfully.`);
-      
-      // You might want to refetch the user data to update the table after deletion
       fetchUserData();
     } catch (error) {
       console.error(`Error deleting party with ID ${partyId}:`, error);

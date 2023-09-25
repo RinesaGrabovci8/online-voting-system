@@ -1,12 +1,8 @@
 import React from 'react'
 import '../CSS/zgjedhjet.css';
-import Header from './Header';
-import Sidebar from './Sidebar';
-import Footer from './Footer';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import ak from '../img/ak.jpg';
 import { CardActionArea, CardActions, Grid } from '@mui/material'; 
 import { useState, useEffect } from 'react';
 

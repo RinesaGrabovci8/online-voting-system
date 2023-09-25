@@ -69,7 +69,6 @@ exports.updateCandidateById = async (req, res) => {
       return res.status(400).json({ error: 'City field is required for Lokale elections.' });
     }
 
-    // Find the candidate by ID and update their information
     const updatedCandidate = await Candidate.findByIdAndUpdate(
       candidateId,
       { name, surname, party, election, city },

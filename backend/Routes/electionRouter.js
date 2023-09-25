@@ -14,7 +14,6 @@ router.get("/election", electionController.getElections);
 router.get("/election/:id", electionController.getElectionsById);
 router.get('/centralelection', electionController.getCentralElection);
 router.get('/localelection', electionController.getLocalElection);
-router.get('/prishtinelections/:city', electionController.getLocalElectionPr);
 router.put("/election/:id", electionController.updateElectionById);
 router.delete("/election/:id", electionController.deleteElectionById);
 

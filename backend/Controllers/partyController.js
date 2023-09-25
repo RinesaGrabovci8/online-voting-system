@@ -63,7 +63,6 @@ exports.updatePartyById = async (req, res) => {
       return res.status(400).json({ error: 'All fields are required.' });
     }
 
-    // Find the candidate by ID and update their information
     const updatedParty = await Party.findByIdAndUpdate(
       partyId,
       { name },

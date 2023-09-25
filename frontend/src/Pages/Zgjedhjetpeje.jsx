@@ -11,7 +11,7 @@ import axios from "axios";
 function CandidateCard({ candidate }) { 
   const { id, lokaleId } = useParams();
   const navigate = useNavigate();
-  const [voted, setVoted] = useState(false);
+  const [voted, setVoted] = useState(false); 
 
   const handleVote = async (candidateId, electionId, party_id, userId) => {
     if (voted) {
@@ -20,9 +20,11 @@ function CandidateCard({ candidate }) {
     try {
       axios.post(`http://localhost:5000/vote/localVotes/${id}`, {
         election_id: lokaleId,
-        party_id: party_id,
+        party_id: candidate.party_id,
         candidate_id: candidate._id,
+        party: candidate.party,
       });
+
 
       setVoted(true);
   
@@ -40,6 +42,7 @@ function CandidateCard({ candidate }) {
   }, [candidate._id]);
 
   return (
+    <>
     <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
       <CardActionArea>
         <CardContent>
@@ -66,6 +69,7 @@ function CandidateCard({ candidate }) {
         </div>
       </CardActions>
     </Card>
+    </>
   );
 }
   

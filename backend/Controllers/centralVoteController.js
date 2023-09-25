@@ -9,8 +9,8 @@ app.use(cors());
 require("../models/vote");
 const Votes = mongoose.model("Votes");
 
-require("../models/candidate"); // Import the Candidate model
-const Candidate = mongoose.model("CandidateInfo"); // Adjust the model name if needed
+require("../models/candidate"); 
+const Candidate = mongoose.model("CandidateInfo");
 
 require("../models/user");
 const User = mongoose.model("UserInfo");
@@ -44,7 +44,6 @@ exports.voter = async (req, res) => {
 
     await newVote.save();
 
-    // Send the updated candidate object in the response with the updated vote count
     res.status(201).json({ updatedCandidate });
 
   } catch (error) {

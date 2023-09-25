@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios'; // Import Axios
+import axios from 'axios';
 import '../CSS/sidebar.css';
-// import '../CSS/Responsive/ressponsive.css'; 
 import { FaUser, FaHome, FaVoteYea, FaFlag, FaChartLine, FaSignOutAlt } from 'react-icons/fa';
-import { BsFillBellFill } from 'react-icons/bs';
-import { FiChevronRight } from 'react-icons/fi';
-import Home from '../Pages/Home';
-import PersonalPage from '../Pages/PersonalPage';
-import Voto from '../Pages/Votoketu';
-import '../CSS/sidebar.css';
+
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userData: null,
-      isResponsive: false, // Add a state to track responsiveness
+      userData: null
     };
   }
 
@@ -33,29 +26,18 @@ class Sidebar extends Component {
     });
   }
 
-    // ... (Your existing code for fetching user data)
-  
-
   logOut = () => {window.localStorage.clear();
     window.location.href = "/log-in";
-    // ... (Your existing logout code)
   };
 
-  handleToggleSidebar = () => {
-    this.setState((prevState) => ({ isResponsive: !prevState.isResponsive }));
-  };
+
   render() {
-    const { userData, isResponsive } = this.state;
+    const { userData } = this.state;
     const isAdmin = userData && userData.role === 'Admin';
 
     return (
-      <div className={`sidebar ${isResponsive ? 'responsive' : ''}`}>
-        {/* Toggle button, show only when responsive */}
-        {isResponsive && (
-          <button id="toggleSidebar" onClick={this.handleToggleSidebar}>
-            {isResponsive ? <FiChevronRight /> : <BsFillBellFill />}
-          </button>
-        )}
+      <div className='sidebar'>
+  
 
         <ul className='sidebar-ul'>
           <li className='li1'>
@@ -107,7 +89,5 @@ class Sidebar extends Component {
     );
   }
 }
-
-
 
 export default Sidebar;

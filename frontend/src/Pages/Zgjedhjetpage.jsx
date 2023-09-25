@@ -1,9 +1,5 @@
 import React from "react";
 import '../CSS/zgjedhjet.css';
-import Header from "../Components/Header";
-import Sidebar from "../Components/Sidebar";
-import Footer from "../Components/Footer";
-import ak from "../img/ak.jpg"
 import Zgjedhjetqendrorecand from "../Components/Zgjedhjetqendrorecand";
 import Zgjedhjetlokalepr from "../Components/Zgjedhjetlokalepr";
 import Zgjedhjetlokalefr from "../Components/Zgjedhjetlokalefr";

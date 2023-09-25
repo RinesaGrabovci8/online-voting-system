@@ -33,7 +33,6 @@ function CandidateCard({candidate, party}) {
   
 
   useEffect(() => {
-    // Check if the user has already voted for this candidate
     const hasVotedStorage = localStorage.getItem(`voted_${candidate._id}`);
     if (hasVotedStorage) {
       setVoted(true);
@@ -72,7 +71,7 @@ function CandidateCard({candidate, party}) {
 
 function Zgjedhjetqendrore() {
   const [candidates, setCandidates] = useState([]);
-  const [voteData, setVoteData] = useState({}); // Initialize with an empty object
+  const [voteData, setVoteData] = useState({}); 
 
   const fetchKandidatData = async () => {
     try {
@@ -84,10 +83,9 @@ function Zgjedhjetqendrore() {
       });
       setCandidates(resData);
 
-      // Initialize the voteData state with counts fetched from the server
       const counts = {};
       resData.forEach((el) => {
-        counts[el.party] = el.voteCount || 0; // Use the voteCount property from your data if available
+        counts[el.party] = el.voteCount || 0; 
       });
       setVoteData(counts);
     } catch (error) {

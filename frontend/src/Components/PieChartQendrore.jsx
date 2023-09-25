@@ -6,13 +6,11 @@ function PieChartQendrorePage() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // Create an Axios GET request to your API endpoint
-    axios.get('http://localhost:5000/vote/centralVotes') // Replace with the actual endpoint
+    axios.get('http://localhost:5000/vote/centralVotes') 
       .then((response) => {
-        setData(response.data); // Assuming the API returns an array of data objects
+        setData(response.data); 
       })
       .catch((error) => {
-        // Handle the error here
         console.error(error);
       });
   }, []);
