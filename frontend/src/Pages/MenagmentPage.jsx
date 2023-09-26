@@ -107,7 +107,7 @@ function MenagmentPage() {
  
   
   const filteredCandidates = kandidatdata.filter((candidate) => {
-    return candidate.name.toLowerCase().includes(filter.toLowerCase()) || candidate.surname.toLowerCase().includes(filter.toLowerCase()) || candidate.party.toLowerCase().includes(filter.toLowerCase()) || candidate.election.toLowerCase().includes(filter.toLowerCase());
+    return candidate.name.toLowerCase().includes(filter.toLowerCase()) || candidate.surname.toLowerCase().includes(filter.toLowerCase()) || candidate.party.toLowerCase().includes(filter.toLowerCase()) || candidate.election.toLowerCase().includes(filter.toLowerCase()) || candidate.city.toLowerCase().includes(filter.toLowerCase());
   });
 
   const filteredUsers = userdata.filter((user) => {
@@ -161,7 +161,7 @@ function MenagmentPage() {
                     return (
                       <tr key={userdata._id}>
                         <td className='data'>{i.personalnumber}</td>
-                        <td className='delete'> 
+                        <td className='buttons'> 
                         <Link to="/admin-page">
                           <DeleteIcon style={{ color: 'red',  fontSize: '16px', margin:8 }} onClick={() => deleteUser(i._id)} />
                         </Link>
@@ -202,7 +202,7 @@ function MenagmentPage() {
                         <td>{i.party}</td>
                         <td>{i.election}</td>
                         <td>{i.city}</td>
-                        <td className='delete'>
+                        <td className='buttons'>
                             <Link to='/delete'>
                                 <DeleteIcon style={{ color: 'red',  fontSize: '16px', margin:8 }} onClick={() => deleteCandidate(i._id)}/>
                             </Link>
@@ -243,7 +243,7 @@ function MenagmentPage() {
                     return (
                       <tr key={partitdata._id}>
                         <td>{i.name}</td>
-                        <td>
+                        <td className='buttons'>
                             <Link to={`/delete`}>
                                 <DeleteIcon style={{ color: 'red',  fontSize: '16px', margin:8 }} onClick = {() => deleteParty(i._id)}/>
                             </Link>

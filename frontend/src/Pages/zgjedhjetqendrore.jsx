@@ -99,7 +99,7 @@ function Zgjedhjetqendrore() {
 
   return (
     <>
-      <Grid container spacing={1} style={{ marginLeft: 100, marginTop: 100, marginBottom: 100, backgroundColor:'#fff176' }}>
+      <Grid container spacing={1} style={{ marginLeft: 400, marginTop: 200, marginBottom: 100 }}>
         {candidates.map((el) => (
           <CandidateCard key={el._id} candidate={el} party={el.party} voteData={voteData} setVoteData={setVoteData} />
         ))}

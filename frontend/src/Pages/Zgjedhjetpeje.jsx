@@ -93,7 +93,7 @@ function Zgjedhjetpeje() {
   return (
     <div className="candidates">
       <h3>Kandidatet per Komunen e Skenderajit!</h3>
-      <Grid container spacing={1} style={{ marginLeft: 100, marginTop: 100, marginBottom: 100 }}>
+      <Grid container spacing={1} style={{ marginLeft: 400, marginTop: 200, marginBottom: 100 }}>
         {candidates.map((candidate) => (
           <CandidateCard key={candidate._id} candidate={candidate} />
         ))}

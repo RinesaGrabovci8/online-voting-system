@@ -45,7 +45,7 @@ function Zgjedhjetqendrorecand() {
     fetchKandidatData();
   }, []);
   return (
-    <Grid container spacing={1} style={{ marginLeft: 100, marginTop: 100, marginBottom: 100, backgroundColor:'#fff176' }}>
+    <Grid container spacing={1} style={{ marginLeft: 100, marginTop: 100, marginBottom: 100 }}>
       {candidate.map((candidate) => (
         <CandidateCard key={candidate._id} candidate={candidate}/>
       ))}

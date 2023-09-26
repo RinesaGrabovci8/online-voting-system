@@ -88,7 +88,7 @@ function CandidateCard({candidate, party}) {
     return (
       <div className="candidate-prishtine">
         <h3>Kandidatet per Komunen e Prishtines!</h3>
-        <Grid container spacing={1} style={{ marginLeft: 100, marginTop: 100, marginBottom: 100 }}>
+        <Grid container spacing={1} style={{ marginLeft: 400, marginTop: 200, marginBottom: 100 }}>
           {candidates.map((candidate, _id) => (
             <CandidateCard key={candidate._id} candidate={candidate} />
           ))}
