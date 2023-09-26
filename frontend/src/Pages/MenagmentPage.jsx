@@ -203,7 +203,7 @@ function MenagmentPage() {
                         <td>{i.election}</td>
                         <td>{i.city}</td>
                         <td className='delete'>
-                            <Link to={`/delete/${i.id}`}>
+                            <Link to='/delete'>
                                 <DeleteIcon style={{ color: 'red',  fontSize: '16px', margin:8 }} onClick={() => deleteCandidate(i._id)}/>
                             </Link>
                 
@@ -244,7 +244,7 @@ function MenagmentPage() {
                       <tr key={partitdata._id}>
                         <td>{i.name}</td>
                         <td>
-                            <Link to={`/delete/${i.id}`}>
+                            <Link to={`/delete`}>
                                 <DeleteIcon style={{ color: 'red',  fontSize: '16px', margin:8 }} onClick = {() => deleteParty(i._id)}/>
                             </Link>
                 

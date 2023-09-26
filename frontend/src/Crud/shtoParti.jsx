@@ -5,15 +5,19 @@ import Typography from '@mui/material/Typography';
 import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 export default function ShtoParti() {
   const [dataForm, setDataForm] = useState({
     name: "",
   });
 
+  const navigate =  useNavigate();
+
   const handleButtonClick = () => {
     console.log('Button Clicked');
     axios.post("http://localhost:5000/crud/party", dataForm).then((res) => {
       console.log('res', res);
+      navigate('/admin-page');
     })
   };
 

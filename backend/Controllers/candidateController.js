@@ -35,8 +35,8 @@ exports.createCandidate = async (req, res) => {
 exports.getCandidates = async (req, res) => {
   try {
     const candidates = await Candidate.find()
-      .populate('party_id', 'name') // Populate the party name field
-      .populate('election_id', 'name'); // Populate the election name field
+      .populate('party_id', 'name') 
+      .populate('election_id', 'name'); 
       console.log("candidates", candidates);
     res.status(200).json(candidates);
   } catch (error) {

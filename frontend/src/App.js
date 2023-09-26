@@ -27,6 +27,7 @@ import Zgjedhjetprizren from './Pages/Zgjedhjetprizren';
 import Zgjedhjetpodujeve from './Pages/Zgjedhjetpodujeve';
 import Zgjedhjetpeje from './Pages/Zgjedhjetpeje';
 import Zgjedhjetmitrovice from './Pages/Zgjedhjetmitrovice';
+import DeletePage from './Pages/DeletePage';
 
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -64,6 +65,7 @@ function App() {
         <Route path='/updateparty/:id' element={<UpdateParti/>}/>
         <Route path='/upadatecandidate/:id' element={<UpdateKandidat/>}/>
         <Route path='/updateparty/:id' element={<UpdateParti/>}/>
+        <Route path='/delete' element={<DeletePage/>}/>
       </Routes>
        
     {isLoggedIn && <Footer />}
