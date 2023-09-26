@@ -53,7 +53,7 @@ class Login extends Component{
                         <input type="text" placeholder="Numri Personal" id="Numri Personal" name="Numri Personal" 
                          onChange={e => this.setState({personalnumber: e.target.value})}/>
                         <label htmlFor="Fjalkalimi">Fjalkalimi</label>
-                        <input type="text" placeholder="********" id="Fjalkalimi" name="Fjalkalimi" 
+                        <input type="password" placeholder="********" id="Fjalkalimi" name="Fjalkalimi" 
                         onChange={(e)=> this.setState({password: e.target.value})}/>
                         <button type="submit">Log In</button>
                     </form>

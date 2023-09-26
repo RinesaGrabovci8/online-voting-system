@@ -7,21 +7,28 @@
   color: rgb(20, 20, 21);
   background-color: #024ea2;
   max-width: 1200px;
-  max-height: 700px;
-}
-
-.auth-form-container h2{
-  margin-top: 9px;
 }
 
 .auth-form-container, .login-form, .register-form {
   display: flex;
   flex-direction: column;
+  
 }
 
 .logo img{
   margin-left: 300px;
   margin-right: 250px;
+}
+
+@media screen and (min-width: 400px) {
+  .auth-form-container {
+    padding: 8.5rem;
+    border: 2px solid rgb(249, 255, 253);
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px 0 0 50px;
+    margin-left: -100px;
+    width: 500%;
+  }
 }
 
 label {
@@ -53,9 +60,5 @@ button {
   background: none;
   color: rgb(97, 95, 95);
   text-decoration: underline;
-}
-
-.role{
-  margin: 20px;
 }
 
