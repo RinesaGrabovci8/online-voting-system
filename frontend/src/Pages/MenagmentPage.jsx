@@ -105,13 +105,13 @@ function MenagmentPage() {
   }, []);
 
   const filteredCandidates = kandidatdata.filter((candidate) => {
-  return (
-    (candidate.name && candidate.name.toLowerCase().includes(candidateFilter.toLowerCase())) ||
-    (candidate.surname && candidate.surname.toLowerCase().includes(candidateFilter.toLowerCase())) ||
-    (candidate.party && candidate.party.toLowerCase().includes(candidateFilter.toLowerCase())) ||
-    (candidate.election && candidate.election.toLowerCase().includes(candidateFilter.toLowerCase())) ||
-    (candidate.city && candidate.city.toLowerCase().includes(candidateFilter.toLowerCase()))
-  );
+    return (
+      (candidate.name && candidate.name.toLowerCase().includes(candidateFilter.toLowerCase())) ||
+      (candidate.surname && candidate.surname.toLowerCase().includes(candidateFilter.toLowerCase())) ||
+      (candidate.party && candidate.party.toLowerCase().includes(candidateFilter.toLowerCase())) ||
+      (candidate.election && candidate.election.toLowerCase().includes(candidateFilter.toLowerCase())) ||
+      (candidate.city && candidate.city.toLowerCase().includes(candidateFilter.toLowerCase()))
+    );
   });
 
 
