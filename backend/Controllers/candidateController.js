@@ -109,9 +109,10 @@ exports.getAllCandidatesbyElection = async (req, res) => {
 
 exports.getAllCandidatesbyCitypr = async (req, res) => {
   try{ 
-    const allCandidates = await Candidate.find({city:"Prishtine"});
-    res.send({status:"ok", data:allCandidates});
-
+    const allCandidates = await Candidate.find({election:"Qendrore"});
+    const party = await Party.find();
+    res.send({status:"ok 1", data: allCandidates, party: party});
+  
   }catch(error){
     console.log(error);
   }
@@ -119,9 +120,9 @@ exports.getAllCandidatesbyCitypr = async (req, res) => {
 
 exports.getAllCandidatesbyCityskdr = async (req, res) => {
   try{ 
-    const allCandidates = await Candidate.find({city:"Skenderaj"});
-    res.send({status:"ok", data:allCandidates});
-
+    const allCandidates = await Candidate.find({election:"Qendrore"});
+    const party = await Party.find();
+    res.send({status:"ok 1", data: allCandidates, party: party});
   }catch(error){
     console.log(error);
   }
@@ -129,9 +130,9 @@ exports.getAllCandidatesbyCityskdr = async (req, res) => {
 
 exports.getAllCandidatesbyCityfr = async (req, res) => {
   try{ 
-    const allCandidates = await Candidate.find({city:"Ferizaj"});
-    res.send({status:"ok", data:allCandidates});
-
+    const allCandidates = await Candidate.find({election:"Qendrore"});
+    const party = await Party.find();
+    res.send({status:"ok 1", data: allCandidates, party: party});
   }catch(error){
     console.log(error);
   }
@@ -139,9 +140,9 @@ exports.getAllCandidatesbyCityfr = async (req, res) => {
 
 exports.getAllCandidatesbyCitymtrv = async (req, res) => {
   try{ 
-    const allCandidates = await Candidate.find({city:"Mitrovice"});
-    res.send({status:"ok", data:allCandidates});
-
+    const allCandidates = await Candidate.find({election:"Qendrore"});
+    const party = await Party.find();
+    res.send({status:"ok 1", data: allCandidates, party: party});
   }catch(error){
     console.log(error);
   }
@@ -149,9 +150,9 @@ exports.getAllCandidatesbyCitymtrv = async (req, res) => {
 
 exports.getAllCandidatesbyCitygjk = async (req, res) => {
   try{ 
-    const allCandidates = await Candidate.find({city:"Gjakove"});
-    res.send({status:"ok", data:allCandidates});
-
+    const allCandidates = await Candidate.find({election:"Qendrore"});
+    const party = await Party.find();
+    res.send({status:"ok 1", data: allCandidates, party: party});
   }catch(error){
     console.log(error);
   }
@@ -159,9 +160,9 @@ exports.getAllCandidatesbyCitygjk = async (req, res) => {
 
 exports.getAllCandidatesbyCitygjl = async (req, res) => {
   try{ 
-    const allCandidates = await Candidate.find({city:"Gjilan"});
-    res.send({status:"ok", data:allCandidates});
-
+    const allCandidates = await Candidate.find({election:"Qendrore"});
+    const party = await Party.find();
+    res.send({status:"ok 1", data: allCandidates, party: party});
   }catch(error){
     console.log(error);
   }
@@ -169,9 +170,9 @@ exports.getAllCandidatesbyCitygjl = async (req, res) => {
 
 exports.getAllCandidatesbyCitypd = async (req, res) => {
   try{ 
-    const allCandidates = await Candidate.find({city:"Podujeve"});
-    res.send({status:"ok", data:allCandidates});
-
+    const allCandidates = await Candidate.find({election:"Qendrore"});
+    const party = await Party.find();
+    res.send({status:"ok 1", data: allCandidates, party: party});
   }catch(error){
     console.log(error);
   }
@@ -179,9 +180,9 @@ exports.getAllCandidatesbyCitypd = async (req, res) => {
 
 exports.getAllCandidatesbyCitypej = async (req, res) => {
   try{ 
-    const allCandidates = await Candidate.find({city:"Peje"});
-    res.send({status:"ok", data:allCandidates});
-
+    const allCandidates = await Candidate.find({election:"Qendrore"});
+    const party = await Party.find();
+    res.send({status:"ok 1", data: allCandidates, party: party});
   }catch(error){
     console.log(error);
   }
@@ -189,9 +190,9 @@ exports.getAllCandidatesbyCitypej = async (req, res) => {
 
 exports.getAllCandidatesbyCityprz = async (req, res) => {
   try{ 
-    const allCandidates = await Candidate.find({city:"Prizren"});
-    res.send({status:"ok", data:allCandidates});
-
+    const allCandidates = await Candidate.find({election:"Qendrore"});
+    const party = await Party.find();
+    res.send({status:"ok 1", data: allCandidates, party: party});
   }catch(error){
     console.log(error);
   }

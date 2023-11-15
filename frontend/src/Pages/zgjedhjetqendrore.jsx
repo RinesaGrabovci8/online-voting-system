@@ -47,7 +47,7 @@ function CandidateCard({candidate, party}) {
             {`${candidate.name} ${candidate.surname}`}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {`${party}`}
+            {`${party.name}`}
           </Typography>
         </CardContent>
       </CardActionArea>

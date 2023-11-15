@@ -12,7 +12,7 @@ const localvoters = require("../Controllers/localVoteController");
 
 router.post('/centralVotes/:id' , centralvoters.voter);
 router.get('/centralVotes', centralvoters.getQendroreCandidatesVotes);
-router.post('/localVotes/:id', localvoters.voter);
+router.post('/localVotes/:id', localvoters.localvoter);
 router.get('/localVotesPr', localvoters.getLokaleCandidatesPr);
 router.get('/localVotesPrz', localvoters.getLokaleCandidatesPrz);
 router.get('/localVotesSkdr', localvoters.getLokaleCandidatesSkdr);

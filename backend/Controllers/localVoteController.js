@@ -15,13 +15,17 @@ const Candidate = mongoose.model("CandidateInfo");
 require("../models/user");
 const User = mongoose.model("UserInfo");
 
-exports.voter = async (req, res) => {
+exports.localvoter = async (req, res) => {
   try {
     const userId = req.params.id;
     const { election_id, party_id, candidate_id } = req.body;
 
     console.log("Received Request Body:", req.body);
     console.log("userId", userId);
+
+    if (!party_id) {
+      return res.status(400).json({ error: 'Party ID is required' });
+    }
 
     const user = await User.findById(userId);
     if (!user) {

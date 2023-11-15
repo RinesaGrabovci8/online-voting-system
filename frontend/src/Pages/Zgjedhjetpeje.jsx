@@ -8,23 +8,21 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import axios from "axios";
   
-function CandidateCard({ candidate }) { 
+function CandidateCard({candidate, party}) { 
   const { id, lokaleId } = useParams();
   const navigate = useNavigate();
-  const [voted, setVoted] = useState(false); 
+  const [voted, setVoted] = useState(false);
 
   const handleVote = async (candidateId, electionId, party_id, userId) => {
     if (voted) {
       return;
     }
     try {
-      axios.post(`http://localhost:5000/vote/localVotes/${id}`, {
+      await axios.post(`http://localhost:5000/vote/localVotes/${id}`, {
         election_id: lokaleId,
-        party_id: candidate.party_id,
+        party_id: party_id,
         candidate_id: candidate._id,
-        party: candidate.party,
       });
-
 
       setVoted(true);
   
@@ -33,6 +31,7 @@ function CandidateCard({ candidate }) {
       console.error('Error submitting vote:', error);
     }
   };
+  
 
   useEffect(() => {
     const hasVotedStorage = localStorage.getItem(`voted_${candidate._id}`);
@@ -42,7 +41,6 @@ function CandidateCard({ candidate }) {
   }, [candidate._id]);
 
   return (
-    <>
     <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
       <CardActionArea>
         <CardContent>
@@ -50,7 +48,7 @@ function CandidateCard({ candidate }) {
             {`${candidate.name} ${candidate.surname}`}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {`${candidate.party}`}
+            {`${party.name}`}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -65,41 +63,50 @@ function CandidateCard({ candidate }) {
             }}
           >
             {voted ? 'Keni Votuar' : 'Voto'}
-          </Button> 
+          </Button>
         </div>
       </CardActions>
     </Card>
-    </>
   );
 }
   
 function Zgjedhjetpeje() {
   const [candidates, setCandidates] = useState([]);
+  const [voteData, setVoteData] = useState({}); 
 
   const fetchKandidatData = async () => {
     try {
       const response = await fetch("http://localhost:5000/crud/getAllCandidatesbyCitypej");
       const kandidatdata = await response.json();
-      setCandidates(kandidatdata.data);
-    } catch (error) {
-      console.error('Error fetching candidates data:', error);
-    }
-  };
+        const resData = kandidatdata.data.map((el) => {
+          const id = kandidatdata.party.find((e) => (e.name === el.party));
+          return { ...el, party_id: id?._id };
+        });
+        setCandidates(resData);
 
-  useEffect(() => {
-    fetchKandidatData();
-  }, []);
+        const counts = {};
+        resData.forEach((el) => {
+          counts[el.party] = el.voteCount || 0; 
+        });
+        setVoteData(counts);
+      } catch (error) {
+        console.error('Error fetching candidates data:', error);
+      }
+    };
 
-  return (
-    <div className="candidates">
-      <h3>Kandidatet per Komunen e Skenderajit!</h3>
-      <Grid container spacing={1} style={{ marginLeft: 400, marginTop: 200, marginBottom: 100 }}>
-        {candidates.map((candidate) => (
-          <CandidateCard key={candidate._id} candidate={candidate} />
-        ))}
-      </Grid>
-    </div>
-  );
+    useEffect(() => {
+      fetchKandidatData();
+    }, []);
+
+    return (
+      <>
+        <Grid container spacing={1} style={{ marginLeft: 400, marginTop: 200, marginBottom: 100 }}>
+          {candidates.map((el) => (
+            <CandidateCard key={el._id} candidate={el} party={el.party} voteData={voteData} setVoteData={setVoteData} />
+          ))}
+        </Grid>
+      </>
+    );
 }
 
 export default Zgjedhjetpeje;

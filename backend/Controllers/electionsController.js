@@ -9,9 +9,6 @@ app.use(cors());
 require("../models/election.js");
 const Election = mongoose.model("Elections");
 
-require("../models/candidate.js");
-const Candidate = mongoose.model("CandidateInfo");
-
 exports.createElection = async (req, res) => {
   try {
     const { type } = req.body;
