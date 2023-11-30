@@ -27,9 +27,8 @@ exports.voter = async (req, res) => {
     console.log("party_id:", party_id);
     console.log("candidate_id:", candidate_id);
 
-
-
     const user = await User.findById(userId);
+    
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }

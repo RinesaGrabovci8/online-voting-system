@@ -21,25 +21,21 @@ exports.localvoter = async (req, res) => {
     const { election_id, party_id, candidate_id } = req.body;
 
     console.log("Received Request Body:", req.body);
-    console.log("userId", userId);
-
-    if (!party_id) {
-      return res.status(400).json({ error: 'Party ID is required' });
-    }
+    console.log("userId:", userId);
+    console.log("election_id:", election_id);
+    console.log("party_id:", party_id);
+    console.log("candidate_id:", candidate_id);
 
     const user = await User.findById(userId);
+    
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    const updatedCandidate = await Candidate.findByIdAndUpdate(
-      candidate_id,
-      { $inc: { votes: 1 }, party: party_id },
-      { new: true }
-    );
+    const updatedCandidate = await Candidate.findByIdAndUpdate(candidate_id, { $inc: { votes: 1 } }, { new: true });
 
     if (!updatedCandidate) {
-      return res.status(500).json({ error: 'Error updating candidate votes: Candidate not found or update failed' });
+      return res.status(500).json({ error: 'Error updating candidate votes' });
     }
 
     const newVote = new Votes({
@@ -50,12 +46,11 @@ exports.localvoter = async (req, res) => {
     });
 
     await newVote.save();
-
-    res.status(201).json({ updatedCandidate, message: 'Vote successfully recorded' });
-
+  
+    res.status(201).json({ updatedCandidate });
   } catch (error) {
-    console.error('Error updating candidate votes:', error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error('Error processing vote:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
