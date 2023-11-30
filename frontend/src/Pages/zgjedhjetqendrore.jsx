@@ -7,7 +7,7 @@ import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import axios from "axios";
 import { useParams, useNavigate } from "react-router";
 
-function CandidateCard({candidate, party}) { 
+function CandidateCard({candidate}) { 
   const { id, qendroreId } = useParams();
   const navigate = useNavigate();
   const [voted, setVoted] = useState(false);
@@ -31,7 +31,6 @@ function CandidateCard({candidate, party}) {
     }
   };
   
-
   useEffect(() => {
     const hasVotedStorage = localStorage.getItem(`voted_${candidate._id}`);
     if (hasVotedStorage) {
@@ -47,7 +46,7 @@ function CandidateCard({candidate, party}) {
             {`${candidate.name} ${candidate.surname}`}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {`${party.name}`}
+            {`${candidate.party}`}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -72,6 +71,8 @@ function CandidateCard({candidate, party}) {
 function Zgjedhjetqendrore() {
   const [candidates, setCandidates] = useState([]);
   const [voteData, setVoteData] = useState({}); 
+
+ 
 
   const fetchKandidatData = async () => {
     try {
@@ -100,9 +101,9 @@ function Zgjedhjetqendrore() {
   return (
     <>
       <Grid container spacing={1} style={{ marginLeft: 400, marginTop: 200, marginBottom: 100 }}>
-        {candidates.map((el) => (
-          <CandidateCard key={el._id} candidate={el} party={el.party} voteData={voteData} setVoteData={setVoteData} />
-        ))}
+          {candidates.map((el) => (
+            <CandidateCard key={el._id} candidate={el} party={el.party} voteData={voteData} setVoteData={setVoteData} />
+          ))}
       </Grid>
     </>
   );

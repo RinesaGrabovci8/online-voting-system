@@ -22,7 +22,12 @@ exports.voter = async (req, res) => {
     const { election_id, party_id, candidate_id } = req.body;
 
     console.log("Received Request Body:", req.body);
-    console.log("userId", userId);
+    console.log("userId:", userId);
+    console.log("election_id:", election_id);
+    console.log("party_id:", party_id);
+    console.log("candidate_id:", candidate_id);
+
+
 
     const user = await User.findById(userId);
     if (!user) {
@@ -43,12 +48,11 @@ exports.voter = async (req, res) => {
     });
 
     await newVote.save();
-
+  
     res.status(201).json({ updatedCandidate });
-
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error('Error processing vote:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
