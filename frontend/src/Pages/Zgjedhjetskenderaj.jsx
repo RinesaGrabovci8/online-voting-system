@@ -50,7 +50,7 @@ function CandidateCard({candidate, party}) {
             {`${candidate.name} ${candidate.surname}`}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {`${party.name}`}
+            {`${candidate.party}`}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -71,14 +71,15 @@ function CandidateCard({candidate, party}) {
     </Card>
   );
 }
+  
 function Zgjedhjetskenderaj() {
-  const [candidates, setCandidates] = useState([]);
-  const [voteData, setVoteData] = useState({}); 
+    const [candidates, setCandidates] = useState([]);
+    const [voteData, setVoteData] = useState({}); 
 
-  const fetchKandidatData = async () => {
-    try {
-      const response = await fetch("http://localhost:5001/crud/getAllCandidatesbyCityskdr");
-      const kandidatdata = await response.json();
+    const fetchKandidatData = async () => {
+      try {
+        const response = await fetch("http://localhost:5001/crud//getAllCandidatesbyCityskdr");
+        const kandidatdata = await response.json();
         const resData = kandidatdata.data.map((el) => {
           const id = kandidatdata.party.find((e) => (e.name === el.party));
           return { ...el, party_id: id?._id };
@@ -112,5 +113,5 @@ function Zgjedhjetskenderaj() {
       </>
     );
 }
-
+  
 export default Zgjedhjetskenderaj;

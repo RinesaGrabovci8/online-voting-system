@@ -1,16 +1,15 @@
-import React from 'react'
-import '../CSS/zgjedhjet.css';
+import React, { useEffect, useState } from "react";
+import '../CSS/zgjedhjetqendrore.css';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions, Grid } from '@mui/material'; 
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router';
-import axios from 'axios';
-import Header from '../Components/Header';
-import Sidebar from '../Components/Sidebar';
-import Footer from '../Components/Footer';
-  
+import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
+import axios from "axios";
+import { useParams, useNavigate } from "react-router";
+import Header from "../Components/Header";
+import Sidebar from "../Components/Sidebar";
+import Footer from "../Components/Footer";
+
 function CandidateCard({candidate, party}) { 
   const { id, lokaleId } = useParams();
   const navigate = useNavigate();
@@ -51,7 +50,7 @@ function CandidateCard({candidate, party}) {
             {`${candidate.name} ${candidate.surname}`}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {`${party.name}`}
+            {`${candidate.party}`}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -73,14 +72,14 @@ function CandidateCard({candidate, party}) {
   );
 }
   
-function Zgjedhjetmitrovice() {
-  const [candidates, setCandidates] = useState([]);
-  const [voteData, setVoteData] = useState({}); 
+function Zgjedhjetmitrovic() {
+    const [candidates, setCandidates] = useState([]);
+    const [voteData, setVoteData] = useState({}); 
 
-  const fetchKandidatData = async () => {
-    try {
-      const response = await fetch("http://localhost:5001/crud/getAllCandidatesbyCitymtrv");
-      const kandidatdata = await response.json();
+    const fetchKandidatData = async () => {
+      try {
+        const response = await fetch("http://localhost:5001/crud//getAllCandidatesbyCitymtrv");
+        const kandidatdata = await response.json();
         const resData = kandidatdata.data.map((el) => {
           const id = kandidatdata.party.find((e) => (e.name === el.party));
           return { ...el, party_id: id?._id };
@@ -114,5 +113,5 @@ function Zgjedhjetmitrovice() {
       </>
     );
 }
-
-export default Zgjedhjetmitrovice;
+  
+export default Zgjedhjetmitrovic;
