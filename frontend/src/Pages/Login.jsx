@@ -16,7 +16,7 @@ class Login extends Component{
         e.preventDefault();
         const {personalnumber, password} = this.state;
         console.log(personalnumber, password);
-        fetch("http://localhost:5000/auth/login", {
+        fetch("http://localhost:5001/auth/login", {
             method:"POST",
             crossDomain:true,
             headers:{

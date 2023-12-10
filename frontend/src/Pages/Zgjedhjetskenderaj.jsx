@@ -17,7 +17,7 @@ function CandidateCard({candidate, party}) {
       return;
     }
     try {
-      await axios.post(`http://localhost:5000/vote/localVotes/${id}`, {
+      await axios.post(`http://localhost:5001/vote/localVotes/${id}`, {
         election_id: lokaleId,
         party_id: party_id,
         candidate_id: candidate._id,
@@ -74,7 +74,7 @@ function Zgjedhjetskenderaj() {
 
   const fetchKandidatData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/crud/getAllCandidatesbyCityskdr");
+      const response = await fetch("http://localhost:5001/crud/getAllCandidatesbyCityskdr");
       const kandidatdata = await response.json();
         const resData = kandidatdata.data.map((el) => {
           const id = kandidatdata.party.find((e) => (e.name === el.party));

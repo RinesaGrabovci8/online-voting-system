@@ -40,7 +40,7 @@ function MenagmentPage() {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/auth/getAllUsers");
+      const response = await fetch("http://localhost:5001/auth/getAllUsers");
       const userdata = await response.json();
       setuserData(userdata.data);
     } catch (error) {
@@ -50,7 +50,7 @@ function MenagmentPage() {
 
   const fetchKandidatData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/crud/getAllCandidates");
+      const response = await fetch("http://localhost:5001/crud/getAllCandidates");
       const kandidatdata = await response.json();
       setkandidatData(kandidatdata.data);
     } catch (error) {
@@ -60,7 +60,7 @@ function MenagmentPage() {
 
   const fetchPartitData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/crud/getAllParties");
+      const response = await fetch("http://localhost:5001/crud/getAllParties");
       const partitdata = await response.json();
       setpartitData(partitdata.data);
     } catch (error) {
@@ -70,7 +70,7 @@ function MenagmentPage() {
 
   const deleteUser = async (userId) => {
     try {
-      await axios.delete(`http://localhost:5000/auth/deleteUser/${userId}`);
+      await axios.delete(`http://localhost:5001/auth/deleteUser/${userId}`);
       console.log(`User with ID ${userId} deleted successfully.`);
       fetchUserData();
     } catch (error) {
@@ -80,7 +80,7 @@ function MenagmentPage() {
 
   const deleteCandidate = async (candidateId) => {
     try {
-      await axios.delete(`http://localhost:5000/crud/deleteCandidate/${candidateId}`);
+      await axios.delete(`http://localhost:5001/crud/deleteCandidate/${candidateId}`);
       console.log(`Candidate with ID ${candidateId} deleted successfully.`);
       fetchKandidatData();
     } catch (error) {
@@ -90,7 +90,7 @@ function MenagmentPage() {
 
   const deleteParty = async (partyId) => {
     try {
-      await axios.delete(`http://localhost:5000/crud/deleteParty/${partyId}`);
+      await axios.delete(`http://localhost:5001/crud/deleteParty/${partyId}`);
       console.log(`Party with ID ${partyId} deleted successfully.`);
       fetchPartitData();
     } catch (error) {

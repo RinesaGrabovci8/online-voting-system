@@ -6,7 +6,7 @@ function PieChartMtrv() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/vote/localVotesMtrv')
+    axios.get('http://localhost:5001/vote/localVotesMtrv')
       .then((response) => {
         setData(response.data); 
       })

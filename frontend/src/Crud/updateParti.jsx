@@ -17,7 +17,7 @@ export default function UpdateParti({ partyId }) {
 
   const handleButtonClick = () => {
     console.log('Button Clicked');
-    axios.put(`http://localhost:5000/crud/updateParty/${id}`, dataForm) 
+    axios.put(`http://localhost:5001/crud/updateParty/${id}`, dataForm) 
       .then((res) => {
         console.log('res', res);
         navigate('/admin-page'); 

@@ -8,7 +8,7 @@ function PersonalPage() {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/auth/userData", {
+    fetch("http://localhost:5001/auth/userData", {
       method: "POST",
       crossDomain: true,
       headers: {

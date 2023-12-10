@@ -33,7 +33,7 @@ function Zgjedhjetqendrorecand() {
 
   const fetchKandidatData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/crud/getAllCandidatesbyElection");
+      const response = await fetch("http://localhost:5001/crud/getAllCandidatesbyElection");
       const kandidatdata = await response.json();
       setCandidates(kandidatdata.data);
       console.log(kandidatdata.data);

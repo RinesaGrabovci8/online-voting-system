@@ -6,7 +6,7 @@ function PieChartGjl() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/vote/localVotesGjl')
+    axios.get('http://localhost:5001/vote/localVotesGjl')
       .then((response) => {
         setData(response.data); 
       })

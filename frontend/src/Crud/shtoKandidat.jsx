@@ -21,7 +21,7 @@ export default function ShtoKandidat() {
   const navigate = useNavigate();
 
   useEffect(() => { 
-    axios.get("http://localhost:5000/crud/getAllParties")
+    axios.get("http://localhost:5001/crud/getAllParties")
       .then((res) => {
         setParties(res.data.data);
       })
@@ -33,7 +33,7 @@ export default function ShtoKandidat() {
   
   const handleButtonClick = () => {
     console.log('Button Clicked');
-    axios.post("http://localhost:5000/crud/candidate", dataForm).then((res) => {
+    axios.post("http://localhost:5001/crud/candidate", dataForm).then((res) => {
       console.log('res', res);
       navigate('/admin-page'); 
     })

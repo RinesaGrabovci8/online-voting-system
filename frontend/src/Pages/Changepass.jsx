@@ -15,7 +15,7 @@ function Changepass() {
 
   const handleButtonClick = () => {
     console.log('Button Clicked');
-    axios.put(`http://localhost:5000/auth/updateUserPass/${id}`, dataForm) // Use the id from useParams
+    axios.put(`http://localhost:5001/auth/updateUserPass/${id}`, dataForm) // Use the id from useParams
       .then((res) => {
         console.log('res', res);
         navigate('/personalpage'); 

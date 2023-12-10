@@ -15,7 +15,7 @@ export default function ShtoParti() {
 
   const handleButtonClick = () => {
     console.log('Button Clicked');
-    axios.post("http://localhost:5000/crud/party", dataForm).then((res) => {
+    axios.post("http://localhost:5001/crud/party", dataForm).then((res) => {
       console.log('res', res);
       navigate('/admin-page');
     })

@@ -6,7 +6,7 @@ function PieChartQendrorePage() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/vote/centralVotes') 
+    axios.get('http://localhost:5001/vote/centralVotes') 
       .then((response) => {
         setData(response.data); 
       })

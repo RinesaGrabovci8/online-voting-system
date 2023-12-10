@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import '../CSS/signup.css';
 import logo from '../img/logo.png';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 function Register() {
     const [personalnumber, setPersonalNumber] = useState("");
@@ -23,7 +24,7 @@ function Register() {
             return;
         }
     
-        fetch("http://localhost:5000/auth/register", {
+        fetch("http://localhost:5001/auth/register", {
             method: "POST",
             crossDomain: true,
             headers: {

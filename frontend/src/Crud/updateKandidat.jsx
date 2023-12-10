@@ -25,7 +25,7 @@ export default function UpdateKandidat() {
   const navigate = useNavigate();
 
   useEffect(() => { 
-    axios.get("http://localhost:5000/crud/getAllParties")
+    axios.get("http://localhost:5001/crud/getAllParties")
       .then((res) => {
         setParties(res.data.data);
       })
@@ -37,7 +37,7 @@ export default function UpdateKandidat() {
   
   const handleButtonClick = () => {
     console.log('Button Clicked');
-    axios.put(`http://localhost:5000/crud/candidate/${id}`, dataForm) // Use the id from useParams
+    axios.put(`http://localhost:5001/crud/candidate/${id}`, dataForm) // Use the id from useParams
       .then((res) => {
         console.log('res', res);
         navigate('/admin-page'); 

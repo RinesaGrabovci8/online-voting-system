@@ -32,7 +32,7 @@ function Zgjedhjetlokalegjk() {
 
   const fetchKandidatData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/crud/getAllCandidatesbyCitygjk");
+      const response = await fetch("http://localhost:5001/crud/getAllCandidatesbyCitygjk");
       const kandidatdata = await response.json();
       setCandidates(kandidatdata.data);
     } catch (error) {

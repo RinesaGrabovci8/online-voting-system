@@ -14,7 +14,7 @@ function Voto(){
 
   useEffect(() => {
     
-    axios.get(`http://localhost:5000/crud/centralelection`)
+    axios.get(`http://localhost:5001/crud/centralelection`)
       .then((response) => {
         setQendroreId(response.data.id);
       })
@@ -22,7 +22,7 @@ function Voto(){
         console.error("Error fetching Zgjedhjet Qendrore ID: ", error);
       });
 
-    axios.get(`http://localhost:5000/crud/localelection`)
+    axios.get(`http://localhost:5001/crud/localelection`)
       .then((response) => {
         setLokaleId(response.data.id);
       })

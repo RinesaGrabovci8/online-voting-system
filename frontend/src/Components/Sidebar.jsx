@@ -4,7 +4,6 @@ import axios from 'axios';
 import '../CSS/sidebar.css';
 import { FaUser, FaHome, FaVoteYea, FaFlag, FaChartLine, FaSignOutAlt } from 'react-icons/fa';
 
-
 class Sidebar extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +13,7 @@ class Sidebar extends Component {
   }
 
   componentDidMount() {
-    axios.post("http://localhost:5000/auth/userData", {
+    axios.post("http://localhost:5001/auth/userData", {
       token: window.localStorage.getItem("token"),
     })
     .then((response) => {
@@ -26,10 +25,9 @@ class Sidebar extends Component {
     });
   }
 
-  logOut = () => {window.localStorage.clear();
-    window.location.href = "/log-in";
+  handleLogout = () => {
+    window.localStorage.setItem("loggedIn", "false"); 
   };
-
 
   render() {
     const { userData } = this.state;
@@ -37,8 +35,6 @@ class Sidebar extends Component {
 
     return (
       <div className='sidebar'>
-  
-
         <ul className='sidebar-ul'>
           <li className='li1'>
             <Link to="/personalpage">
@@ -79,7 +75,7 @@ class Sidebar extends Component {
             </li>
           )}
           <li className='li9'>
-            <Link to="/log-out" onClick={this.logOut}>
+            <Link to="/log-in" onClick={this.handleLogout}>
               <FaSignOutAlt />
               Shkyçu
             </Link>

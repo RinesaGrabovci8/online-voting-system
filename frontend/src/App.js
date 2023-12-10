@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header';
 import Sidebar from './Components/Sidebar';
@@ -32,16 +33,29 @@ import ShtoNdertesa from './Crud/shtoNdertesa';
 import ShtoLifti from './Crud/shtoLifti';
 
 function App() {
-  const isLoggedIn = window.localStorage.getItem("loggedIn");
+  const [isLoggedIn, setLoggedIn] = useState(window.localStorage.getItem("loggedIn") === "true");
+
+  const handleLogin = () => {
+    // Logic for handling login
+    setLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    // Logic for handling logout
+    window.localStorage.setItem("loggedIn", "false");
+    setLoggedIn(false);
+  };
   return (
     
     <Router>
-
-      {isLoggedIn && <Header />}
-      {isLoggedIn && <Sidebar />} 
-      
+      {isLoggedIn && (
+        <>
+          <Header />
+          <Sidebar />
+        </>
+      )}
      <Routes>
-        <Route exact path='/' element={isLoggedIn == true?<PersonalPage/>:<Login/>}/>
+        <Route exact path='/' element={isLoggedIn ? <PersonalPage /> : <Login onLogin={handleLogin} />}/>
         <Route path="/log-in" element={<Login />} />
         <Route path="/sign-up" exact element={<Register />} />
         <Route path="/personalpage" element={<PersonalPage />} />
@@ -71,8 +85,7 @@ function App() {
         <Route path='/shtondertesa' element={<ShtoNdertesa/>}/>
         <Route path='/shtolifti' element={<ShtoLifti/>}/>
       </Routes>
-       
-    {isLoggedIn && <Footer />}
+      {isLoggedIn && <Footer />}
   </Router>
   );
 }
