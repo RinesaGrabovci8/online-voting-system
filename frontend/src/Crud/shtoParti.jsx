@@ -6,6 +6,10 @@ import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import Header from '../Components/Header';
+import Sidebar from '../Components/Sidebar';
+import Footer from '../Components/Footer';
+
 export default function ShtoParti() {
   const [dataForm, setDataForm] = useState({
     name: "",
@@ -28,6 +32,9 @@ export default function ShtoParti() {
   }
 
   return (
+    <>
+    <Header/>
+    <Sidebar/>
     <Box border={1} p={3} maxWidth={400} style={{marginTop: 100, marginLeft: 650, marginBottom:50}}>
       <Typography variant="h6" gutterBottom>
         Shto Parti
@@ -50,5 +57,7 @@ export default function ShtoParti() {
            Shto 
         </Button>
     </Box>
+    <Footer/>
+    </>
   );
 }

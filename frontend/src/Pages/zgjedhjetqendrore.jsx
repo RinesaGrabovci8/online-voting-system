@@ -6,6 +6,9 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import axios from "axios";
 import { useParams, useNavigate } from "react-router";
+import Header from "../Components/Header";
+import Sidebar from "../Components/Sidebar";
+import Footer from "../Components/Footer";
 
 function CandidateCard({candidate}) { 
   const { id, qendroreId } = useParams();
@@ -100,11 +103,14 @@ function Zgjedhjetqendrore() {
 
   return (
     <>
+    <Header/>
+    <Sidebar/>
       <Grid container spacing={1} style={{ marginLeft: 400, marginTop: 200, marginBottom: 100 }}>
           {candidates.map((el) => (
             <CandidateCard key={el._id} candidate={el} party={el.party} voteData={voteData} setVoteData={setVoteData} />
           ))}
       </Grid>
+      <Footer/>
     </>
   );
 }

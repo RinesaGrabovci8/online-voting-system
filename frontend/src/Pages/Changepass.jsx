@@ -3,6 +3,9 @@ import axios from 'axios';
 import { FaUser } from 'react-icons/fa';
 import '../CSS/changepass.css';
 import { useNavigate, useParams } from 'react-router';
+import Header from '../Components/Header';
+import Sidebar from '../Components/Sidebar';
+import Footer from '../Components/Footer';
 
 function Changepass() {
   const { id } = useParams();
@@ -32,6 +35,9 @@ function Changepass() {
   }
 
   return (
+    <>
+    <Header/>
+    <Sidebar/>
     <div className="changepass">
       <div className="ProfileIcon">
         <FaUser size={50} />
@@ -49,6 +55,8 @@ function Changepass() {
         <button type="submit">Save</button>
       </form>
     </div>
+    <Footer/>
+    </>
   );
 }
 

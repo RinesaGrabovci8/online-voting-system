@@ -7,6 +7,9 @@ import Button from '@mui/material/Button';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
+import Header from '../Components/Header';
+import Sidebar from '../Components/Sidebar';
+import Footer from '../Components/Footer';
 
 export default function ShtoKandidat() {
   const [dataForm, setDataForm] = useState({
@@ -54,6 +57,9 @@ export default function ShtoKandidat() {
   }
 
   return (
+    <>
+    <Header/>
+    <Sidebar/>
     <Box border={1} p={3} maxWidth={400} style={{marginTop: 100, marginLeft: 650, marginBottom:50}}>
       <Typography variant="h6" gutterBottom>
         Shto Kandidate
@@ -133,5 +139,7 @@ export default function ShtoKandidat() {
            Shto 
         </Button>
     </Box>
+    <Footer/>
+    </>
   );
 }

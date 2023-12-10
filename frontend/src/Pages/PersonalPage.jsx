@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import '../CSS/personalpage.css';
 import { FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Header from '../Components/Header';
+import Sidebar from '../Components/Sidebar';
+import Footer from '../Components/Footer';
 
 function PersonalPage() {
   const [userData, setUserData] = useState({});
@@ -36,6 +39,9 @@ function PersonalPage() {
   }, []);
 
   return (
+    <>
+    <Header/>
+    <Sidebar/>
     <div className="AccountCard">
       <div className="ProfileIcon">
         <FaUser size={50} />
@@ -50,6 +56,8 @@ function PersonalPage() {
         <Link to={`/updateUserPass/${userData._id}`}>Change Password?</Link>
       )}
     </div>
+    <Footer/>
+    </>
   );
 }
 

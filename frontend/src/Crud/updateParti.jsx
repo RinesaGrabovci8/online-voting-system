@@ -5,6 +5,9 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import Header from '../Components/Header';
+import Sidebar from '../Components/Sidebar';
+import Footer from '../Components/Footer';
 
 export default function UpdateParti({ partyId }) {
   const { id } = useParams();
@@ -34,6 +37,9 @@ export default function UpdateParti({ partyId }) {
   }
 
   return (
+    <>
+    <Header/>
+    <Sidebar/>
     <Box border={1} p={3} maxWidth={400} style={{ marginTop: 100, marginLeft: 650, marginBottom: 50 }}>
       <Typography variant="h6" gutterBottom>
         Perditeso Partine
@@ -56,5 +62,7 @@ export default function UpdateParti({ partyId }) {
         Perditeso
       </Button>
     </Box>
+    <Footer/>
+    </>
   );
 }

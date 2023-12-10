@@ -2,10 +2,15 @@ import Hth from "../img/hth.jpg";
 import Rks from "../img/rks.png";
 import Vota from "../img/vota.png";
 import "../CSS/home.css";
+import Header from "../Components/Header";
+import Sidebar from "../Components/Sidebar";
+import Footer from "../Components/Footer";
 
 function Home(){
     return(
         <>
+        <Header/>
+        <Sidebar/>
         <div className="container">
             <div className="main-content">
                 <p className="small-text">
@@ -44,6 +49,7 @@ function Home(){
                 <img src={Rks} alt="rks" id="rks" />
             </div>
         </div>
+        <Footer/>
         </>
         
     )

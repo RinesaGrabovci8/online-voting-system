@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
+import Header from '../Components/Header';
+import Sidebar from '../Components/Sidebar';
+import Footer from '../Components/Footer';
 
 function MenagmentPage() {
   const [showPerdoruesitTable, setShowPerdoruesitTable] = useState(false);
@@ -124,6 +127,9 @@ function MenagmentPage() {
   });
 
   return (
+    <>
+    <Header/>
+    <Sidebar/>
     <div className='admin-container'>
       <div className="button-container">
         <button
@@ -268,6 +274,8 @@ function MenagmentPage() {
         )}
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 

@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import  axios from "axios";
 import { useParams } from "react-router-dom";
+import Header from "../Components/Header";
+import Sidebar from "../Components/Sidebar";
+import Footer from "../Components/Footer";
 
 
 function Voto(){
@@ -32,6 +35,8 @@ function Voto(){
   }, []);
     return (
         <>
+        <Header/>
+        <Sidebar/>
             <div className="votoketu">
                 <div className="zgjedhjet">
                     <h1>Voto!</h1>
@@ -45,6 +50,7 @@ function Voto(){
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 }

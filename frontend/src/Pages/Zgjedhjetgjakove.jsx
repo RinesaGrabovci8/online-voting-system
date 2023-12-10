@@ -7,6 +7,9 @@ import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import axios from 'axios';
+import Sidebar from '../Components/Sidebar';
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
   
 function CandidateCard({candidate, party}) { 
   const { id, lokaleId } = useParams();
@@ -101,11 +104,14 @@ function Zgjedhjetgjakove() {
 
     return (
       <>
+      <Header/>
+      <Sidebar/>
         <Grid container spacing={1} style={{ marginLeft: 400, marginTop: 200, marginBottom: 100 }}>
           {candidates.map((el) => (
             <CandidateCard key={el._id} candidate={el} party={el.party} voteData={voteData} setVoteData={setVoteData} />
           ))}
         </Grid>
+      <Footer/>
       </>
     );
 }

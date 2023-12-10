@@ -10,10 +10,15 @@ import PieChartFr from '../Components/PieChartFr';
 import PieChartGjl from '../Components/PieChartGjl';
 import PieChartPd from '../Components/PieChartPd';
 import PieChartPrz from '../Components/PieChartPrz';
+import Header from '../Components/Header';
+import Sidebar from '../Components/Sidebar';
+import Footer from '../Components/Footer';
 
 function Chart() {
   return (
     <>
+    <Header/>
+    <Sidebar/>
       <div className="pie-charts-wrapper">
         <div className='central-container'>
           <div className='central-elections-chart'>
@@ -71,6 +76,7 @@ function Chart() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }

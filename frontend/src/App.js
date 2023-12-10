@@ -48,12 +48,7 @@ function App() {
   return (
     
     <Router>
-      {isLoggedIn && (
-        <>
-          <Header />
-          <Sidebar />
-        </>
-      )}
+      
      <Routes>
         <Route exact path='/' element={isLoggedIn ? <PersonalPage /> : <Login onLogin={handleLogin} />}/>
         <Route path="/log-in" element={<Login />} />
@@ -85,7 +80,6 @@ function App() {
         <Route path='/shtondertesa' element={<ShtoNdertesa/>}/>
         <Route path='/shtolifti' element={<ShtoLifti/>}/>
       </Routes>
-      {isLoggedIn && <Footer />}
   </Router>
   );
 }

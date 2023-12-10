@@ -10,10 +10,15 @@ import Zgjedhjetlokalegjk from "../Components/Zgjedhjetlokalegjk";
 import Zgjedhjetlokaleskdr from "../Components/Zgjedhjetlokaleskdr";
 import Zgjedhjetlokalegjl from "../Components/Zgjedhjetlokalegjl";
 import Zgjedhjetlokalepd from "../Components/Zgjedhjetlokalepd";
+import Sidebar from "../Components/Sidebar";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 
 function Zgjedhjet() {
   return (
     <>
+    <Header/>
+    <Sidebar/>
         <div className="zgjedhjet-qendrore">
             <h1>Kandidatët për Zgjedhjet Qendrore</h1>
             <Zgjedhjetqendrorecand/>
@@ -30,6 +35,7 @@ function Zgjedhjet() {
             <Zgjedhjetlokalegjl/>
             <Zgjedhjetlokalepd/>
         </div>
+        <Footer/>
     </>
   );
 }
