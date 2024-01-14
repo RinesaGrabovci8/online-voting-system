@@ -1,9 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './Components/Header';
-import Sidebar from './Components/Sidebar';
-import Footer from './Components/Footer';
 import Home from './Pages/Home';
 import Voto from './Pages/Votoketu';
 import Chart from './Pages/Grafiket';
@@ -29,22 +26,18 @@ import Zgjedhjetpodujeve from './Pages/Zgjedhjetpodujeve';
 import Zgjedhjetpeje from './Pages/Zgjedhjetpeje';
 import Zgjedhjetmitrovice from './Pages/Zgjedhjetmitrovice';
 import DeletePage from './Pages/DeletePage';
-import ShtoNdertesa from './Crud/shtoNdertesa';
-import ShtoLifti from './Crud/shtoLifti';
+import UpdateLifti from './Crud/updateLifti';
+import Updatendertesa from './Crud/updateNdertesa';
+import ShtoPlanetin from './Crud/shtoplanetin';
+import Shtosatelitin from './Crud/shtosatelitin';
 
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState(window.localStorage.getItem("loggedIn") === "true");
+  const [isLoggedIn, setLoggedIn] = useState(window.localStorage.getItem("loggedIn") === "false");
 
   const handleLogin = () => {
-    // Logic for handling login
     setLoggedIn(true);
   };
 
-  const handleLogout = () => {
-    // Logic for handling logout
-    window.localStorage.setItem("loggedIn", "false");
-    setLoggedIn(false);
-  };
   return (
     
     <Router>
@@ -77,8 +70,10 @@ function App() {
         <Route path='/upadatecandidate/:id' element={<UpdateKandidat/>}/>
         <Route path='/updateparty/:id' element={<UpdateParti/>}/>
         <Route path='/delete' element={<DeletePage/>}/>
-        <Route path='/shtondertesa' element={<ShtoNdertesa/>}/>
-        <Route path='/shtolifti' element={<ShtoLifti/>}/>
+        <Route path='/shtondertesa' element={<Shtosatelitin/>}/>
+        <Route path='/shtolifti' element={<ShtoPlanetin/>}/>
+        <Route path='/updatelifti/:id'  element={<UpdateLifti/>}/>
+        <Route path='/updatendertesa/:id'  element={<Updatendertesa/>}/>
       </Routes>
   </Router>
   );

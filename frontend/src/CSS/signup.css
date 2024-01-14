@@ -7,11 +7,11 @@
   color: rgb(20, 20, 21);
   background-color: #024ea2;
   max-width: 1200px;
-  max-height: 700px;
+  max-height: 400px;
 }
 
 .register{
-  margin-top: -100px;
+  margin-top: 30px;
   margin-bottom: 70px;
 }
 

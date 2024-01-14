@@ -12,19 +12,27 @@ function MenagmentPage() {
   const [showPerdoruesitTable, setShowPerdoruesitTable] = useState(false);
   const [showKandidatetTable, setShowKandidatetTable] = useState(false);
   const [showPartiteTable, setShowPartiteTable] = useState(false);
+  const [showNdertesaTable, setshowNdertesaTable] = useState(false);
+  const [showLiftiTable, setshowLiftiTable] = useState(false);
 
   const [userFilter, setUserFilter] = useState('');
   const [candidateFilter, setCandidateFilter] = useState('');
   const [partyFilter, setPartyFilter] = useState('');
+  // const [ndertesaFilter, setndertesaFilter] = useState('');
+  // const [liftiFilter, setliftiFilter] = useState('');
 
   const [userdata, setuserData] = useState([]);
   const [kandidatdata, setkandidatData] = useState([]);
   const [partitdata, setpartitData] = useState([]);
+  const [satelitidata, setsatelitidata] = useState([]);
+  const [planetidata, setplanetidata] = useState([]);
 
   const toggleTable = (table) => {
     setShowPerdoruesitTable(false);
     setShowKandidatetTable(false);
     setShowPartiteTable(false);
+    setshowLiftiTable(false);
+    setshowNdertesaTable(false);
 
     switch (table) {
       case 'Perdoruesit':
@@ -36,8 +44,34 @@ function MenagmentPage() {
       case 'Partite':
         setShowPartiteTable(true);
         break;
+      case 'Ndertesa':
+        setshowNdertesaTable(true);
+        break;
+      case 'Lifti':
+        setshowLiftiTable(true);
+        break;
       default:
         break;
+    }
+  };
+
+  const fetchSatelitiData = async () => {
+    try {
+      const response = await fetch("http://localhost:5001/crudtest/getAllSatellites");
+      const ndertesadata = await response.json();
+      setsatelitidata(ndertesadata.data);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
+
+  const fetchPlanetiData = async () => {
+    try {
+      const response = await fetch("http://localhost:5001/crudtest/getAllPlanet");
+      const liftidata = await response.json();
+      setplanetidata(liftidata.data);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
     }
   };
 
@@ -101,10 +135,32 @@ function MenagmentPage() {
     }
   };
 
+  const deleteNdertesa = async (ndertesaId) => {
+    try {
+      await axios.delete(`http://localhost:5001/crudtest/deletendertesa/${ndertesaId}`);
+      console.log(`Ndertesa with ID ${ndertesaId} deleted successfully.`);
+      fetchSatelitiData();
+    } catch (error) {
+      console.error(`Error deleting party with ID ${ndertesaId}:`, error);
+    }
+  };
+
+  const deleteLifti = async (liftiId) => {
+    try {
+      await axios.put(`http://localhost:5001/crudtest/updatePlanetById/${liftiId}`);
+      console.log(`Lifti with ID ${liftiId} deleted successfully.`);
+      setplanetidata(isDeleted, true);
+    } catch (error) {
+      console.error(`Error deleting party with ID ${liftiId}:`, error);
+    }
+  };
+
   useEffect(() => {
     fetchUserData();
     fetchKandidatData();
     fetchPartitData();
+    fetchSatelitiData();
+    fetchPlanetiData();
   }, []);
 
   const filteredCandidates = kandidatdata.filter((candidate) => {
@@ -117,10 +173,24 @@ function MenagmentPage() {
     );
   });
 
-
   const filteredUsers = userdata.filter((user) => {
     return user.personalnumber.toLowerCase().includes(userFilter.toLowerCase());
   });
+
+  // const filteredLifti = liftidata.filter((lifti) => {
+  //   return lifti.personalnumber.toLowerCase().includes(liftiFilter.toLowerCase());
+  // });
+
+  // const filteredNdertesa = ndertesadata.filter((ndertesa) => {
+  //   const nameLowerCase = ndertesa.name ? ndertesa.name.toLowerCase() : '';
+  //   const dateLowerCase = ndertesa.date ? ndertesa.date.toLowerCase() : '';
+  
+  //   return (
+  //     nameLowerCase.includes(ndertesaFilter.toLowerCase()) ||
+  //     dateLowerCase.includes(ndertesaFilter.toLowerCase())
+  //     // Add additional conditions for other fields in the ndertesa model, if needed
+  //   );
+  // });
 
   const filteredParties = partitdata.filter((party) => {
     return party.name.toLowerCase().includes(partyFilter.toLowerCase());
@@ -149,6 +219,18 @@ function MenagmentPage() {
           onClick={() => toggleTable('Partite')}
         >
           Partite
+        </button>
+        <button
+          className={`button ${showNdertesaTable ? 'active' : ''}`}
+          onClick={() => toggleTable('Ndertesa')}
+        >
+          Sateliti
+        </button>
+        <button
+          className={`button ${showLiftiTable ? 'active' : ''}`}
+          onClick={() => toggleTable('Lifti')}
+        >
+          Planeti
         </button>
       </div>
       <div className='table-container'>
@@ -268,6 +350,74 @@ function MenagmentPage() {
               </table>
               <div className='add-button'>
                 <button><Link to="/shtoparti">Shto Parti</Link></button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {showNdertesaTable && (
+          <div className='auth-wrapper'>
+            <div className='auth-inner'>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Emri</th>
+                    <th>Planeti</th>
+                  </tr>
+                  {satelitidata.map((i) => {
+                    return (
+                      <tr key={i._id}>
+                        <td>{i.name}</td>
+                        <td>{i.planeti}</td>
+                        <td className='buttons'>
+                          <Link to={`/delete`}>
+                            <DeleteIcon style={{ color: 'red', fontSize: '16px', margin: 8 }} onClick={() => deleteNdertesa(i._id)} />
+                          </Link>
+                          <Link to={`/updatendertesa/${i._id}`}>
+                            <EditIcon style={{ fontSize: '16px', margin: 8 }} />
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </thead>
+              </table>
+              <div className='add-button'>
+                <button><Link to="/shtondertesa">Shto Satelitin</Link></button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {showLiftiTable && (
+          <div className='auth-wrapper'>
+            <div className='auth-inner'>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Emri</th>
+                    <th>Tipi</th>
+                  </tr>
+                  {planetidata.map((i) => {
+                    return (
+                      <tr key={i._id}>
+                        <td>{i.name}</td>
+                        <td>{i.type}</td>
+                        <td className='buttons'>
+                          <Link to={`/delete`}>
+                            <DeleteIcon style={{ color: 'red', fontSize: '16px', margin: 8 }} onClick={() => deleteLifti(i._id)} />
+                          </Link>
+                          <Link to={`/updatelifti/${i._id}`}>
+                            <EditIcon style={{ fontSize: '16px', margin: 8 }} />
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </thead>
+              </table>
+              <div className='add-button'>
+                <button><Link to="/shtolifti">Shto Planetin</Link></button>
               </div>
             </div>
           </div>

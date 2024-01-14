@@ -12,7 +12,6 @@
 .auth-form-container, .login-form, .register-form {
   display: flex;
   flex-direction: column;
-  
 }
 
 .logo img{

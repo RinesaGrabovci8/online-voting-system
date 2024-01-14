@@ -6,17 +6,17 @@ app.use(express.json());
 app.use(cors());
 const router = express.Router();
 
-const crudRoutes = require("../Controllers/crudcontroller");
+const crudRoutes = require("../Controllers/crudcontroller.js");
 
-router.post("/createndertesa", crudRoutes.createNdertesa);
-router.get("/getndertesa", crudRoutes.getNdertesat);
-router.put("/updatendertesa/:id", crudRoutes.updateNdertesaById);
-router.delete("/deletendertesa/:id", crudRoutes.deleteNdertesaById);
+router.post("/createsatelite", crudRoutes.createsatelite);
+router.get("/getAllSatellites", crudRoutes.getAllSatellites);
+router.put("/updateSatelliteById/:id", crudRoutes.updateSatelliteById);
+router.delete("/deleteSatelliteById/:id", crudRoutes.deleteSatelliteById);
 
-router.post("/createlifti", crudRoutes.createLifti);
-router.get("/getliftet", crudRoutes.getLiftet);
-router.put("/updatelifti/:id", crudRoutes.updateLiftiById);
-router.delete("/deletelifit/:id", crudRoutes.deleteLiftiById);
+router.post("/createPlanet", crudRoutes.createPlanet);
+router.get("/getAllPlanet", crudRoutes.getAllPlanet);
+router.put("/updatePlanetById/:id", crudRoutes.updatePlanetById);
+router.delete("/deletePlanetById/:id", crudRoutes.deletePlanetById);
 
 
 module.exports = router;

@@ -26,7 +26,7 @@ class Sidebar extends Component {
   }
 
   handleLogout = () => {
-    window.localStorage.setItem("loggedIn", "false"); 
+    window.localStorage.removeItem("token"); 
   };
 
   render() {
