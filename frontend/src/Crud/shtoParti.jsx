@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router';

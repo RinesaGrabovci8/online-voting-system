@@ -1,22 +1,15 @@
 const express = require("express");
-require("dotenv").config();
-const cors = require('cors');
-const app = express()
-app.use(express.json());
-app.use(cors());
 const router = express.Router();
+const crudRoutes = require("../Controllers/crudcontroller")
 
-const crudRoutes = require("../Controllers/crudcontroller.js");
+router.post("/createTeam", crudRoutes.createTeam);
+router.get("/getAllTeams", crudRoutes.getAllTeams);
+router.put("/updateTeamById/:id", crudRoutes.updateTeamById);
+router.delete("/deleteTeamById/:id", crudRoutes.deleteTeamById);
 
-router.post("/createsatelite", crudRoutes.createsatelite);
-router.get("/getAllSatellites", crudRoutes.getAllSatellites);
-router.put("/updateSatelliteById/:id", crudRoutes.updateSatelliteById);
-router.delete("/deleteSatelliteById/:id", crudRoutes.deleteSatelliteById);
-
-router.post("/createPlanet", crudRoutes.createPlanet);
-router.get("/getAllPlanet", crudRoutes.getAllPlanet);
-router.put("/updatePlanetById/:id", crudRoutes.updatePlanetById);
-router.delete("/deletePlanetById/:id", crudRoutes.deletePlanetById);
-
+router.post("/createPlayer", crudRoutes.createPlayer);
+router.get("/getAllPlayer", crudRoutes.getAllPlayers);
+router.put("/updatePlayerById/:id", crudRoutes.updatePlayerById);
+router.delete("/deletePlayerById/:id", crudRoutes.deletePlayerById);
 
 module.exports = router;

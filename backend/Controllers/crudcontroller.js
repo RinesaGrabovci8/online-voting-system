@@ -6,194 +6,195 @@ const app = express()
 app.use(express.json());
 app.use(cors());
 
-require("../models/planet.js");
-const Planet = mongoose.model("Planeti");
+require("../models/Player.js");
+const Player = mongoose.model("Player");
 
-require("../models/satelite.js"); 
-const Satellite = mongoose.model("Satellite");
+require("../models/Team.js");
+const Team = mongoose.model("Team");
 
-exports.createsatelite = async (req, res) => {
+exports.createTeam = async (req, res) => {
   try {
-    const { name, isDeleted, planet_id  } = req.body;
+    const { name } = req.body;
 
-    if (!name ||!planet_id) {
-      return res.status(400).send({ error: "Name, and planet_id are required fields." });
+    if (!name) {
+      return res.status(400).send({ error: "Team name is required." });
     }
 
-    const newsatelite = await Satellite.create({ name, isDeleted, planet_id }); 
-    res.status(201).json(newsatelite);
+    const newTeam = await Team.create({ name });
+    res.status(201).json(newTeam);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.getsatellite = async (req, res) => {
+exports.getTeams = async (req, res) => {
   try {
-    const satellite = await Satellite.find();
-    res.status(200).json(satellite);
+    const Teams = await Team.find();
+    res.status(200).json(Teams);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.getStelliteById = async (req, res) => {
+exports.getTeamById = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ status: 'error', message: 'Invalid Satellite ID' });
+    return res.status(400).json({ status: 'error', message: 'Invalid Team ID' });
   }
 
   try {
-    const satellite = await Satellite.findById(id);
+    const Team = await Team.findById(id);
 
-    if (!satellite) {
-      return res.status(404).json({ status: 'error', message: 'Satellite not found' });
+    if (!Team) {
+      return res.status(404).json({ status: 'error', message: 'Team not found' });
     }
 
-    res.status(200).json({ status: 'ok', data: ndertesa });
+    res.status(200).json({ status: 'ok', data: Team });
   } catch (error) {
     console.error(error);
     res.status(500).json({ status: 'error', message: 'Internal server error' });
   }
 };
 
-exports.updateSatelliteById = async (req, res) => {
+exports.updateTeamById = async (req, res) => {
   try {
-    const satelliteId = req.params.id;
-    const { name, isDeleted, planet_id } = req.body;
+    const TeamId = req.params.id;
+    const { name } = req.body;
 
     if (!name) {
       return res.status(400).json({ error: 'All fields are required.' });
     }
 
-    const updatedSatellite = await Satellite.findByIdAndUpdate(
-      satelliteId,
-      { name, isDeleted, planet_id },
+    const updatedTeam = await Team.findByIdAndUpdate(
+      TeamId,
+      { name },
       { new: true }
     );
 
-    if (!updatedSatellite) {
-      return res.status(404).json({ error: 'Ndertesa not found.' });
+    if (!updatedTeam) {
+      return res.status(404).json({ error: 'Team not found.' });
     }
 
-    res.status(200).json(updatedSatellite);
+    res.status(200).json(updatedTeam);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.deleteSatelliteById = async (req, res) => {
-    try {
-      const satelliteId = req.params.id;
-  
-      await Satellite.findByIdAndRemove(satelliteId);
-  
-      res.status(200).json({ status: 'ok', message: 'Ndertesa deleted successfully' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ status: 'error', message: 'Internal server error' });
-    }
-};
-
-exports.getAllSatellites = async (req, res) => {
-  try{ 
-    const all = await Satellite.find({});
-    res.send({status:"ok", data:all});
-  }catch(error){
-    console.log(error);
-  }
-}
-
-exports.createPlanet = async (req, res) => {
+exports.deleteTeamById = async (req, res) => {
   try {
-    const { name, type, isDeleted  } = req.body;
+    const TeamId = req.params.id;
 
-    if (!name || !type) {
-      return res.status(400).send({ error: "Planet name is required." });
-    }
+    await Team.findByIdAndRemove(TeamId);
 
-    const newPlanet = await Planet.create({ name, type }); 
-    res.status(201).json(newPlanet);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-exports.getPlanet = async (req, res) => {
-  try {
-    const planet = await Planet.find();
-    res.status(200).json(planet);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-exports.getPlanetById = async (req, res) => {
-  const { id } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ status: 'error', message: 'Invalid party ID' });
-  }
-
-  try {
-    const planet = await Planet.findById(id);
-
-    if (!planet) {
-      return res.status(404).json({ status: 'error', message: 'Lifti not found' });
-    }
-
-    res.status(200).json({ status: 'ok', data: planet });
+    res.status(200).json({ status: 'ok', message: 'Player deleted successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ status: 'error', message: 'Internal server error' });
   }
 };
 
-exports.updatePlanetById = async (req, res) => {
+exports.getAllTeams = async (req, res) => {
   try {
-    const planetId = req.params.id;
-    const { name, type, isDeleted } = req.body;
 
-    if (!name || !type) {
-      return res.status(400).json({ error: 'All fields are required.' });
+    const allTeam = await Team.find({});
+    res.send({ status: "ok", data: allTeam });
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+exports.createPlayer = async (req, res) => {
+  try {
+    const { name, birthyear, number, team } = req.body;
+
+
+    if (!name || !number || !birthyear || !team) {
+      return res.status(400).send({ error: "All fields are required." });
     }
 
-    const updatedPlanet = await Planet.findByIdAndUpdate(
-      planetId,
-      { name, isDeleted,  },
-      { new: true }
-    );
-
-    if (!updatedLifti) {
-      return res.status(404).json({ error: 'Lifti not found.' });
-    }
-
-    res.status(200).json(updatedPlanet);
+    const newPlayer = await Player.create({ name, number, birthyear, team });
+    res.status(201).json(newPlayer);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.deletePlanetById = async (req, res) => {
-    try {
-      const planetId = req.params.id;
-  
-      await Planet.findByIdAndRemove(planetId);
-  
-      res.status(200).json({ status: 'ok', message: 'Lifti deleted successfully' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ status: 'error', message: 'Internal server error' });
-    }
+exports.getPlayers = async (req, res) => {
+  try {
+    const Players = await Player.find()
+      .populate('player_id', 'name')
+      .populate('team_id', 'name');
+    console.log("Players", Players);
+    res.status(200).json(Players);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
-exports.getAllPlanet = async (req, res) => {
-  try{ 
-    
-    const allPlanet = await Planet.find({});
-    res.send({status:"ok", data:allPlanet});
+exports.getPlayerById = async (req, res) => {
+  try {
+    const Player = await Player.findById(req.params.id);
+    if (!Player) {
+      return res.status(404).json({ message: "Player not found" });
+    }
+    res.status(200).json(Player);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
-  }catch(error){
+exports.updatePlayerById = async (req, res) => {
+  try {
+    const PlayerId = req.params.id;
+    const { name, birthyear, number, team } = req.body;
+
+    if (!name || !number || !birthyear || !team) {
+      return res.status(400).json({ error: 'All fields are required.' });
+    }
+
+    const updatedPlayer = await Player.findByIdAndUpdate(
+      PlayerId,
+      { name, number, birthyear, team },
+      { new: true }
+    );
+
+    if (!updatedPlayer) {
+      return res.status(404).json({ error: 'Player not found.' });
+    }
+
+    res.status(200).json(updatedPlayer);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.getAllPlayers = async (req, res) => {
+  try {
+
+    const allPlayers = await Player.find({});
+    res.send({ status: "ok", data: allPlayers });
+
+  } catch (error) {
     console.log(error);
   }
 }
+
+exports.deletePlayerById = async (req, res) => {
+  try {
+    const PlayerId = req.params.id;
+
+    await Player.findByIdAndRemove(PlayerId);
+
+    res.status(200).json({ status: 'ok', message: 'Player deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: 'error', message: 'Internal server error' });
+  }
+};
+
+
+
+

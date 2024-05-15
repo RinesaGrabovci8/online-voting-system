@@ -26,10 +26,10 @@ import Zgjedhjetpodujeve from './Pages/Zgjedhjetpodujeve';
 import Zgjedhjetpeje from './Pages/Zgjedhjetpeje';
 import Zgjedhjetmitrovice from './Pages/Zgjedhjetmitrovice';
 import DeletePage from './Pages/DeletePage';
-import UpdateLifti from './Crud/updateLifti';
-import Updatendertesa from './Crud/updateNdertesa';
-import ShtoPlanetin from './Crud/shtoplanetin';
-import Shtosatelitin from './Crud/shtosatelitin';
+import UpdateLifti from './Crud/updateTeam';
+import Updatendertesa from './Crud/updatePlayer';
+import ShtoPlayer from './Crud/shtoPlayer';
+import ShtoTeam from './Crud/shtoTeam';
 
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(window.localStorage.getItem("loggedIn") === "false");
@@ -70,8 +70,8 @@ function App() {
         <Route path='/upadatecandidate/:id' element={<UpdateKandidat/>}/>
         <Route path='/updateparty/:id' element={<UpdateParti/>}/>
         <Route path='/delete' element={<DeletePage/>}/>
-        <Route path='/shtondertesa' element={<Shtosatelitin/>}/>
-        <Route path='/shtolifti' element={<ShtoPlanetin/>}/>
+        <Route path='/shtonplayer' element={<ShtoPlayer/>}/>
+        <Route path='/shtoteam' element={<ShtoTeam/>}/>
         <Route path='/updatelifti/:id'  element={<UpdateLifti/>}/>
         <Route path='/updatendertesa/:id'  element={<Updatendertesa/>}/>
       </Routes>

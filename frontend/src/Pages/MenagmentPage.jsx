@@ -12,8 +12,8 @@ function MenagmentPage() {
   const [showPerdoruesitTable, setShowPerdoruesitTable] = useState(false);
   const [showKandidatetTable, setShowKandidatetTable] = useState(false);
   const [showPartiteTable, setShowPartiteTable] = useState(false);
-  const [showNdertesaTable, setshowNdertesaTable] = useState(false);
-  const [showLiftiTable, setshowLiftiTable] = useState(false);
+  const [showPlayertable, setshowPlayertable] = useState(false);
+  const [showTeamtable, setshowTeamtable] = useState(false)
 
   const [userFilter, setUserFilter] = useState('');
   const [candidateFilter, setCandidateFilter] = useState('');
@@ -24,15 +24,15 @@ function MenagmentPage() {
   const [userdata, setuserData] = useState([]);
   const [kandidatdata, setkandidatData] = useState([]);
   const [partitdata, setpartitData] = useState([]);
-  const [satelitidata, setsatelitidata] = useState([]);
-  const [planetidata, setplanetidata] = useState([]);
+  const [playerdata, setplayerdata] = useState([]);
+  const [teamdata, setteamdata] = useState([]);
 
   const toggleTable = (table) => {
     setShowPerdoruesitTable(false);
     setShowKandidatetTable(false);
     setShowPartiteTable(false);
-    setshowLiftiTable(false);
-    setshowNdertesaTable(false);
+    setshowPlayertable(false);
+    setshowTeamtable(false);
 
     switch (table) {
       case 'Perdoruesit':
@@ -44,32 +44,32 @@ function MenagmentPage() {
       case 'Partite':
         setShowPartiteTable(true);
         break;
-      case 'Ndertesa':
-        setshowNdertesaTable(true);
+      case 'Player':
+        setshowPlayertable(true);
         break;
-      case 'Lifti':
-        setshowLiftiTable(true);
+      case 'Team':
+        setshowTeamtable(true);
         break;
       default:
         break;
     }
   };
 
-  const fetchSatelitiData = async () => {
+  const fetchPlayerData = async () => {
     try {
-      const response = await fetch("http://localhost:5001/crudtest/getAllSatellites");
-      const ndertesadata = await response.json();
-      setsatelitidata(ndertesadata.data);
+      const response = await fetch("http://localhost:5001/crudtest/getAllPlayer");
+      const playerdata = await response.json();
+      setplayerdata(playerdata.data);
     } catch (error) {
       console.error('Error fetching user data:', error);
     }
   };
 
-  const fetchPlanetiData = async () => {
+  const fetchTeamData = async () => {
     try {
-      const response = await fetch("http://localhost:5001/crudtest/getAllPlanet");
-      const liftidata = await response.json();
-      setplanetidata(liftidata.data);
+      const response = await fetch("http://localhost:5001/crudtest/getAllTeams");
+      const teamdata = await response.json();
+      setteamdata(teamdata.data);
     } catch (error) {
       console.error('Error fetching user data:', error);
     }
@@ -135,23 +135,23 @@ function MenagmentPage() {
     }
   };
 
-  const deleteNdertesa = async (ndertesaId) => {
+  const deletePlayer = async (playerId) => {
     try {
-      await axios.delete(`http://localhost:5001/crudtest/deletendertesa/${ndertesaId}`);
-      console.log(`Ndertesa with ID ${ndertesaId} deleted successfully.`);
-      fetchSatelitiData();
+      await axios.delete(`http://localhost:5001/crudtest/deletePlayerById/${playerId}`);
+      console.log(`Ndertesa with ID ${playerId} deleted successfully.`);
+      fetchPlayerData();
     } catch (error) {
-      console.error(`Error deleting party with ID ${ndertesaId}:`, error);
+      console.error(`Error deleting party with ID ${playerId}:`, error);
     }
   };
 
-  const deleteLifti = async (liftiId) => {
+  const deleteTeam = async (teamId) => {
     try {
-      await axios.put(`http://localhost:5001/crudtest/updatePlanetById/${liftiId}`);
-      console.log(`Lifti with ID ${liftiId} deleted successfully.`);
-      setplanetidata(isDeleted, true);
+      await axios.put(`http://localhost:5001/crudtest/deleteTeamById/${teamId}`);
+      console.log(`Lifti with ID ${teamId} deleted successfully.`);
+      setplayerdata(teamId, true);
     } catch (error) {
-      console.error(`Error deleting party with ID ${liftiId}:`, error);
+      console.error(`Error deleting party with ID ${teamId}:`, error);
     }
   };
 
@@ -159,8 +159,8 @@ function MenagmentPage() {
     fetchUserData();
     fetchKandidatData();
     fetchPartitData();
-    fetchSatelitiData();
-    fetchPlanetiData();
+    fetchPlayerData();
+    fetchTeamData();
   }, []);
 
   const filteredCandidates = kandidatdata.filter((candidate) => {
@@ -221,16 +221,16 @@ function MenagmentPage() {
           Partite
         </button>
         <button
-          className={`button ${showNdertesaTable ? 'active' : ''}`}
-          onClick={() => toggleTable('Ndertesa')}
+          className={`button ${showPlayertable ? 'active' : ''}`}
+          onClick={() => toggleTable('Player')}
         >
-          Sateliti
+          Player
         </button>
         <button
-          className={`button ${showLiftiTable ? 'active' : ''}`}
-          onClick={() => toggleTable('Lifti')}
+          className={`button ${showTeamtable ? 'active' : ''}`}
+          onClick={() => toggleTable('Team')}
         >
-          Planeti
+          Team
         </button>
       </div>
       <div className='table-container'>
@@ -331,7 +331,7 @@ function MenagmentPage() {
                   <tr>
                     <th>Emri</th>
                   </tr>
-                  {filteredParties.map((i) => {
+                  {partitdata.map((i) => {
                     return (
                       <tr key={i._id}>
                         <td>{i.name}</td>
@@ -355,23 +355,27 @@ function MenagmentPage() {
           </div>
         )}
 
-        {showNdertesaTable && (
+        {showPlayertable && (
           <div className='auth-wrapper'>
             <div className='auth-inner'>
               <table>
                 <thead>
                   <tr>
                     <th>Emri</th>
-                    <th>Planeti</th>
+                    <th>Number</th>
+                    <th>Birthyear</th>
+                    <th>Team</th>
                   </tr>
-                  {satelitidata.map((i) => {
+                  {playerdata.map((i) => {
                     return (
                       <tr key={i._id}>
                         <td>{i.name}</td>
-                        <td>{i.planeti}</td>
+                        <td>{i.number}</td>
+                        <td>{i.birthyear}</td>
+                        <td>{i.team}</td>
                         <td className='buttons'>
                           <Link to={`/delete`}>
-                            <DeleteIcon style={{ color: 'red', fontSize: '16px', margin: 8 }} onClick={() => deleteNdertesa(i._id)} />
+                            <DeleteIcon style={{ color: 'red', fontSize: '16px', margin: 8 }} onClick={() => deletePlayer(i._id)} />
                           </Link>
                           <Link to={`/updatendertesa/${i._id}`}>
                             <EditIcon style={{ fontSize: '16px', margin: 8 }} />
@@ -383,29 +387,27 @@ function MenagmentPage() {
                 </thead>
               </table>
               <div className='add-button'>
-                <button><Link to="/shtondertesa">Shto Satelitin</Link></button>
+                <button><Link to="/shtonplayer">Shto Player</Link></button>
               </div>
             </div>
           </div>
         )}
 
-        {showLiftiTable && (
+        {showTeamtable && (
           <div className='auth-wrapper'>
             <div className='auth-inner'>
               <table>
                 <thead>
                   <tr>
                     <th>Emri</th>
-                    <th>Tipi</th>
                   </tr>
-                  {planetidata.map((i) => {
+                  {teamdata.map((i) => {
                     return (
                       <tr key={i._id}>
                         <td>{i.name}</td>
-                        <td>{i.type}</td>
                         <td className='buttons'>
                           <Link to={`/delete`}>
-                            <DeleteIcon style={{ color: 'red', fontSize: '16px', margin: 8 }} onClick={() => deleteLifti(i._id)} />
+                            <DeleteIcon style={{ color: 'red', fontSize: '16px', margin: 8 }} onClick={() => deleteTeam(i._id)} />
                           </Link>
                           <Link to={`/updatelifti/${i._id}`}>
                             <EditIcon style={{ fontSize: '16px', margin: 8 }} />
@@ -417,7 +419,7 @@ function MenagmentPage() {
                 </thead>
               </table>
               <div className='add-button'>
-                <button><Link to="/shtolifti">Shto Planetin</Link></button>
+                <button><Link to="/shtoteam">Shto Team</Link></button>
               </div>
             </div>
           </div>
