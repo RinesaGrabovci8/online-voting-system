@@ -24,7 +24,7 @@ export default function ShtoPlayer() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5001/crudtest/getAllTeams')
+      .get('http://localhost:5001/crudtest/getAllTeam')
       .then((res) => {
         setteam(res.data.data);
       })

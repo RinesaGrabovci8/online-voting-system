@@ -26,8 +26,8 @@ import Zgjedhjetpodujeve from './Pages/Zgjedhjetpodujeve';
 import Zgjedhjetpeje from './Pages/Zgjedhjetpeje';
 import Zgjedhjetmitrovice from './Pages/Zgjedhjetmitrovice';
 import DeletePage from './Pages/DeletePage';
-import UpdateLifti from './Crud/updateTeam';
-import Updatendertesa from './Crud/updatePlayer';
+import UpdateTeam from './Crud/updateTeam';
+import UpdatePlayer from './Crud/updatePlayer';
 import ShtoPlayer from './Crud/shtoPlayer';
 import ShtoTeam from './Crud/shtoTeam';
 
@@ -39,43 +39,43 @@ function App() {
   };
 
   return (
-    
+
     <Router>
-      
-     <Routes>
-        <Route exact path='/' element={isLoggedIn ? <PersonalPage /> : <Login onLogin={handleLogin} />}/>
+      <Routes>
+        <Route exact path='/' element={isLoggedIn ? <PersonalPage /> : <Login onLogin={handleLogin} />} />
         <Route path="/log-in" element={<Login />} />
         <Route path="/sign-up" exact element={<Register />} />
         <Route path="/personalpage" element={<PersonalPage />} />
-        <Route path="/updateUserPass/:id" element={<Changepass/>}/>
-        <Route path="/home" element = {<Home/>}/>
-        <Route path='/voto-ketu/:id' element={<Voto/>}/>
-        <Route path='/zgjedhjetqendrore/:id/:qendroreId' element={<Zgjedhjetqendrore/>}/>
-        <Route path='/zgjedhjetlokale/:id/:lokaleId' element={<Zgjedhjetlokale/>}/>
-        <Route path='/zgjedhjetprishtine/:id/:lokaleId' element={<Zgjedhjetprishtine/>}/>
-        <Route path='/zgjedhjetgjakove/:id/:lokaleId' element={<Zgjedhjetgjakove/>}/>
-        <Route path='/zgjedhjetferizaj/:id/:lokaleId' element={<Zgjedhjetferizaj/>}/>
-        <Route path='/zgjedhjetgjilan/:id/:lokaleId' element={<Zgjedhjetgjilan/>}/>
-        <Route path='/zgjedhjetprizren/:id/:lokaleId' element={<Zgjedhjetprizren/>}/>
-        <Route path='/zgjedhjetpodujeve/:id/:lokaleId' element={<Zgjedhjetpodujeve/>}/>
-        <Route path='/zgjedhjetpeje/:id/:lokaleId' element={<Zgjedhjetpeje/>}/> 
-        <Route path='/zgjedhjetmitrovice/:id/:lokaleId' element={<Zgjedhjetmitrovice/>}/>
-        <Route path='/zgjedhjetskenderaj/:id/:lokaleId' element={<Zgjedhjetskenderaj/>}/>
-        <Route path='/elections' element={<Zgjedhjet/>}/>
-        <Route path='/charts' element={ <Chart/>}/>
-        <Route path='/admin-page' element={<MenagmentPage/>}/>
-        <Route path='/shtokandidat' element={<ShtoKandidat/>}/>
-        <Route path='/shtoparti' element={<ShtoParti/>}/>
-        <Route path='/updateparty/:id' element={<UpdateParti/>}/>
-        <Route path='/upadatecandidate/:id' element={<UpdateKandidat/>}/>
-        <Route path='/updateparty/:id' element={<UpdateParti/>}/>
-        <Route path='/delete' element={<DeletePage/>}/>
-        <Route path='/shtonplayer' element={<ShtoPlayer/>}/>
-        <Route path='/shtoteam' element={<ShtoTeam/>}/>
-        <Route path='/updatelifti/:id'  element={<UpdateLifti/>}/>
-        <Route path='/updatendertesa/:id'  element={<Updatendertesa/>}/>
+        <Route path="/updateUserPass/:id" element={<Changepass />} />
+        <Route path="/home" element={<Home />} />
+        <Route path='/voto-ketu/:id' element={<Voto />} />
+        <Route path='/zgjedhjetqendrore/:id/:qendroreId' element={<Zgjedhjetqendrore />} />
+        <Route path='/zgjedhjetlokale/:id/:lokaleId' element={<Zgjedhjetlokale />} />
+        <Route path='/zgjedhjetprishtine/:id/:lokaleId' element={<Zgjedhjetprishtine />} />
+        <Route path='/zgjedhjetgjakove/:id/:lokaleId' element={<Zgjedhjetgjakove />} />
+        <Route path='/zgjedhjetferizaj/:id/:lokaleId' element={<Zgjedhjetferizaj />} />
+        <Route path='/zgjedhjetgjilan/:id/:lokaleId' element={<Zgjedhjetgjilan />} />
+        <Route path='/zgjedhjetprizren/:id/:lokaleId' element={<Zgjedhjetprizren />} />
+        <Route path='/zgjedhjetpodujeve/:id/:lokaleId' element={<Zgjedhjetpodujeve />} />
+        <Route path='/zgjedhjetpeje/:id/:lokaleId' element={<Zgjedhjetpeje />} />
+        <Route path='/zgjedhjetmitrovice/:id/:lokaleId' element={<Zgjedhjetmitrovice />} />
+        <Route path='/zgjedhjetskenderaj/:id/:lokaleId' element={<Zgjedhjetskenderaj />} />
+        <Route path='/elections' element={<Zgjedhjet />} />
+        <Route path='/charts' element={<Chart />} />
+        <Route path='/admin-page' element={<MenagmentPage />} />
+        <Route path='/shtokandidat' element={<ShtoKandidat />} />
+        <Route path='/shtoparti' element={<ShtoParti />} />
+        <Route path='/updateparty/:id' element={<UpdateParti />} />
+        <Route path='/upadatecandidate/:id' element={<UpdateKandidat />} />
+        <Route path='/updateparty/:id' element={<UpdateParti />} />
+        <Route path='/delete' element={<DeletePage />} />
+        <Route path='/shtonplayer' element={<ShtoPlayer />} />
+        <Route path='/shtoteam' element={<ShtoTeam />} />
+        <Route path='/updateteam/:id' element={<UpdateTeam />} />
+        <Route path='/updateplayer/:id' element={<UpdatePlayer />} />
       </Routes>
-  </Router>
+    </Router>
+
   );
 }
 

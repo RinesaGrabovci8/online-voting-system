@@ -13,7 +13,7 @@
   import { useEffect, useState } from "react";
   
   
-  export default function UpdateKandidat() {
+  export default function UpdatePlayer() {
     const { id } = useParams();
     console.log('ID:', id);
     const [dataForm, setDataForm] = useState({
@@ -27,7 +27,7 @@
     const navigate = useNavigate();
   
     useEffect(() => { 
-      axios.get("http://localhost:5001/crudtest/getAllTeams")
+      axios.get("http://localhost:5001/crudtest/getAllTeam")
         .then((res) => {
           setteam(res.data.data);
         })

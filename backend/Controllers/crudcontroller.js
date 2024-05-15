@@ -27,15 +27,6 @@ exports.createTeam = async (req, res) => {
   }
 };
 
-exports.getTeams = async (req, res) => {
-  try {
-    const Teams = await Team.find();
-    res.status(200).json(Teams);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
 exports.getTeamById = async (req, res) => {
   const { id } = req.params;
 
@@ -95,7 +86,7 @@ exports.deleteTeamById = async (req, res) => {
   }
 };
 
-exports.getAllTeams = async (req, res) => {
+exports.getAllTeam = async (req, res) => {
   try {
 
     const allTeam = await Team.find({});
@@ -122,13 +113,13 @@ exports.createPlayer = async (req, res) => {
   }
 };
 
-exports.getPlayers = async (req, res) => {
+exports.getPlayer = async (req, res) => {
   try {
-    const Players = await Player.find()
+    const Player = await Player.find()
       .populate('player_id', 'name')
       .populate('team_id', 'name');
-    console.log("Players", Players);
-    res.status(200).json(Players);
+    console.log("Players", Player);
+    res.status(200).json(Player);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -171,11 +162,11 @@ exports.updatePlayerById = async (req, res) => {
   }
 };
 
-exports.getAllPlayers = async (req, res) => {
+exports.getAllPlayer = async (req, res) => {
   try {
 
-    const allPlayers = await Player.find({});
-    res.send({ status: "ok", data: allPlayers });
+    const allPlayer = await Player.find({});
+    res.send({ status: "ok", data: allPlayer });
 
   } catch (error) {
     console.log(error);

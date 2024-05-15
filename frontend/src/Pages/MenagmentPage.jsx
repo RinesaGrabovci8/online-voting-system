@@ -67,7 +67,7 @@ function MenagmentPage() {
 
   const fetchTeamData = async () => {
     try {
-      const response = await fetch("http://localhost:5001/crudtest/getAllTeams");
+      const response = await fetch("http://localhost:5001/crudtest/getAllTeam");
       const teamdata = await response.json();
       setteamdata(teamdata.data);
     } catch (error) {
@@ -177,21 +177,6 @@ function MenagmentPage() {
     return user.personalnumber.toLowerCase().includes(userFilter.toLowerCase());
   });
 
-  // const filteredLifti = liftidata.filter((lifti) => {
-  //   return lifti.personalnumber.toLowerCase().includes(liftiFilter.toLowerCase());
-  // });
-
-  // const filteredNdertesa = ndertesadata.filter((ndertesa) => {
-  //   const nameLowerCase = ndertesa.name ? ndertesa.name.toLowerCase() : '';
-  //   const dateLowerCase = ndertesa.date ? ndertesa.date.toLowerCase() : '';
-  
-  //   return (
-  //     nameLowerCase.includes(ndertesaFilter.toLowerCase()) ||
-  //     dateLowerCase.includes(ndertesaFilter.toLowerCase())
-  //     // Add additional conditions for other fields in the ndertesa model, if needed
-  //   );
-  // });
-
   const filteredParties = partitdata.filter((party) => {
     return party.name.toLowerCase().includes(partyFilter.toLowerCase());
   });
@@ -234,6 +219,7 @@ function MenagmentPage() {
         </button>
       </div>
       <div className='table-container'>
+
         {showPerdoruesitTable && (
           <div className='auth-wrapper'>
             <div className='auth-inner'>
@@ -331,7 +317,7 @@ function MenagmentPage() {
                   <tr>
                     <th>Emri</th>
                   </tr>
-                  {partitdata.map((i) => {
+                  {filteredParties.map((i) => {
                     return (
                       <tr key={i._id}>
                         <td>{i.name}</td>
@@ -377,7 +363,7 @@ function MenagmentPage() {
                           <Link to={`/delete`}>
                             <DeleteIcon style={{ color: 'red', fontSize: '16px', margin: 8 }} onClick={() => deletePlayer(i._id)} />
                           </Link>
-                          <Link to={`/updatendertesa/${i._id}`}>
+                          <Link to={`/updateplayer/${i._id}`}>
                             <EditIcon style={{ fontSize: '16px', margin: 8 }} />
                           </Link>
                         </td>
@@ -409,7 +395,7 @@ function MenagmentPage() {
                           <Link to={`/delete`}>
                             <DeleteIcon style={{ color: 'red', fontSize: '16px', margin: 8 }} onClick={() => deleteTeam(i._id)} />
                           </Link>
-                          <Link to={`/updatelifti/${i._id}`}>
+                          <Link to={`/updateteam/${i._id}`}>
                             <EditIcon style={{ fontSize: '16px', margin: 8 }} />
                           </Link>
                         </td>
@@ -424,6 +410,7 @@ function MenagmentPage() {
             </div>
           </div>
         )}
+
       </div>
     </div>
     <Footer/>
