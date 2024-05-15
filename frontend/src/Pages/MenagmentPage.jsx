@@ -147,7 +147,7 @@ function MenagmentPage() {
 
   const deleteTeam = async (teamId) => {
     try {
-      await axios.put(`http://localhost:5001/crudtest/deleteTeamById/${teamId}`);
+      await axios.delete(`http://localhost:5001/crudtest/deleteTeamById/${teamId}`);
       console.log(`Lifti with ID ${teamId} deleted successfully.`);
       setplayerdata(teamId, true);
     } catch (error) {
