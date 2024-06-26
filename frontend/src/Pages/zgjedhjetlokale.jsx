@@ -1,4 +1,4 @@
-import React  from 'react'
+import React from 'react'
 import { Link, useParams } from 'react-router-dom';
 import '../CSS/zgjedhjetlokale.css'
 import Header from '../Components/Header';

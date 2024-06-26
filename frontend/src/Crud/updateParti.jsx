@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -18,6 +18,18 @@ export default function UpdateParti({ partyId }) {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Fetch the party data by ID when the component mounts
+    axios.get(`http://localhost:5001/crud/getParty/${id}`)
+      .then((res) => {
+        const party = res.data.data; // Adjust based on your API response structure
+        setDataForm(party);
+      })
+      .catch((error) => {
+        console.error('Error fetching party data:', error);
+      });
+  }, [id]);
+
   const handleButtonClick = () => {
     console.log('Button Clicked');
     axios.put(`http://localhost:5001/crud/updateParty/${id}`, dataForm) 
@@ -30,7 +42,6 @@ export default function UpdateParti({ partyId }) {
       });
   };
 
-  console.log('dataForm', dataForm);
   
   const changes = (e) => {
     setDataForm({ ...dataForm, [e.target.name]: e.target.value });

@@ -45,13 +45,20 @@ exports.getCandidates = async (req, res) => {
 };
 
 exports.getCandidateById = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ status: 'error', message: 'Invalid candidate ID' });
+  }
   try {
-    const candidate = await Candidate.findById(req.params.id);
+    const candidate = await Candidate.findById(id);
+
     if (!candidate) {
       return res.status(404).json({ message: "Candidate not found" });
     }
     res.status(200).json(candidate);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: error.message });
   }
 };

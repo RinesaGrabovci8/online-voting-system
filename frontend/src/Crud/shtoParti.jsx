@@ -24,7 +24,6 @@ export default function ShtoParti() {
     })
   };
 
-  console.log('dataForm', dataForm);
 
   const changes = (e) => {
     setDataForm({ ...dataForm, [e.target.name]: e.target.value });

@@ -2,14 +2,16 @@ const express = require("express");
 const router = express.Router();
 const crudRoutes = require("../Controllers/crudcontroller")
 
-router.post("/createTeam", crudRoutes.createTeam);
-router.get("/getAllTeam", crudRoutes.getAllTeam);
-router.put("/updateTeamById/:id", crudRoutes.updateTeamById);
-router.delete("/deleteTeamById/:id", crudRoutes.deleteTeamById);
+router.post("/createmovie", crudRoutes.createmovie);
+router.get("/getAllmovie", crudRoutes.getAllmovie);
+router.get("/getmovie/:id", crudRoutes.getmovieById);
+router.put("/updatemovieById/:id", crudRoutes.updatemovieById);
+router.delete("/deletemovieById/:id", crudRoutes.deletemovieById);
 
-router.post("/createPlayer", crudRoutes.createPlayer);
-router.get("/getAllPlayer", crudRoutes.getAllPlayer);
-router.put("/updatePlayerById/:id", crudRoutes.updatePlayerById);
-router.delete("/deletePlayerById/:id", crudRoutes.deletePlayerById);
+router.post("/createdirector", crudRoutes.createdirector);
+router.get("/getAlldirector", crudRoutes.getAlldirector);
+router.get("/getdirector/:id", crudRoutes.getdirectorById);
+router.put("/updatedirectorById/:id", crudRoutes.updatedirectorById);
+router.delete("/deletedirectorById/:id", crudRoutes.deletedirectorById);
 
 module.exports = router;

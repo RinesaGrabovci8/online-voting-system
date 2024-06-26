@@ -27,7 +27,7 @@ exports.localvoter = async (req, res) => {
     console.log("candidate_id:", candidate_id);
 
     const user = await User.findById(userId);
-    
+
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
@@ -46,8 +46,16 @@ exports.localvoter = async (req, res) => {
     });
 
     await newVote.save();
-  
-    res.status(201).json({ updatedCandidate });
+
+    if (election_id === 'Lokale') {
+      user.hasVotedLocal = true;
+    } else if (election_id === 'Qendrore') {
+      user.hasVotedCentral = true;
+    }
+
+    await user.save();
+
+    res.status(201).json({ updatedCandidate, hasVotedLocal: user.hasVotedLocal });
   } catch (error) {
     console.error('Error processing vote:', error);
     res.status(500).json({ error: 'Internal Server Error' });

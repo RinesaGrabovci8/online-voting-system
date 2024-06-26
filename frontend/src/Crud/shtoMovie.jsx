@@ -11,22 +11,22 @@ import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 import Footer from '../Components/Footer';
 
-export default function ShtoPlayer() {
+export default function Shtomovie() {
   const [dataForm, setDataForm] = useState({
     name: '',
-    number: '',
-    birthyear: '',
-    team: ''
+    year: '',
+    title:"",
+    director: ''
   });
 
-  const [team, setteam] = useState([]);
+  const [director, setdirector] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get('http://localhost:5001/crudtest/getAllTeam')
+      .get('http://localhost:5001/crudtest/getAlldirector')
       .then((res) => {
-        setteam(res.data.data);
+        setdirector(res.data.data);
       })
       .catch((error) => {
         console.error('Error fetching parties data:', error);
@@ -41,10 +41,9 @@ export default function ShtoPlayer() {
   const handleButtonClick = () => {
     console.log('Button Clicked');
     axios
-      .post('http://localhost:5001/crudtest/createPlayer', dataForm)
+      .post('http://localhost:5001/crudtest/createmovie', dataForm)
       .then((res) => {
         console.log('res', res);
-        console.log('dataForm before POST:', dataForm);
 
         navigate('/admin-page');
       })
@@ -53,7 +52,6 @@ export default function ShtoPlayer() {
       });
   };
 
-  console.log('dataForm', dataForm);
 
   return (
     <>
@@ -66,7 +64,7 @@ export default function ShtoPlayer() {
         style={{ marginTop: 100, marginLeft: 650, marginBottom: 50 }}
       >
         <Typography variant="h6" gutterBottom>
-          Shto Player
+          Shto movie
         </Typography>
         <TextField
           label="Emri"
@@ -78,35 +76,35 @@ export default function ShtoPlayer() {
           onChange={(e) => changes(e)}
         />
         <TextField
-          label="Number"
+          label="Titulli"
           variant="outlined"
           fullWidth
           margin="normal"
-          name="number"
-          value={dataForm.number}
+          name="title"
+          value={dataForm.title}
           onChange={(e) => changes(e)}
         />
         <TextField
-          type="date"
+          label="Release year"
           variant="outlined"
           fullWidth
-          name="birthyear"
+          name="year"
           margin="normal"
-          value={dataForm.birthyear}
+          value={dataForm.year}
           onChange={(e) => changes(e)}
         />
         <Select
-          label="Team"
+          label="director"
           variant="outlined"
           fullWidth
-          name="team"
+          name="director"
           margin="normal"
-          value={dataForm.team}
+          value={dataForm.director}
           onChange={(e) => changes(e)}
         >
-          {team.map((team) => (
-            <MenuItem key={team._id} value={team.name}>
-              {team.name}
+          {director.map((director) => (
+            <MenuItem key={director._id} value={director.name}>
+              {director.name}
             </MenuItem>
           ))}
         </Select>

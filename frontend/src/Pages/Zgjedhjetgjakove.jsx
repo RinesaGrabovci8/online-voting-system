@@ -13,34 +13,21 @@ import Footer from "../Components/Footer";
 function CandidateCard({candidate, party}) { 
   const { id, lokaleId } = useParams();
   const navigate = useNavigate();
-  const [voted, setVoted] = useState(false);
 
   const handleVote = async (candidateId, electionId, party_id, userId) => {
-    if (voted) {
-      return;
-    }
+    
     try {
       await axios.post(`http://localhost:5001/vote/localVotes/${id}`, {
         election_id: lokaleId,
         party_id: party_id,
         candidate_id: candidate._id,
       });
-
-      setVoted(true);
   
       navigate('/charts');
     } catch (error) {
       console.error('Error submitting vote:', error);
     }
   };
-  
-
-  useEffect(() => {
-    const hasVotedStorage = localStorage.getItem(`voted_${candidate._id}`);
-    if (hasVotedStorage) {
-      setVoted(true);
-    }
-  }, [candidate._id]);
 
   return (
     <Card sx={{ maxWidth: 300 }} className='candidatewrapper'>
@@ -64,7 +51,7 @@ function CandidateCard({candidate, party}) {
               handleVote(candidate.user_id, candidate.election_id, candidate.party_id);
             }}
           >
-            {voted ? 'Keni Votuar' : 'Voto'}
+            Voto
           </Button>
         </div>
       </CardActions>

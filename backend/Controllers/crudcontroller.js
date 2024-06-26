@@ -6,180 +6,200 @@ const app = express()
 app.use(express.json());
 app.use(cors());
 
-require("../models/Player.js");
-const Player = mongoose.model("Player");
+require("../models/Director.js");
+const Director = mongoose.model("director");
 
-require("../models/Team.js");
-const Team = mongoose.model("Team");
+require("../models/Movie.js");
+const Movie = mongoose.model("movie");
 
-exports.createTeam = async (req, res) => {
+exports.createmovie = async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name, director,year,title } = req.body;
 
-    if (!name) {
-      return res.status(400).send({ error: "Team name is required." });
+    if (!name || !director ||!year||!title ) {
+      return res.status(400).send({ error: "movie name is required." });
     }
 
-    const newTeam = await Team.create({ name });
-    res.status(201).json(newTeam);
+    const newmovie = await Movie.create({ name, director,year,title  });
+    res.status(201).json(newmovie);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.getTeamById = async (req, res) => {
+exports.getmovieById = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ status: 'error', message: 'Invalid Team ID' });
+    return res.status(400).json({ status: 'error', message: 'Invalid movie ID' });
   }
 
   try {
-    const Team = await Team.findById(id);
+    const movie = await Movie.findById(id);
 
-    if (!Team) {
-      return res.status(404).json({ status: 'error', message: 'Team not found' });
+    if (!movie) {
+      return res.status(404).json({ status: 'error', message: 'movie not found' });
     }
 
-    res.status(200).json({ status: 'ok', data: Team });
+    res.status(200).json({ status: 'ok', data: movie });
   } catch (error) {
     console.error(error);
     res.status(500).json({ status: 'error', message: 'Internal server error' });
   }
 };
 
-exports.updateTeamById = async (req, res) => {
+exports.updatemovieById = async (req, res) => {
   try {
-    const TeamId = req.params.id;
-    const { name } = req.body;
+    const movieId = req.params.id;
+    const { name, director,year,title  } = req.body;
 
-    if (!name) {
+    if (!name || !director ||!year||!title) {
       return res.status(400).json({ error: 'All fields are required.' });
     }
 
-    const updatedTeam = await Team.findByIdAndUpdate(
-      TeamId,
-      { name },
+    const updatedmovie = await Movie.findByIdAndUpdate(
+      movieId,
+      { name , director,year,title  },
       { new: true }
     );
 
-    if (!updatedTeam) {
-      return res.status(404).json({ error: 'Team not found.' });
+    if (!updatedmovie) {
+      return res.status(404).json({ error: 'movie not found.' });
     }
 
-    res.status(200).json(updatedTeam);
+    res.status(200).json(updatedmovie);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.deleteTeamById = async (req, res) => {
+exports.deletemovieById = async (req, res) => {
   try {
-    const TeamId = req.params.id;
+    const movieId = req.params.id;
 
-    await Team.findByIdAndRemove(TeamId);
+    await Movie.findByIdAndRemove(movieId);
 
-    res.status(200).json({ status: 'ok', message: 'Player deleted successfully' });
+    res.status(200).json({ status: 'ok', message: 'director deleted successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ status: 'error', message: 'Internal server error' });
   }
 };
 
-exports.getAllTeam = async (req, res) => {
+exports.getAllmovie = async (req, res) => {
   try {
 
-    const allTeam = await Team.find({});
-    res.send({ status: "ok", data: allTeam });
+    const allmovie = await Movie.find({});
+    res.send({ status: "ok", data: allmovie });
 
   } catch (error) {
     console.log(error);
   }
 }
 
-exports.createPlayer = async (req, res) => {
+exports.createdirector = async (req, res) => {
   try {
-    const { name, birthyear, number, team } = req.body;
+    const { name, birthyear } = req.body;
 
 
-    if (!name || !number || !birthyear || !team) {
+    if (!name || !birthyear  ) {
       return res.status(400).send({ error: "All fields are required." });
     }
 
-    const newPlayer = await Player.create({ name, number, birthyear, team });
-    res.status(201).json(newPlayer);
+    const newdirector = await Director.create({ name, birthyear });
+    res.status(201).json(newdirector);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.getPlayer = async (req, res) => {
-  try {
-    const Player = await Player.find()
-      .populate('player_id', 'name')
-      .populate('team_id', 'name');
-    console.log("Players", Player);
-    res.status(200).json(Player);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+exports.getdirectorById = async (req, res) => {
+  const { id } = req.params;
 
-exports.getPlayerById = async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ status: 'error', message: 'Invalid director ID' });
+  }
+
   try {
-    const Player = await Player.findById(req.params.id);
-    if (!Player) {
-      return res.status(404).json({ message: "Player not found" });
+    const director = await Director.findById(id);
+
+    if (!director) {
+      return res.status(404).json({ status: 'error', message: 'director not found' });
     }
-    res.status(200).json(Player);
+
+    res.status(200).json({ status: 'ok', data: director });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: 'error', message: 'Internal server error' });
+  }
+};
+
+exports.getdirector = async (req, res) => {
+  try {
+    const director = await Director.find()
+      .populate('director_id', 'name')
+    console.log("directors", director);
+    res.status(200).json(director);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.updatePlayerById = async (req, res) => {
+exports.getdirectorById = async (req, res) => {
   try {
-    const PlayerId = req.params.id;
-    const { name, birthyear, number, team } = req.body;
+    const director = await Director.findById(req.params.id);
+    if (!director) {
+      return res.status(404).json({ message: "director not found" });
+    }
+    res.status(200).json(director);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
-    if (!name || !number || !birthyear || !team) {
+exports.updatedirectorById = async (req, res) => {
+  try {
+    const directorId = req.params.id;
+    const { name, birthyear } = req.body;
+
+    if (!name || !birthyear ) {
       return res.status(400).json({ error: 'All fields are required.' });
     }
 
-    const updatedPlayer = await Player.findByIdAndUpdate(
-      PlayerId,
-      { name, number, birthyear, team },
+    const updateddirector = await Director.findByIdAndUpdate(
+      directorId,
+      { name, birthyear },
       { new: true }
     );
 
-    if (!updatedPlayer) {
-      return res.status(404).json({ error: 'Player not found.' });
+    if (!updateddirector) {
+      return res.status(404).json({ error: 'director not found.' });
     }
 
-    res.status(200).json(updatedPlayer);
+    res.status(200).json(updateddirector);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.getAllPlayer = async (req, res) => {
+exports.getAlldirector = async (req, res) => {
   try {
 
-    const allPlayer = await Player.find({});
-    res.send({ status: "ok", data: allPlayer });
+    const alldirector = await Director.find({});
+    res.send({ status: "ok", data: alldirector });
 
   } catch (error) {
     console.log(error);
   }
 }
 
-exports.deletePlayerById = async (req, res) => {
+exports.deletedirectorById = async (req, res) => {
   try {
-    const PlayerId = req.params.id;
+    const directorId = req.params.id;
 
-    await Player.findByIdAndRemove(PlayerId);
+    await Director.findByIdAndRemove(directorId);
 
-    res.status(200).json({ status: 'ok', message: 'Player deleted successfully' });
+    res.status(200).json({ status: 'ok', message: 'director deleted successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ status: 'error', message: 'Internal server error' });

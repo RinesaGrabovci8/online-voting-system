@@ -11,6 +11,7 @@ const candidateController = require("../Controllers/candidateController");
 router.post('/candidate', candidateController.createCandidate);
 router.get('/candidate', candidateController.getCandidates);
 router.put('/candidate/:id', candidateController.updateCandidateById);
+router.get('/getcandidate/:id', candidateController.getCandidateById);
 router.delete('/deleteCandidate/:id', candidateController.deleteCandidateById);
 router.get('/getAllCandidates', candidateController.getAllCandidates);
 router.get('/getAllCandidatesbyElection', candidateController.getAllCandidatesbyElection);

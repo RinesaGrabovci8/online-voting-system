@@ -45,7 +45,6 @@ export default function ShtoKandidat() {
     });
   };
 
-  console.log('dataForm', dataForm);
 
   const changes = (e) => {
     const { name, value } = e.target;

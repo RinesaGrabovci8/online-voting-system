@@ -47,6 +47,13 @@ exports.voter = async (req, res) => {
     });
 
     await newVote.save();
+
+    if (election_id === 'Lokale') {
+      user.hasVotedLocal = true;
+    } else if (election_id === 'Qendrore') {
+      user.hasVotedCentral = true;
+    }
+
   
     res.status(201).json({ updatedCandidate });
   } catch (error) {

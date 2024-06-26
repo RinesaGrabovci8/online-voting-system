@@ -26,10 +26,10 @@ import Zgjedhjetpodujeve from './Pages/Zgjedhjetpodujeve';
 import Zgjedhjetpeje from './Pages/Zgjedhjetpeje';
 import Zgjedhjetmitrovice from './Pages/Zgjedhjetmitrovice';
 import DeletePage from './Pages/DeletePage';
-import UpdateTeam from './Crud/updateTeam';
-import UpdatePlayer from './Crud/updatePlayer';
-import ShtoPlayer from './Crud/shtoPlayer';
-import ShtoTeam from './Crud/shtoTeam';
+import Shtodirector from './Crud/shtoDirectorr';
+import Shtomovie from './Crud/shtoMovie';
+import Updatedirector from './Crud/updateDirector';
+import Updatemovie from './Crud/updateMovie';
 
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(window.localStorage.getItem("loggedIn") === "false");
@@ -69,10 +69,10 @@ function App() {
         <Route path='/upadatecandidate/:id' element={<UpdateKandidat />} />
         <Route path='/updateparty/:id' element={<UpdateParti />} />
         <Route path='/delete' element={<DeletePage />} />
-        <Route path='/shtonplayer' element={<ShtoPlayer />} />
-        <Route path='/shtoteam' element={<ShtoTeam />} />
-        <Route path='/updateteam/:id' element={<UpdateTeam />} />
-        <Route path='/updateplayer/:id' element={<UpdatePlayer />} />
+        <Route path='/shtomovie' element={<Shtomovie />} />
+        <Route path='/shtodirector' element={<Shtodirector />} />
+        <Route path='/updatedirector/:id' element={<Updatedirector />} />
+        <Route path='/updatemovie/:id' element={<Updatemovie />} />
       </Routes>
     </Router>
 

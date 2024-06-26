@@ -33,4 +33,15 @@ code {
   margin-left: 200px;
 }
 
+.MuiTableContainer-root{
+  max-width:500px !important;
+}
+
+.css-quj9j6-MuiTable-root {
+  min-width: 0 !important;
+}
+
+.table-container table th {
+  border: 1px solid #4d4d4d !important;
+}
 

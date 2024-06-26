@@ -28,7 +28,6 @@ function Changepass() {
       });
   };
 
-  console.log('dataForm', dataForm);
 
   const changes = (e) => {
     setDataForm({ ...dataForm, newPassword: e.target.value });
